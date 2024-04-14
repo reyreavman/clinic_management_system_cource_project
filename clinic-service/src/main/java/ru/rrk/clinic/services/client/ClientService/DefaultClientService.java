@@ -1,32 +1,50 @@
 package ru.rrk.clinic.services.client.ClientService;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.rrk.clinic.entity.Client;
+import ru.rrk.clinic.repository.client.ClientRepository;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Service
+@RequiredArgsConstructor
 public class DefaultClientService implements ClientService {
+    private final ClientRepository repository;
+
     @Override
     public Iterable<Client> findAllClients(String filter) {
-        return null;
+        if (filter != null && !filter.isBlank())
+            return this.repository.findAllByFirstNameIgnoreCase("%" + filter + "%");
+        return this.repository.findAll();
     }
 
     @Override
     public Client createClient(String firstName, String lastName, String phoneNumber, String email) {
-        return null;
+        return this.repository.save(new Client(null, firstName, lastName, phoneNumber, email));
     }
 
     @Override
     public Optional<Client> findClient(int clientID) {
-        return Optional.empty();
+        return this.repository.findById(clientID);
     }
 
     @Override
     public void updateClient(Integer id, String firstName, String lastName, String phoneNumber, String email) {
-
+        this.repository.findById(id)
+                .ifPresentOrElse(client -> {
+                    client.setFirstName(firstName);
+                    client.setLastName(lastName);
+                    client.setPhoneNumber(phoneNumber);
+                    client.setEmail(email);
+                }, () -> {
+                    throw new NoSuchElementException();
+                });
     }
 
     @Override
     public void deleteClient(Integer id) {
-
+        this.repository.deleteById(id);
     }
 }
