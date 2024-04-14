@@ -1,0 +1,19 @@
+spring:
+  security:
+    user:
+      name: clinic_service_user
+      password: '{noop}password'
+      roles:
+        - SERVICE
+
+  datasource:
+    url: jdbc:postgresql://localhost:5445/clinic
+    username: clinic
+    password: clinic
+  flyway:
+    schemas:
+      - public
+      - clinic
+
+server:
+  port: 8081
