@@ -1,4 +1,4 @@
-package ru.rrk.clinic.services.client.ClientService;
+package ru.rrk.clinic.services.client;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
