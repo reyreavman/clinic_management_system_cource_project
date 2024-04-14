@@ -1,4 +1,4 @@
-package ru.rrk.clinic.payload.Client;
+package ru.rrk.clinic.controller.payload.Client;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
