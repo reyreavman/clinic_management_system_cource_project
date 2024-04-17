@@ -1,0 +1,28 @@
+kupang:
+  services:
+    clinic:
+      uri: http://localhost:8081
+      registration-id: keycloak
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/manager
+    username: manager
+    password: manager
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/kupang
+            user-name-attribute: preferred_username
+
+        registration:
+          keycloak:
+            client-id: manager-app
+            client-secret: ymAPUZMNtklLD84ZPW4WAXBgEoiHIw8i
+            scope:
+              - openid
+              - view_clinic_users
+              - edit_clinic_users
+              - microprofile-jwt
