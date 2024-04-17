@@ -1,19 +1,21 @@
 spring:
-  security:
-    user:
-      name: clinic_service_user
-      password: '{noop}password'
-      roles:
-        - SERVICE
-
   datasource:
-    url: jdbc:postgresql://localhost:5445/clinic
+    url: jdbc:postgresql://localhost:5435/clinic
     username: clinic
     password: clinic
   flyway:
     schemas:
       - public
       - clinic
-
+  jpa:
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/kupang
 server:
   port: 8081
+logging:
+  level:
+    sql: info
