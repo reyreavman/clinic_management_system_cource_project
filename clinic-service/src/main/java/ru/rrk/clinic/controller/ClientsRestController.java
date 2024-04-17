@@ -2,6 +2,7 @@ package ru.rrk.clinic.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import ru.rrk.clinic.controller.payload.Client.NewClientPayload;
 import ru.rrk.clinic.entity.Client;
 import ru.rrk.clinic.services.client.ClientService;
 
+import java.security.Principal;
 import java.util.Map;
 
 @RestController
@@ -20,7 +22,9 @@ public class ClientsRestController {
     private final ClientService service;
 
     @GetMapping
-    public Iterable<Client> findProducts(@RequestParam(name = "filter", required = false) String filter) {
+    public Iterable<Client> findClients(@RequestParam(name = "filter", required = false) String filter,
+                                        Principal principal) {
+        LoggerFactory.getLogger(ClientsRestController.class).info("Principal: {}", principal);
         return this.service.findAllClients(filter);
     }
 

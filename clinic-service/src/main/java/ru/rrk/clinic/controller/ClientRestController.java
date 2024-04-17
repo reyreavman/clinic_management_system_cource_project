@@ -22,7 +22,6 @@ import java.util.Objects;
 @RequestMapping("clinic-api/clients/{clientId:\\d}")
 public class ClientRestController {
     private final ClientService service;
-
     private final MessageSource messageSource;
 
     @ModelAttribute("client")
