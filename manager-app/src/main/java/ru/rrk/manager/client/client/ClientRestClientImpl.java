@@ -1,4 +1,4 @@
-package ru.rrk.manager.consumer.client;
+package ru.rrk.manager.client.client;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -6,7 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.consumer.BadRequestException;
+import ru.rrk.manager.client.BadRequestException;
 import ru.rrk.manager.entity.Client;
 
 import java.util.List;

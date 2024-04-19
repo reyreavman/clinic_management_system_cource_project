@@ -1,4 +1,4 @@
-package ru.rrk.manager.consumer.client;
+package ru.rrk.manager.client.client;
 
 import ru.rrk.manager.entity.Client;
 

@@ -1,4 +1,4 @@
-package ru.rrk.manager.consumer;
+package ru.rrk.manager.client;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
