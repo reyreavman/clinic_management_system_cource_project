@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -37,4 +38,7 @@ public class Client {
     @Nullable
     @Size(max = 255)
     private String email;
+
+    @Getter
+    private final String fullName = firstName + " " + lastName;
 }

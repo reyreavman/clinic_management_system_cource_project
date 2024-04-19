@@ -6,7 +6,7 @@ kupang:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/manager
+    url: jdbc:postgresql://localhost:5443/manager
     username: manager
     password: manager
   security:
@@ -14,13 +14,12 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8082/realms/kupang
+            issuer-uri: http://localhost:8083/realms/clinic
             user-name-attribute: preferred_username
-
         registration:
           keycloak:
             client-id: manager-app
-            client-secret: ymAPUZMNtklLD84ZPW4WAXBgEoiHIw8i
+            client-secret: eh6Emv2PrGxQeclkelAslxoJdEnzFmTx
             scope:
               - openid
               - view_clinic_users

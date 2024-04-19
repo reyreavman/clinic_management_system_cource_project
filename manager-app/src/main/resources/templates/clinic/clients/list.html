@@ -5,9 +5,9 @@
     <title>Список клиентов &ndash;</title>
 </head>
 <body>
-<a data-th-href="@{/clinic-api/clients/create}">+ Добавить клиента</a>
+<a data-th-href="@{/clinic/clients/create}">+ Добавить клиента</a>
 <h1>Список клиентов</h1>
-<form method="get" data-th-action="@{/clinic-api/clients/list}">
+<form method="get" data-th-action="@{/clinic/clients/list}">
     <label>Фильтр:<input type="text" name="filter" data-th-value="${filter}">
         <button type="submit">Поиск</button>
     </label>
@@ -23,7 +23,7 @@
     <tr data-th-each="client : ${clients}">
         <td data-th-text="${client.id}"></td>
         <td>
-            <a data-th-href="@{/clinic-api/clients/{clientId}(clientId=${client.id})}"
+            <a data-th-href="@{/clinic/clients/{clientId}(clientId=${client.id})}"
                data-th-text="${client.firstName}"></a>
         </td>
         <td>

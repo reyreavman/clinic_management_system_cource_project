@@ -5,7 +5,7 @@
     <title>[[${client.fullName}]] &ndash;</title>
 </head>
 <body>
-<a data-th-href="@{/clinic-api/clients/list}">&larr; К списку клиентов</a>
+<a data-th-href="@{/clinic/clients/list}">&larr; К списку клиентов</a>
 <h1 data-th-text="${client.fullName}"></h1>
 <ul>
     <li><strong>ID</strong>: <span data-th-text="${client.id}"></span></li>
@@ -14,8 +14,8 @@
     <li><strong>Номер телефона</strong>: <span data-th-text="${client.phoneNumber}"></span></li>
     <li><strong>Электронная почта</strong>: <span data-th-text="${client.email}"></span></li>
 </ul>
-<a data-th-href="@{/clinic-api/clients/{clientId}/edit(clientId=${client.id})}">Изменить</a>
-<form method="post" data-th-action="@{/clinic-api/clients/{clientId}/delete(clientId=${client.id})}">
+<a data-th-href="@{/clinic/clients/{clientId}/edit(clientId=${client.id})}">Изменить</a>
+<form method="post" data-th-action="@{/clinic/clients/{clientId}/delete(clientId=${client.id})}">
     <button type="submit">Удалить</button>
 </form>
 </body>

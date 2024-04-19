@@ -22,7 +22,7 @@ public class DefaultClientService implements ClientService {
 
     @Override
     public Client createClient(String firstName, String lastName, String phoneNumber, String email) {
-        return this.repository.save(new Client(null, firstName, lastName, phoneNumber, email));
+        return this.repository.save(new Client(null, firstName, lastName, phoneNumber, email, firstName + lastName));
     }
 
     @Override

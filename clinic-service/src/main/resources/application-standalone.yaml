@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5435/clinic
+    url: jdbc:postgresql://localhost:5445/clinic
     username: clinic
     password: clinic
   flyway:
@@ -13,7 +13,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8082/realms/kupang
+          issuer-uri: http://localhost:8083/realms/clinic
+
 server:
   port: 8081
 logging:
