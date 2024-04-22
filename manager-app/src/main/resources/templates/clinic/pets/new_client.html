@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый клиент &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/clients/list}">&larr; К списку клиентов</a>
+<h1>Новый клиент</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/clients/create}">
+    <label>
+        Имя:<br>
+        <input type="text" name="firstName" data-th-value="${payload?.firstName}">
+    </label><br>
+    <label>
+        Фамилия:<br>
+        <input type="text" name="lastName" data-th-value="${payload?.lastName}">
+    </label><br>
+    <label>
+        Номер телефона:<br>
+        <input type="text" name="phoneNumber" data-th-value="${payload?.phoneNumber}">
+    </label><br>
+    <label>
+        Электронная почта:<br>
+        <input type="text" name="email" data-th-value="${payload?.email}">
+    </label><br>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>
