@@ -43,8 +43,8 @@ public class ClientController {
                                UpdateClientPayload payload,
                                Model model) {
         try {
-            this.clientRestClient.updateClient(client.id(), payload.firstName(), payload.lastName(), payload.phoneNumber(), payload.email());
-            return "redirect:/clinic/clients/%d".formatted(client.id());
+            this.clientRestClient.updateClient(client.getId(), payload.firstName(), payload.lastName(), payload.phoneNumber(), payload.email());
+            return "redirect:/clinic/clients/%d".formatted(client.getId());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
@@ -54,7 +54,7 @@ public class ClientController {
 
     @PostMapping("delete")
     public String deleteProduct(@ModelAttribute("client") Client client) {
-        this.clientRestClient.deleteClient(client.id());
+        this.clientRestClient.deleteClient(client.getId());
         return "redirect:/clinic/clients/list";
     }
 

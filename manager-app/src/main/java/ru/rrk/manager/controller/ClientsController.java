@@ -34,7 +34,7 @@ public class ClientsController {
     public String createClient(NewClientPayload payload, Model model) {
         try {
             Client client = this.restClient.createClient(payload.firstName(), payload.lastName(), payload.phoneNumber(), payload.email());
-            return "redirect:/clinic/clients/%d".formatted(client.id());
+            return "redirect:/clinic/clients/%d".formatted(client.getId());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());

@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>[[${client.id}]] &ndash; Ветеринарная клиника </title>
+    <title>[[${client.fullName}]] &ndash; Ветеринарная клиника </title>
 </head>
 <body>
 <a data-th-href="@{/clinic/clients/list}">&larr; К списку клиентов</a>
-<h1 data-th-text="${client.id}"></h1>
+<h1 data-th-text="${client.fullName}"></h1>
 <ul>
     <li><strong>ID</strong>: <span data-th-text="${client.id}"></span></li>
     <li><strong>Имя</strong>: <span data-th-text="${client.firstName}"></span></li>
     <li><strong>Фамилия</strong>: <span data-th-text="${client.lastName}"></span></li>
     <li><strong>Номер телефона</strong>: <span data-th-text="${client.phoneNumber}"></span></li>
     <li><strong>Электронная почта</strong>: <span data-th-text="${client.email}"></span></li>
-<!--    <li><strong>Полное имя</strong>: <span data-th-text="${client.firstName} + ' ' + ${client.lastName}"></span></li>-->
 </ul>
 <a data-th-href="@{/clinic/clients/{clientId}/edit(clientId=${client.id})}">Изменить</a>
 <form method="post" data-th-action="@{/clinic/clients/{clientId}/delete(clientId=${client.id})}">
