@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список клиентов &ndash;</title>
+    <title>Список клиентов &ndash; Ветеринарная клиник</title>
 </head>
 <body>
 <a data-th-href="@{/clinic/clients/create}">+ Добавить клиента</a>
@@ -16,15 +16,21 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>Клиент</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Номер телефона</th>
+        <th>Электронная почта</th>
     </tr>
     </thead>
     <tbody>
     <tr data-th-each="client : ${clients}">
-        <td data-th-text="${client.id}"></td>
+<!--        <td> data-th-text="${client.id}"></td>-->
         <td>
             <a data-th-href="@{/clinic/clients/{clientId}(clientId=${client.id})}"
-               data-th-text="${client.firstName}"></a>
+               data-th-text="${client.id}"></a>
+        </td>
+        <td>
+            <a data-th-text="${client.firstName}"></a>
         </td>
         <td>
             <a data-th-text="${client.lastName}"></a>

@@ -3,7 +3,6 @@ kupang:
     clinic:
       uri: http://localhost:8081
       registration-id: keycloak
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5443/manager

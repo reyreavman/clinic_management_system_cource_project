@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 @Configuration
 public class SecurityBeans {
     @Bean
-    public SecurityFilterChain securityFilterChai(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .anyRequest().hasRole("MANAGER"))

@@ -38,7 +38,4 @@ public class Client {
     @Nullable
     @Size(max = 255)
     private String email;
-
-    @Getter
-    private final String fullName = firstName + " " + lastName;
 }

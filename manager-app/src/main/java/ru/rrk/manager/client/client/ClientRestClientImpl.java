@@ -17,8 +17,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 public class ClientRestClientImpl implements ClientRestClient {
-    private static final ParameterizedTypeReference<List<Client>> CLIENT_TYPE_REFERENCE = new ParameterizedTypeReference<>() {
-    };
+    private static final ParameterizedTypeReference<List<Client>> CLIENT_TYPE_REFERENCE = new ParameterizedTypeReference<>() {};
     private final RestClient client;
 
     @Override
@@ -50,7 +49,7 @@ public class ClientRestClientImpl implements ClientRestClient {
     public Optional<Client> findClient(int clientId) {
         try {
             return Optional.ofNullable(this.client.get()
-                    .uri("/catalogue-api/products/{productId}", clientId)
+                    .uri("/clinic-api/clients/{clientId}", clientId)
                     .retrieve()
                     .body(Client.class));
         } catch (HttpClientErrorException.NotFound exception) {
@@ -63,7 +62,7 @@ public class ClientRestClientImpl implements ClientRestClient {
         try {
             this.client
                     .patch()
-                    .uri("/catalogue-api/products/{productId}", clientId)
+                    .uri("/clinic-api/clients/{clientId}", clientId)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new UpdateClientPayload(firstName, lastName, phoneNumber, email))
                     .retrieve()
@@ -79,7 +78,7 @@ public class ClientRestClientImpl implements ClientRestClient {
         try {
             this.client
                     .delete()
-                    .uri("/catalogue-api/products/{productId}", clientId)
+                    .uri("/clinic-api/clients/{clientId}", clientId)
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {

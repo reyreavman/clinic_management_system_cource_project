@@ -14,12 +14,12 @@ import ru.rrk.manager.security.OAuthClientHttpRequestInterceptor;
 public class ClientBeans {
     @Bean
     public ClientRestClientImpl clientsRestClient(
-            @Value("${kupang.services.clinic.uri:http://localhost:8081}") String catalogueBaseUri,
+            @Value("${kupang.services.clinic.uri:http://localhost:8081}") String clinicBaseUri,
             ClientRegistrationRepository clientRegistrationRepository,
             OAuth2AuthorizedClientRepository authorizedClientRepository,
-            @Value("${selmag.services.clinic.registration-id:keycloak}") String registrationId) {
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
         return new ClientRestClientImpl(RestClient.builder()
-                .baseUrl(catalogueBaseUri)
+                .baseUrl(clinicBaseUri)
                 .requestInterceptor(
                         new OAuthClientHttpRequestInterceptor(
                                 new DefaultOAuth2AuthorizedClientManager(

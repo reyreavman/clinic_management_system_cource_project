@@ -19,15 +19,14 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("clinic-api/clients/{clientId:\\d}")
+@RequestMapping("clinic-api/clients/{clientId:\\d+}")
 public class ClientRestController {
     private final ClientService service;
     private final MessageSource messageSource;
 
     @ModelAttribute("client")
     public Client getClient(@PathVariable("clientId") int clientId) {
-        return this.service.findClient(clientId)
-                .orElseThrow(() -> new NoSuchElementException("clinic.errors.client.not_found"));
+        return this.service.findClient(clientId).orElseThrow(() -> new NoSuchElementException("clinic.errors.client.not_found"));
     }
 
     @GetMapping
@@ -36,9 +35,7 @@ public class ClientRestController {
     }
 
     @PatchMapping
-    public ResponseEntity<?> updateClient(@PathVariable("clientId") int clientId,
-                                          @Valid @RequestBody UpdateClientPayload payload,
-                                          BindingResult bindingResult) throws BindException {
+    public ResponseEntity<?> updateClient(@PathVariable("clientId") int clientId, @Valid @RequestBody UpdateClientPayload payload, BindingResult bindingResult) throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
@@ -51,15 +48,11 @@ public class ClientRestController {
     @DeleteMapping
     public ResponseEntity<Void> deleteClient(@PathVariable("clientId") int clientId) {
         this.service.deleteClient(clientId);
-        return ResponseEntity.noContent()
-                .build();
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ProblemDetail> handleNoSuchElementException(NoSuchElementException exception, Locale locale) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND,
-                        Objects.requireNonNull(this.messageSource.getMessage(exception.getMessage(), new Object[0],
-                                exception.getMessage(), locale))));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, Objects.requireNonNull(this.messageSource.getMessage(exception.getMessage(), new Object[0], exception.getMessage(), locale))));
     }
 }

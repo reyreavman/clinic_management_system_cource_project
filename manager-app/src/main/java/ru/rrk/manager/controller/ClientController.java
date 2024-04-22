@@ -16,7 +16,7 @@ import java.util.Locale;
 import java.util.NoSuchElementException;
 
 @Controller
-@RequestMapping(("clinic/clients/{clientId:\\d+}"))
+@RequestMapping("clinic/clients/{clientId:\\d+}")
 @RequiredArgsConstructor
 public class ClientController {
     private final ClientRestClient clientRestClient;
@@ -25,7 +25,7 @@ public class ClientController {
     @ModelAttribute("client")
     public Client client(@PathVariable("clientId") int clientId) {
         return this.clientRestClient.findClient(clientId)
-                .orElseThrow(() -> new NoSuchElementException("clinic.errors.clients.not_found"));
+                .orElseThrow(() -> new NoSuchElementException("clinic.errors.client.not_found"));
     }
 
     @GetMapping
