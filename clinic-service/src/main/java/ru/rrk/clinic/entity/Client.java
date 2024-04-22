@@ -20,7 +20,7 @@ public class Client {
 
     @Column(name = "c_first_name")
     @NotNull
-    @Size(min = 2, max = 50)
+    @Size(min = 1, max = 50)
     private String firstName;
 
     @Column(name = "c_last_name")
@@ -29,7 +29,7 @@ public class Client {
 
     @Column(name = "c_phone_number")
     @NotNull
-    @Size(max = 10)
+    @Size(min = 1, max = 20)
     private String phoneNumber;
 
     @Column(name = "c_email")

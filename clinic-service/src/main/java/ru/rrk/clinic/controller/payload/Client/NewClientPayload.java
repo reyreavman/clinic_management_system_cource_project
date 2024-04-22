@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public record NewClientPayload(
         @NotNull(message = "{clinic.clients.create.errors.firstName_is_null}")
-        @Size(min = 2, max = 50, message = "{clinic.clients.create.errors.firstName_size_is_invalid}")
+        @Size(min = 1, max = 50, message = "{clinic.clients.create.errors.firstName_size_is_invalid}")
         String firstName,
 
         @Nullable
@@ -14,7 +14,7 @@ public record NewClientPayload(
         String lastName,
 
         @NotNull(message = "{clinic.clients.create.errors.phoneNumber_is_null}")
-        @Size(max = 10, message = "{clinic.clients.create.errors.phoneNumber_size_is_invalid}")
+        @Size(min = 1, max = 20, message = "{clinic.clients.create.errors.phoneNumber_size_is_invalid}")
         String phoneNumber,
 
         @Nullable
