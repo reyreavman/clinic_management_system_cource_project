@@ -1,4 +1,4 @@
-package ru.rrk.manager.controller;
+package ru.rrk.manager.controller.clients;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.rrk.manager.client.BadRequestException;
 import ru.rrk.manager.client.client.ClientRestClient;
-import ru.rrk.manager.controller.payload.NewClientPayload;
+import ru.rrk.manager.controller.clients.payload.NewClientPayload;
 import ru.rrk.manager.entity.Client;
 
 @Controller

@@ -7,8 +7,8 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.manager.client.BadRequestException;
-import ru.rrk.manager.controller.payload.NewClientPayload;
-import ru.rrk.manager.controller.payload.UpdateClientPayload;
+import ru.rrk.manager.controller.clients.payload.NewClientPayload;
+import ru.rrk.manager.controller.clients.payload.UpdateClientPayload;
 import ru.rrk.manager.entity.Client;
 
 import java.util.List;

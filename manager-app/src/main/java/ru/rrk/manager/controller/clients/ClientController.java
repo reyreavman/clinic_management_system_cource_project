@@ -1,4 +1,4 @@
-package ru.rrk.manager.controller;
+package ru.rrk.manager.controller.clients;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.rrk.manager.client.BadRequestException;
 import ru.rrk.manager.client.client.ClientRestClient;
-import ru.rrk.manager.controller.payload.UpdateClientPayload;
+import ru.rrk.manager.controller.clients.payload.UpdateClientPayload;
 import ru.rrk.manager.entity.Client;
 
 import java.util.Locale;

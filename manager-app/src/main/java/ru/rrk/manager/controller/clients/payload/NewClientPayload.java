@@ -1,4 +1,4 @@
-package ru.rrk.manager.controller.payload;
+package ru.rrk.manager.controller.clients.payload;
 
 public record NewClientPayload(String firstName, String lastName, String phoneNumber, String email) {
 
