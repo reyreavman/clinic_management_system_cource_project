@@ -52,7 +52,7 @@ public class ClientController {
     }
 
     @PostMapping("delete")
-    public String deleteProduct(@ModelAttribute("client") Client client) {
+    public String deleteClient(@ModelAttribute("client") Client client) {
         this.restClient.deleteClient(client.getId());
         return "redirect:/clinic/clients/list";
     }
