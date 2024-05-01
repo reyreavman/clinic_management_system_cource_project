@@ -34,7 +34,7 @@ public class SecurityBeans {
         OidcUserService oidcUserService = new OidcUserService();
         return userRequest -> {
             OidcUser oidcUser = oidcUserService.loadUser(userRequest);
-            List<GrantedAuthority> authorityList =
+            List<GrantedAuthority> authorities =
                     Stream.concat(oidcUser.getAuthorities().stream(),
                                     Optional.ofNullable(oidcUser.getClaimAsStringList("groups"))
                                             .orElseGet(List::of)
@@ -44,7 +44,7 @@ public class SecurityBeans {
                                             .map(GrantedAuthority.class::cast))
                             .toList();
 
-            return new DefaultOidcUser(authorityList, oidcUser.getIdToken(), oidcUser.getUserInfo());
+            return new DefaultOidcUser(authorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
         };
     }
 }

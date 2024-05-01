@@ -1,6 +1,8 @@
 package ru.rrk.manager.controller.specialities;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,11 +33,12 @@ public class SpecialitiesController {
     }
 
     @PostMapping("create")
-    public String createSpeciality(NewSpecialityPayload payload, Model model) {
+    public String createSpeciality(NewSpecialityPayload payload, Model model, HttpServletResponse response) {
         try {
             Speciality speciality = this.restClient.createSpeciality(payload.name());
             return "redirect:/clinic/specialities/%d".formatted(speciality.id());
         } catch (BadRequestException exception) {
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
             return "clinic/specialities/new_speciality";

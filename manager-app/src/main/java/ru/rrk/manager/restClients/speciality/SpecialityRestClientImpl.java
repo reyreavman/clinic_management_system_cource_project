@@ -23,13 +23,23 @@ public class SpecialityRestClientImpl implements SpecialityRestClient {
 
     @Override
     public List<Speciality> findAllSpecialities(String filter) {
-        return this.client.get().uri("/clinic-api/specialities?filter={filter}", filter).retrieve().body(SPECIALITY_TYPE_REFERENCE);
+        return this.client
+                .get()
+                .uri("/clinic-api/specialities?filter={filter}", filter)
+                .retrieve()
+                .body(SPECIALITY_TYPE_REFERENCE);
     }
 
     @Override
     public Speciality createSpeciality(String name) {
         try {
-            return this.client.post().uri("/clinic-api/specialities").contentType(MediaType.APPLICATION_JSON).body(new NewSpecialityPayload(name)).retrieve().body(Speciality.class);
+            return this.client
+                    .post()
+                    .uri("/clinic-api/specialities")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(new NewSpecialityPayload(name))
+                    .retrieve()
+                    .body(Speciality.class);
         } catch (HttpClientErrorException.BadRequest exception) {
             ProblemDetail detail = exception.getResponseBodyAs(ProblemDetail.class);
             throw new BadRequestException((List<String>) detail.getProperties().get("errors"));
