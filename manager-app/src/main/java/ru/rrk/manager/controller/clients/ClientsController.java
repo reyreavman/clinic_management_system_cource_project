@@ -26,7 +26,7 @@ public class ClientsController {
     }
 
     @GetMapping("create")
-    public String getNewProductPage() {
+    public String getNewClientPage() {
         return "clinic/clients/new_client";
     }
 
