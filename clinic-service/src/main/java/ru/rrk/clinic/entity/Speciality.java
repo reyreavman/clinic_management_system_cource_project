@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(schema = "clinic", name = "t_type")
-public class PetType {
+@Table(schema = "clinic", name = "t_speciality")
+public class Speciality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

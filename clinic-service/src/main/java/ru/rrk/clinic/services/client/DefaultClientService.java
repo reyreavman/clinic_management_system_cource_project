@@ -41,7 +41,6 @@ public class DefaultClientService implements ClientService {
                     client.setLastName(lastName);
                     client.setPhoneNumber(phoneNumber);
                     client.setEmail(email);
-
                 }, () -> {
                     throw new NoSuchElementException();
                 });

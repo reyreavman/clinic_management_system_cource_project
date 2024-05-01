@@ -1,4 +1,4 @@
-package ru.rrk.clinic.controller;
+package ru.rrk.clinic.controller.client;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.clinic.controller.payload.Client.UpdateClientPayload;
+import ru.rrk.clinic.controller.client.payload.Client.UpdateClientPayload;
 import ru.rrk.clinic.entity.Client;
 import ru.rrk.clinic.services.client.ClientService;
 
