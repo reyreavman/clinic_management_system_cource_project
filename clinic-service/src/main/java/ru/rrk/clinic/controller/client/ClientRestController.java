@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.clinic.controller.client.payload.Client.UpdateClientPayload;
+import ru.rrk.clinic.controller.client.payload.UpdateClientPayload;
 import ru.rrk.clinic.entity.Client;
 import ru.rrk.clinic.services.client.ClientService;
 
@@ -53,6 +53,9 @@ public class ClientRestController {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ProblemDetail> handleNoSuchElementException(NoSuchElementException exception, Locale locale) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, Objects.requireNonNull(this.messageSource.getMessage(exception.getMessage(), new Object[0], exception.getMessage(), locale))));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND,
+                        Objects.requireNonNull(this.messageSource.getMessage(exception.getMessage(),
+                                new Object[0], exception.getMessage(), locale))));
     }
 }
