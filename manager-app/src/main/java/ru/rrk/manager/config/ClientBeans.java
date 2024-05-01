@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.client.client.ClientRestClientImpl;
+import ru.rrk.manager.restClients.client.ClientRestClientImpl;
 import ru.rrk.manager.security.OAuthClientHttpRequestInterceptor;
 
 @Configuration

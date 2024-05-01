@@ -1,4 +1,4 @@
-package ru.rrk.manager.client.client;
+package ru.rrk.manager.restClients.client;
 
 import ru.rrk.manager.entity.Client;
 
