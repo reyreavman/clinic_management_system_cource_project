@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.rrk.clinic.controller.speciality.payload.NewSpecialityPayload;
 import ru.rrk.clinic.entity.Speciality;
-import ru.rrk.clinic.services.speciality.SpecialityService;
+import ru.rrk.clinic.service.speciality.SpecialityService;
 
 import java.security.Principal;
 import java.util.Map;

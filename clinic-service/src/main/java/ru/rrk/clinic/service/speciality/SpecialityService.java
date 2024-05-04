@@ -1,4 +1,4 @@
-package ru.rrk.clinic.services.speciality;
+package ru.rrk.clinic.service.speciality;
 
 import ru.rrk.clinic.entity.Speciality;
 

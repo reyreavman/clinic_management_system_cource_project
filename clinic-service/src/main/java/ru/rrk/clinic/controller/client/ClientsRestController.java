@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.rrk.clinic.controller.client.payload.NewClientPayload;
 import ru.rrk.clinic.entity.Client;
-import ru.rrk.clinic.services.client.ClientService;
+import ru.rrk.clinic.service.client.ClientService;
 
 import java.security.Principal;
 import java.util.Map;
