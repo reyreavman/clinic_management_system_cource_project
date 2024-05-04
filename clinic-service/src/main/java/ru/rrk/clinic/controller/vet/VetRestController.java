@@ -54,6 +54,7 @@ public class VetRestController {
         return ResponseEntity.noContent().build();
     }
 
+    @ExceptionHandler
     public ResponseEntity<ProblemDetail> handleNoSuchElementException(NoSuchElementException exception, Locale locale) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND,

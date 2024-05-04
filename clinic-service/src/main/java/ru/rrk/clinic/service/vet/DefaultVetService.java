@@ -9,7 +9,6 @@ import ru.rrk.clinic.repository.vet.VetRepository;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +24,8 @@ public class DefaultVetService implements VetService {
 
     @Override
     @Transactional
-    public Vet createVet(String firstName, String lastName, Set<Speciality> specialitySet) {
-        return this.repository.save(new Vet(null, firstName, lastName, specialitySet));
+    public Vet createVet(String firstName, String lastName, Speciality speciality) {
+        return this.repository.save(new Vet(null, firstName, lastName, speciality));
     }
 
     @Override
@@ -36,12 +35,12 @@ public class DefaultVetService implements VetService {
 
     @Override
     @Transactional
-    public void updateVet(Integer id, String firstName, String lastName, Set<Speciality> specialitySet) {
+    public void updateVet(Integer id, String firstName, String lastName, Speciality speciality) {
         this.repository.findById(id)
                 .ifPresentOrElse(vet -> {
                     vet.setFirstName(firstName);
                     vet.setLastName(lastName);
-                    vet.setSpecialitySet(specialitySet);
+                    vet.setSpeciality(speciality);
                 }, () -> {
                     throw new NoSuchElementException();
                 });

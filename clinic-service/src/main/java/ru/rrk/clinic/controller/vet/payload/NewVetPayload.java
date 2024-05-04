@@ -14,6 +14,6 @@ public record NewVetPayload(
         @Size(min = 1, max = 100, message = "")
         String lastName,
         @NotNull(message = "{clinic.vets.create.errors.Speciality_is_null}")
-        Set<Speciality> speciality
+        Speciality speciality
 ) {
 }
