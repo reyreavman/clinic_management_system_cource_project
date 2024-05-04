@@ -53,7 +53,7 @@ public class VetController {
     }
 
     @PostMapping("delete")
-    public String deleteProduct(@ModelAttribute("vet") Vet vet) {
+    public String deleteVet(@ModelAttribute("vet") Vet vet) {
         this.vetRestClient.deleteVet(vet.id());
         return "redirect:/clinic/vets/list";
     }
