@@ -1,0 +1,1 @@
+alter table clinic.t_speciality rename column name to c_name;

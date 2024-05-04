@@ -15,7 +15,7 @@ import ru.rrk.manager.security.OAuthClientHttpRequestInterceptor;
 public class BeansConfig {
     @Bean
     public ClientRestClientImpl clientsRestClient(
-            @Value("${kupang.services.clinic.uri:http://localhost:8081}") String clinicBaseUri,
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
             ClientRegistrationRepository clientRegistrationRepository,
             OAuth2AuthorizedClientRepository authorizedClientRepository,
             @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
@@ -30,7 +30,7 @@ public class BeansConfig {
 
     @Bean
     public SpecialityRestClientImpl specialityRestClient(
-            @Value("${kupang.services.clinic.uri:http://localhost:8081}") String clinicBaseUri,
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
             ClientRegistrationRepository clientRegistrationRepository,
             OAuth2AuthorizedClientRepository authorizedClientRepository,
             @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {

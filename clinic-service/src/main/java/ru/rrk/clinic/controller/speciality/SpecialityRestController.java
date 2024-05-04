@@ -26,7 +26,8 @@ public class SpecialityRestController {
 
     @ModelAttribute("speciality")
     public Speciality getSpeciality(@PathVariable("specialityId") int specialityId) {
-        return this.service.findSpeciality(specialityId).orElseThrow(() -> new NoSuchElementException("clinic.errors.speciality.not_found"));
+        return this.service.findSpeciality(specialityId)
+                .orElseThrow(() -> new NoSuchElementException("clinic.errors.speciality.not_found"));
     }
 
     @GetMapping
@@ -51,7 +52,11 @@ public class SpecialityRestController {
         return ResponseEntity.noContent().build();
     }
 
+    @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ProblemDetail> handleNoSuchElementException(NoSuchElementException exception, Locale locale) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, Objects.requireNonNull(this.messageSource.getMessage(exception.getMessage(), new Object[0], exception.getMessage(), locale))));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND,
+                        Objects.requireNonNull(this.messageSource.getMessage(exception.getMessage(),
+                                new Object[0], exception.getMessage(), locale))));
     }
 }

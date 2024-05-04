@@ -23,13 +23,23 @@ public class ClientRestClientImpl implements ClientRestClient {
 
     @Override
     public List<Client> findAllClients(String filter) {
-        return this.client.get().uri("/clinic-api/clients?filter={filter}", filter).retrieve().body(CLIENT_TYPE_REFERENCE);
+        return this.client
+                .get()
+                .uri("/clinic-api/clients?filter={filter}", filter)
+                .retrieve()
+                .body(CLIENT_TYPE_REFERENCE);
     }
 
     @Override
     public Client createClient(String firstName, String lastName, String phoneNumber, String email) {
         try {
-            return this.client.post().uri("/clinic-api/clients").contentType(MediaType.APPLICATION_JSON).body(new NewClientPayload(firstName, lastName, phoneNumber, email)).retrieve().body(Client.class);
+            return this.client
+                    .post()
+                    .uri("/clinic-api/clients")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(new NewClientPayload(firstName, lastName, phoneNumber, email))
+                    .retrieve()
+                    .body(Client.class);
         } catch (HttpClientErrorException.BadRequest exception) {
             ProblemDetail detail = exception.getResponseBodyAs(ProblemDetail.class);
             throw new BadRequestException((List<String>) detail.getProperties().get("errors"));

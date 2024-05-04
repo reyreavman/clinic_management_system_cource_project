@@ -43,7 +43,7 @@ public class SpecialityController {
                                    UpdateSpecialityPayload payload, Model model) {
         try {
             this.restClient.updateSpeciality(speciality.id(), payload.name());
-            return "redirect:/clinic/clients/%d".formatted(speciality.id());
+            return "redirect:/clinic/specialities/%d".formatted(speciality.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());

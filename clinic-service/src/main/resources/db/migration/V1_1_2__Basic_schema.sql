@@ -9,7 +9,7 @@ create table clinic.t_type
 create table clinic.t_breed
 (
     id              serial primary key,
-    c_type_id       integer references clinic.t_type (id) not null
+    c_type_id       integer references clinic.t_type (id) not null,
     c_name          varchar(100) not null
 );
 
@@ -37,4 +37,3 @@ create table clinic.t_pet
     c_birth_date    date,
     c_label_id      integer references clinic.t_label (id)
 );
-

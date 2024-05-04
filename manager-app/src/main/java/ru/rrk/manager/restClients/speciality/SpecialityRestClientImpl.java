@@ -11,6 +11,7 @@ import ru.rrk.manager.controller.specialities.payload.UpdateSpecialityPayload;
 import ru.rrk.manager.entity.Speciality;
 import ru.rrk.manager.restClients.BadRequestException;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;

@@ -23,11 +23,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr data-th-each="client : ${clients}">
-<!--        <td> data-th-text="${client.id}"></td>-->
+    <tr data-th-each="client, iterstat : ${clients}">
         <td>
             <a data-th-href="@{/clinic/clients/{clientId}(clientId=${client.id})}"
-               data-th-text="${client.id}"></a>
+               data-th-text="${iterstat.count}"></a>
         </td>
         <td>
             <a data-th-text="${client.firstName}"></a>
