@@ -18,9 +18,11 @@ spring:
         registration:
           keycloak:
             client-id: manager-app
-            client-secret: eh6Emv2PrGxQeclkelAslxoJdEnzFmTx
+            client-secret: JJCWFPwDdIovMgegrvfF7hSeMoDv61ih
             scope:
               - openid
               - view_clinic_users
               - edit_clinic_users
+              - view_clinic_specialities
+              - edit_clinic_specialities
               - microprofile-jwt

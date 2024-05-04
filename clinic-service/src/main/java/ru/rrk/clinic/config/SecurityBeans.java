@@ -23,12 +23,18 @@ public class SecurityBeans {
                         .hasAuthority("SCOPE_edit_clinic_users")
                         .requestMatchers(HttpMethod.GET)
                         .hasAuthority("SCOPE_view_clinic_users")
+                        .requestMatchers(HttpMethod.POST, "/clinic-api/specialities")
+                        .hasAuthority("SCOPE_edit_clinic_specialities")
+                        .requestMatchers(HttpMethod.PATCH, "/clinic-api/specialities/{specialityId:\\d}")
+                        .hasAuthority("SCOPE_edit_clinic_specialities")
+                        .requestMatchers(HttpMethod.DELETE, "/clinic-api/specialities/{specialityId:\\d}")
+                        .hasAuthority("SCOPE_edit_clinic_specialities")
+                        .requestMatchers(HttpMethod.GET)
+                        .hasAuthority("SCOPE_view_clinic_specialities")
                         .anyRequest().denyAll())
                 .csrf(CsrfConfigurer::disable)
-                .sessionManagement(sessionManagement -> sessionManagement
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer
-                        .jwt(Customizer.withDefaults()))
+                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(Customizer.withDefaults()))
                 .build();
     }
 }

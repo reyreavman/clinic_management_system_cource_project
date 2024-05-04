@@ -17,15 +17,13 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 public class OAuthClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
+    @Setter
+    private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder.getContextHolderStrategy();
     private final OAuth2AuthorizedClientManager authorizedClientManager;
     private final String registrationId;
-    @Setter
-    private SecurityContextHolderStrategy securityContextHolderStrategy =
-            SecurityContextHolder.getContextHolderStrategy();
 
     @Override
-    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
-            throws IOException {
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         if (!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
             OAuth2AuthorizedClient authorizedClient = this.authorizedClientManager.authorize(
                     OAuth2AuthorizeRequest.withClientRegistrationId(this.registrationId)
