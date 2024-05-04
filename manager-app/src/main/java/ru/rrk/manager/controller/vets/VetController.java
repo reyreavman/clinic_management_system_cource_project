@@ -1,4 +1,4 @@
-package ru.rrk.manager.controller.vets.payload;
+package ru.rrk.manager.controller.vets;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.rrk.manager.controller.vets.payload.UpdateVetPayload;
 import ru.rrk.manager.entity.Vet;
 import ru.rrk.manager.restClients.BadRequestException;
 import ru.rrk.manager.restClients.vet.VetRestClient;
@@ -57,6 +58,7 @@ public class VetController {
         return "redirect:/clinic/vets/list";
     }
 
+    @ExceptionHandler(NoSuchElementException.class)
     public String handleNoSuchElementException(NoSuchElementException exception, Model model,
                                                HttpServletResponse response, Locale locale) {
         response.setStatus(HttpStatus.NOT_FOUND.value());
