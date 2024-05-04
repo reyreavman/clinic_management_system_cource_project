@@ -23,6 +23,7 @@ public class SecurityBeans {
                         .hasAuthority("SCOPE_edit_clinic_users")
                         .requestMatchers(HttpMethod.GET)
                         .hasAuthority("SCOPE_view_clinic_users")
+
                         .requestMatchers(HttpMethod.POST, "/clinic-api/specialities")
                         .hasAuthority("SCOPE_edit_clinic_specialities")
                         .requestMatchers(HttpMethod.PATCH, "/clinic-api/specialities/{specialityId:\\d}")
@@ -31,6 +32,16 @@ public class SecurityBeans {
                         .hasAuthority("SCOPE_edit_clinic_specialities")
                         .requestMatchers(HttpMethod.GET)
                         .hasAuthority("SCOPE_view_clinic_specialities")
+
+                        .requestMatchers(HttpMethod.POST, "/clinic-api/vets")
+                        .hasAuthority("SCOPE_edit_clinic_vets")
+                        .requestMatchers(HttpMethod.PATCH, "/clinic-api/vets/{vetId:\\d}")
+                        .hasAuthority("SCOPE_edit_clinic_vets")
+                        .requestMatchers(HttpMethod.DELETE, "/clinic-api/vets/{vetId:\\d}")
+                        .hasAuthority("SCOPE_edit_clinic_vets")
+                        .requestMatchers(HttpMethod.GET)
+                        .hasAuthority("SCOPE_view_clinic_vets")
+
                         .anyRequest().denyAll())
                 .csrf(CsrfConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
