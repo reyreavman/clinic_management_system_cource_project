@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,7 +27,7 @@ public class Vet {
     @Size(min = 1, max = 100)
     private String lastName;
 
-    @OneToMany
-    @JoinColumn(table = "clinic.t_speciality", name = "speciality_id")
-    private Set<Speciality> specialitySet;
+    @ManyToOne
+    @JoinColumn(table = "clinic.t_speciality", name = "id", nullable = false)
+    private Speciality speciality;
 }
