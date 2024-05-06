@@ -1,4 +1,4 @@
-package ru.rrk.manager.restClients.client;
+package ru.rrk.manager.restClients.gender;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -6,9 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.clients.payload.NewClientPayload;
-import ru.rrk.manager.controller.clients.payload.UpdateClientPayload;
-import ru.rrk.manager.entity.Client;
+import ru.rrk.manager.entity.Gender;
 import ru.rrk.manager.restClients.BadRequestException;
 
 import java.util.List;
@@ -16,30 +14,30 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class ClientRestClientImpl implements ClientRestClient {
-    private static final ParameterizedTypeReference<List<Client>> CLIENT_TYPE_REFERENCE = new ParameterizedTypeReference<>() {
+public class GenderRestClientImpl implements GenderRestClient {
+    private static final ParameterizedTypeReference<List<Gender>> GENDER_TYPE_REFERENCE = new ParameterizedTypeReference<List<Gender>>() {
     };
     private final RestClient client;
 
     @Override
-    public List<Client> findAllClients(String filter) {
+    public List<Gender> findAllGenders() {
         return this.client
                 .get()
-                .uri("/clinic-api/clients?filter={filter}", filter)
+                .uri("/clinic-api/genders")
                 .retrieve()
-                .body(CLIENT_TYPE_REFERENCE);
+                .body(GENDER_TYPE_REFERENCE);
     }
 
     @Override
-    public Client createClient(String firstName, String lastName, String phoneNumber, String email) {
+    public Gender createGender(String gender) {
         try {
             return this.client
                     .post()
-                    .uri("/clinic-api/clients")
+                    .uri("/clinic-apu/genders")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new NewClientPayload(firstName, lastName, phoneNumber, email))
+                    .body(new NewGenderPayload(gender))
                     .retrieve()
-                    .body(Client.class);
+                    .body(Gender.class);
         } catch (HttpClientErrorException.BadRequest exception) {
             ProblemDetail detail = exception.getResponseBodyAs(ProblemDetail.class);
             throw new BadRequestException((List<String>) detail.getProperties().get("errors"));
@@ -47,26 +45,26 @@ public class ClientRestClientImpl implements ClientRestClient {
     }
 
     @Override
-    public Optional<Client> findClient(int clientId) {
+    public Optional<Gender> findGender(int genderId) {
         try {
             return Optional.ofNullable(this.client
                     .get()
-                    .uri("/clinic-api/clients/{clientId}", clientId)
+                    .uri("/clinic-api/genders/{genderId}", genderId)
                     .retrieve()
-                    .body(Client.class));
+                    .body(Gender.class));
         } catch (HttpClientErrorException.NotFound exception) {
             return Optional.empty();
         }
     }
 
     @Override
-    public void updateClient(int clientId, String firstName, String lastName, String phoneNumber, String email) {
+    public void updateGender(int genderId, String gender) {
         try {
             this.client
                     .patch()
-                    .uri("/clinic-api/clients/{clientId}", clientId)
+                    .uri("/clinic-api/genders/{genderId}", genderId)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new UpdateClientPayload(firstName, lastName, phoneNumber, email))
+                    .body(new UpdateGenderPayload(gender))
                     .retrieve().toBodilessEntity();
         } catch (HttpClientErrorException.BadRequest exception) {
             ProblemDetail problemDetail = exception.getResponseBodyAs(ProblemDetail.class);
@@ -75,11 +73,11 @@ public class ClientRestClientImpl implements ClientRestClient {
     }
 
     @Override
-    public void deleteClient(int clientId) {
+    public void deleteGender(int genderId) {
         try {
             this.client
                     .delete()
-                    .uri("/clinic-api/clients/{clientId}", clientId)
+                    .uri("/clinic-api/genders/{genderId}", genderId)
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {
