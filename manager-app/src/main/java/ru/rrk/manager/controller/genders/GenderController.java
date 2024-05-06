@@ -1,6 +1,9 @@
 package ru.rrk.manager.controller.genders;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +12,7 @@ import ru.rrk.manager.entity.Gender;
 import ru.rrk.manager.restClients.BadRequestException;
 import ru.rrk.manager.restClients.gender.GenderRestClient;
 
+import java.util.Locale;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -16,6 +20,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class GenderController {
     private final GenderRestClient restClient;
+    private final MessageSource messageSource;
 
     @ModelAttribute("gender")
     public Gender gender(@PathVariable("genderId") int genderId) {
@@ -44,5 +49,21 @@ public class GenderController {
             model.addAttribute("errors", exception.getErrors());
             return "clinic/genders/edit";
         }
+    }
+
+    @PostMapping("delete")
+    public String deleteGender(@ModelAttribute("gender") Gender gender) {
+        this.restClient.deleteGender(gender.id());
+        return "redirect:/clinic/genders/list";
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public String handleNoSuchElementException(NoSuchElementException exception, Model model,
+                                               HttpServletResponse response, Locale locale) {
+        response.setStatus(HttpStatus.NOT_FOUND.value());
+        model.addAttribute("error",
+                this.messageSource.getMessage(exception.getMessage(), new Object[0],
+                        exception.getMessage(), locale));
+        return "errors/404";
     }
 }
