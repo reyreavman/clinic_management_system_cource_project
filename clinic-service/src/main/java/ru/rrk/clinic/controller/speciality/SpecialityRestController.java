@@ -36,7 +36,9 @@ public class SpecialityRestController {
     }
 
     @PatchMapping
-    public ResponseEntity<?> updateSpeciality(@PathVariable("specialityId") int specialityId, @Valid @RequestBody UpdateSpecialityPayload payload, BindingResult bindingResult) throws BindException {
+    public ResponseEntity<?> updateSpeciality(@PathVariable("specialityId") int specialityId,
+                                              @Valid @RequestBody UpdateSpecialityPayload payload,
+                                              BindingResult bindingResult) throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);

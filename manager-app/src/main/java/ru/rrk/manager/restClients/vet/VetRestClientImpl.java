@@ -8,7 +8,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.manager.controller.vets.payload.NewVetPayload;
 import ru.rrk.manager.controller.vets.payload.UpdateVetPayload;
-import ru.rrk.manager.entity.Speciality;
 import ru.rrk.manager.entity.Vet;
 import ru.rrk.manager.restClients.BadRequestException;
 
@@ -32,7 +31,7 @@ public class VetRestClientImpl implements VetRestClient {
     }
 
     @Override
-    public Vet createVet(String firstName, String lastName, Speciality speciality) {
+    public Vet createVet(String firstName, String lastName, Integer speciality) {
         try {
             return this.client
                     .post()
@@ -61,13 +60,13 @@ public class VetRestClientImpl implements VetRestClient {
     }
 
     @Override
-    public void updateVet(int vetId, String firstName, String lastName, Speciality speciality) {
+    public void updateVet(int vetId, String firstName, String lastName, Integer speciality_id) {
         try {
             this.client
                     .patch()
                     .uri("clinic-api/vets/{vetId}", vetId)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new UpdateVetPayload(firstName, lastName, speciality))
+                    .body(new UpdateVetPayload(firstName, lastName, speciality_id))
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.BadRequest exception) {
@@ -81,7 +80,7 @@ public class VetRestClientImpl implements VetRestClient {
         try {
             this.client
                     .delete()
-                    .uri("clinic-api/vets/{vetId}", vetId)
+                    .uri("/clinic-api/vets/{vetId}", vetId)
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {

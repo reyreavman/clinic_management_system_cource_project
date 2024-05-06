@@ -2,9 +2,6 @@ package ru.rrk.clinic.controller.vet.payload;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import ru.rrk.clinic.entity.Speciality;
-
-import java.util.Set;
 
 public record NewVetPayload(
         @NotNull(message = "{clinic.vets.create.errors.firstName_is_null}")
@@ -14,6 +11,6 @@ public record NewVetPayload(
         @Size(min = 1, max = 100, message = "")
         String lastName,
         @NotNull(message = "{clinic.vets.create.errors.Speciality_is_null}")
-        Speciality speciality
+        Integer speciality_id
 ) {
 }

@@ -43,14 +43,14 @@ public class VetRestController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            this.service.updateVet(vetId, payload.firstName(), payload.lastName(), payload.speciality());
+            this.service.updateVet(vetId, payload.firstName(), payload.lastName(), payload.speciality_id());
             return ResponseEntity.noContent().build();
         }
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteVet(@PathVariable("vetID") int vetID) {
-        this.service.deleteVet(vetID);
+    public ResponseEntity<Void> deleteVet(@PathVariable("vetId") int vetId) {
+        this.service.deleteVet(vetId);
         return ResponseEntity.noContent().build();
     }
 

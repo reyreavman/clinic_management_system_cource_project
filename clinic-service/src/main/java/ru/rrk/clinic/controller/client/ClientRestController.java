@@ -26,7 +26,8 @@ public class ClientRestController {
 
     @ModelAttribute("client")
     public Client getClient(@PathVariable("clientId") int clientId) {
-        return this.service.findClient(clientId).orElseThrow(() -> new NoSuchElementException("clinic.errors.client.not_found"));
+        return this.service.findClient(clientId)
+                .orElseThrow(() -> new NoSuchElementException("clinic.errors.client.not_found"));
     }
 
     @GetMapping
@@ -35,7 +36,9 @@ public class ClientRestController {
     }
 
     @PatchMapping
-    public ResponseEntity<?> updateClient(@PathVariable("clientId") int clientId, @Valid @RequestBody UpdateClientPayload payload, BindingResult bindingResult) throws BindException {
+    public ResponseEntity<?> updateClient(@PathVariable("clientId") int clientId,
+                                          @Valid @RequestBody UpdateClientPayload payload,
+                                          BindingResult bindingResult) throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);

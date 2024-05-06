@@ -22,7 +22,9 @@ spring:
             scope:
               - openid
               - view_clinic_users
-              - edit_clinic_users
               - view_clinic_specialities
+              - view_clinic_vets
+              - edit_clinic_users
               - edit_clinic_specialities
+              - edit_clinic_vets
               - microprofile-jwt

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый врач &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/vets/list}">&larr; К списку врачей</a>
+<h1>Новый врач</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/vets/create}">
+    <label>
+        Имя:<br>
+        <input type="text" name="firstName" data-th-value="${payload?.firstName}">
+    </label><br>
+    <label>
+        Фамилия:<br>
+        <input type="text" name="lastName" data-th-value="${payload?.lastName}">
+    </label><br>
+    <label>
+        Специальность:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="speciality : ${specialities}">
+            <td>
+                <a data-th-text="_"></a>
+            </td>
+            <td>
+                <label>
+                    <input type="radio" name="speciality_id" data-th-text="${speciality.name}"
+                           data-th-value="${speciality.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

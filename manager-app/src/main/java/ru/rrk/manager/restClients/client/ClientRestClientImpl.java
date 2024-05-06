@@ -68,7 +68,11 @@ public class ClientRestClientImpl implements ClientRestClient {
     @Override
     public void deleteClient(int clientId) {
         try {
-            this.client.delete().uri("/clinic-api/clients/{clientId}", clientId).retrieve().toBodilessEntity();
+            this.client
+                    .delete()
+                    .uri("/clinic-api/clients/{clientId}", clientId)
+                    .retrieve()
+                    .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {
             throw new NoSuchElementException(exception);
         }

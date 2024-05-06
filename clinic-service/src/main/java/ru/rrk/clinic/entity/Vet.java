@@ -27,7 +27,7 @@ public class Vet {
     @Size(min = 1, max = 100)
     private String lastName;
 
-    @ManyToOne
-    @JoinColumn(table = "clinic.t_speciality", name = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "c_speciality_id")
     private Speciality speciality;
 }

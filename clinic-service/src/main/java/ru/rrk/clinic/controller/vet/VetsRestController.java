@@ -1,7 +1,9 @@
 package ru.rrk.clinic.controller.vet;
 
+import jakarta.validation.Payload;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -32,7 +34,7 @@ public class VetsRestController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            Vet vet = this.service.createVet(payload.firstName(), payload.lastName(), payload.speciality());
+            Vet vet = this.service.createVet(payload.firstName(), payload.lastName(), payload.speciality_id());
             return ResponseEntity
                     .created(uriComponentsBuilder.replacePath("/clinic-api/vets/{vetId}").build(Map.of("vetId", vet.getId())))
                     .body(vet);

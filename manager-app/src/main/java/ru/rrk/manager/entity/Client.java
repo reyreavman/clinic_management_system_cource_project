@@ -22,6 +22,6 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.email = email;
 
-        this.fullName = firstName + " " + lastName;
+        this.fullName = firstName.concat(lastName);
     }
 }

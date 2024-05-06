@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.rrk.manager.controller.vets.payload.UpdateVetPayload;
 import ru.rrk.manager.entity.Vet;
 import ru.rrk.manager.restClients.BadRequestException;
+import ru.rrk.manager.restClients.speciality.SpecialityRestClient;
 import ru.rrk.manager.restClients.vet.VetRestClient;
 
 import java.util.Locale;
@@ -20,6 +21,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class VetController {
     private final VetRestClient vetRestClient;
+    private final SpecialityRestClient specialityRestClient;
     private final MessageSource messageSource;
 
     @ModelAttribute("vet")
@@ -34,7 +36,8 @@ public class VetController {
     }
 
     @GetMapping("edit")
-    public String getVetEditPage() {
+    public String getVetEditPage(Model model) {
+        model.addAttribute("specialities", this.specialityRestClient.findAllSpecialities(null));
         return "clinic/vets/edit";
     }
 
@@ -43,8 +46,8 @@ public class VetController {
                             UpdateVetPayload payload,
                             Model model) {
         try {
-            this.vetRestClient.updateVet(vet.id(), payload.firstName(), payload.lastName(), payload.speciality());
-            return "redirect:/clinic/vets/%d".formatted(vet.id());
+            this.vetRestClient.updateVet(vet.getId(), payload.firstName(), payload.lastName(), payload.speciality_id());
+            return "redirect:/clinic/vets/%d".formatted(vet.getId());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
@@ -54,7 +57,7 @@ public class VetController {
 
     @PostMapping("delete")
     public String deleteVet(@ModelAttribute("vet") Vet vet) {
-        this.vetRestClient.deleteVet(vet.id());
+        this.vetRestClient.deleteVet(vet.getId());
         return "redirect:/clinic/vets/list";
     }
 

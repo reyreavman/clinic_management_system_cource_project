@@ -69,7 +69,11 @@ public class SpecialityRestClientImpl implements SpecialityRestClient {
     @Override
     public void deleteSpeciality(int specialityId) {
         try {
-            this.client.delete().uri("/clinic-api/specialities/{specialityId}", specialityId).retrieve().toBodilessEntity();
+            this.client
+                    .delete()
+                    .uri("/clinic-api/specialities/{specialityId}", specialityId)
+                    .retrieve()
+                    .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {
             throw new NoSuchElementException(exception);
         }

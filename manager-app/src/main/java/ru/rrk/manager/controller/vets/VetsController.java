@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.rrk.manager.controller.vets.payload.NewVetPayload;
 import ru.rrk.manager.entity.Vet;
 import ru.rrk.manager.restClients.BadRequestException;
+import ru.rrk.manager.restClients.speciality.SpecialityRestClient;
 import ru.rrk.manager.restClients.vet.VetRestClient;
 
 @Controller
@@ -17,6 +18,7 @@ import ru.rrk.manager.restClients.vet.VetRestClient;
 @RequestMapping("clinic/vets")
 public class VetsController {
     private final VetRestClient vetRestClient;
+    private final SpecialityRestClient specialityRestClient;
 
     @GetMapping("list")
     public String getVetsList(Model model, @RequestParam(name = "filter", required = false) String filter) {
@@ -26,15 +28,17 @@ public class VetsController {
     }
 
     @GetMapping("create")
-    public String getNewVetPage() {
+    public String getNewVetPage(Model model) {
+        model.addAttribute("specialities", this.specialityRestClient.findAllSpecialities(null));
         return "clinic/vets/new_vet";
     }
 
     @PostMapping("create")
     public String createVet(NewVetPayload payload, Model model) {
+        System.out.println("%s triggered! payload.speciality_id=%d".formatted(this.getClass().getName(), payload.speciality_id()));
         try {
-            Vet vet = this.vetRestClient.createVet(payload.firstName(), payload.lastName(), payload.speciality());
-            return "redirect:/clinic/vets/%d".formatted(vet.id());
+            Vet vet = this.vetRestClient.createVet(payload.firstName(), payload.lastName(), payload.speciality_id());
+            return "redirect:/clinic/vets/%d".formatted(vet.getId());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
