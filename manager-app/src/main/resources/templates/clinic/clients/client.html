@@ -14,7 +14,7 @@
     <li><strong>Номер телефона</strong>: <span data-th-text="${client.phoneNumber}"></span></li>
     <li><strong>Электронная почта</strong>: <span data-th-text="${client.email}"></span></li>
 </ul>
-<a data-th-href="@{/clinic/clients/{clientId}/edit(clientId=${client.id})}">Изменить</a>
+<a data-th-href="@{/clinic/clients/{clientId}/edit(clientId=${client.id})}">Изменить</a><br><br>
 <form method="post" data-th-action="@{/clinic/clients/{clientId}/delete(clientId=${client.id})}">
     <button type="submit">Удалить</button>
 </form>

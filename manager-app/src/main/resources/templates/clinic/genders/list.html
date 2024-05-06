@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список гендеров &ndash; Ветеринарная клиник</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/genders/create}">+ Добавить гендер</a>
+<h1>Список гендеров</h1>
+<form method="get" data-th-action="@{/clinic/genders/list}"></form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Гендер</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="gender, iterstat : ${genders}">
+        <td>
+            <a data-th-href="@{/clinic/genders/{genderId}(genderId=${gender.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${gender.gender}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
