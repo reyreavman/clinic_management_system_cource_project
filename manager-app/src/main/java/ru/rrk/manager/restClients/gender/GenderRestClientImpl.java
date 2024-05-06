@@ -35,7 +35,7 @@ public class GenderRestClientImpl implements GenderRestClient {
         try {
             return this.client
                     .post()
-                    .uri("/clinic-apu/genders")
+                    .uri("/clinic-api/genders")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new NewGenderPayload(gender))
                     .retrieve()

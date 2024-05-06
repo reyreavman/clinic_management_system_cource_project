@@ -12,10 +12,10 @@ import ru.rrk.manager.restClients.BadRequestException;
 import ru.rrk.manager.restClients.gender.GenderRestClient;
 
 @Controller
-@RequestMapping("clinic/genders")
 @RequiredArgsConstructor
+@RequestMapping("clinic/genders")
 public class GendersController {
-    private GenderRestClient restClient;
+    private final GenderRestClient restClient;
 
     @GetMapping("list")
     public String getGendersList(Model model) {
