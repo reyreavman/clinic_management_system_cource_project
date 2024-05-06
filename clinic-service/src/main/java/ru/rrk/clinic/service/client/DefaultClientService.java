@@ -28,8 +28,8 @@ public class DefaultClientService implements ClientService {
     }
 
     @Override
-    public Optional<Client> findClient(int clientID) {
-        return this.repository.findById(clientID);
+    public Optional<Client> findClient(int clientId) {
+        return this.repository.findById(clientId);
     }
 
     @Override

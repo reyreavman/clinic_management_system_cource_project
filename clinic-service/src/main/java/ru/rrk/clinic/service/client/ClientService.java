@@ -9,7 +9,7 @@ public interface ClientService {
 
     Client createClient(String firstName, String lastName, String phoneNumber, String email);
 
-    Optional<Client> findClient(int clientID);
+    Optional<Client> findClient(int clientId);
 
     void updateClient(Integer id, String firstName, String lastName, String phoneNumber, String email);
 
