@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.rrk.clinic.controller.gender.payload.UpdateGenderPayload;
 import ru.rrk.clinic.entity.Gender;
 import ru.rrk.clinic.service.gender.GenderService;
-import ru.rrk.manager.controller.genders.payload.UpdateGenderPayload;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -19,7 +19,7 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("clinic-api/gender/{genderId:\\d+}")
+@RequestMapping("clinic-api/genders/{genderId:\\d+}")
 public class GenderRestController {
     private final GenderService service;
     private final MessageSource messageSource;

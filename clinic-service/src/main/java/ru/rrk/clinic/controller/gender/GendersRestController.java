@@ -8,9 +8,9 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import ru.rrk.clinic.controller.gender.payload.NewGenderPayload;
 import ru.rrk.clinic.entity.Gender;
 import ru.rrk.clinic.service.gender.GenderService;
-import ru.rrk.manager.controller.genders.payload.NewGenderPayload;
 
 import java.security.Principal;
 import java.util.Map;

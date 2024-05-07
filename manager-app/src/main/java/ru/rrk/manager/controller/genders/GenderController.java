@@ -60,7 +60,6 @@ public class GenderController {
     @ExceptionHandler(NoSuchElementException.class)
     public String handleNoSuchElementException(NoSuchElementException exception, Model model,
                                                HttpServletResponse response, Locale locale) {
-        response.setStatus(HttpStatus.NOT_FOUND.value());
         model.addAttribute("error",
                 this.messageSource.getMessage(exception.getMessage(), new Object[0],
                         exception.getMessage(), locale));
