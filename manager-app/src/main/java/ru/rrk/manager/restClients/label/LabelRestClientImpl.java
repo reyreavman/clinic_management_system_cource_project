@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
+import ru.rrk.manager.controller.labels.payload.NewLabelPayload;
+import ru.rrk.manager.controller.labels.payload.UpdateLabelPayload;
 import ru.rrk.manager.entity.Label;
 import ru.rrk.manager.restClients.BadRequestException;
 
