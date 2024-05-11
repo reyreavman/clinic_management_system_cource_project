@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о заболевании &ndash; [[${disease.code}]]</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/diseases/{diseaseId}(diseaseId=${disease.id})}">&larr; К информации о заболевании</a>
+<h1>Редактирование информации о заболевании &ndash; [[${disease.code}]]</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/diseases/{diseaseId}/edit(diseaseId=${disease.id})}">
+    <label>
+        Код заболевания:<br>
+        <input type="text" name="code" data-th-value="${payload != null ? payload.code : disease.code}">
+    </label><br>
+    <label>
+        Описание:<br>
+        <input type="text" name="description" data-th-value="${payload != null ? payload.description : disease.description}">
+    </label><br>
+    <button type="submit">Изменить</button>
+</form>
+</body>
+</html>
