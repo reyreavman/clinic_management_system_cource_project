@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список бирок &ndash; Ветеринарная клиник</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/labels/create}">+ Добавить бирку</a>
+<h1>Список бирок</h1>
+<form method="get" data-th-action="@{/clinic/labels/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Буквенно-цифровое значение</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="label, iterstat : ${labels}">
+        <td>
+            <a data-th-href="@{/clinic/labels/{labelId}(labelId=${label.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${label.value}"></a>
+        </td>
+        <td>
+            <a data-th-text="${label.date}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
