@@ -6,7 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.clients.payload.UpdateClientPayload;
+import ru.rrk.manager.controller.disease.payload.NewDiseasePayload;
+import ru.rrk.manager.controller.disease.payload.UpdateDiseasePayload;
 import ru.rrk.manager.entity.Disease;
 import ru.rrk.manager.restClients.BadRequestException;
 
@@ -30,7 +31,7 @@ public class DiseaseRestClientImpl implements DiseaseRestClient {
     }
 
     @Override
-    public Disease createDisease(int code, int description) {
+    public Disease createDisease(int code, String description) {
         try {
             return this.client
                     .post()

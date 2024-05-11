@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface DiseaseRestClient {
     List<Disease> findAllDiseases(String filter);
 
-    Disease createDisease(int code, int description);
+    Disease createDisease(int code, String description);
 
     Optional<Disease> findDisease(int diseaseId);
 
