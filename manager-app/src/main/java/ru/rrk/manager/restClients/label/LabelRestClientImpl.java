@@ -32,7 +32,7 @@ public class LabelRestClientImpl implements LabelRestClient {
     }
 
     @Override
-    public Label createLabel(String value, Date date) {
+    public Label createLabel(String value, String date) {
         try {
             return this.client
                     .post()
@@ -61,7 +61,7 @@ public class LabelRestClientImpl implements LabelRestClient {
     }
 
     @Override
-    public void updateLabel(int labelId, String value, Date date) {
+    public void updateLabel(int labelId, String value, String date) {
         try {
             this.client
                     .patch()

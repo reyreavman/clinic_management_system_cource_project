@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.rrk.clinic.entity.Label;
 import ru.rrk.clinic.repository.label.LabelRepository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -22,8 +22,8 @@ public class DefaultLabelService implements LabelService {
 
     @Override
     @Transactional
-    public Label createLabel(String value, Date date) {
-        return this.repository.save(new Label(null, value, date));
+    public Label createLabel(String value, String date) {
+        return this.repository.save(new Label(null, value, LocalDate.parse(date)));
     }
 
     @Override
@@ -33,11 +33,11 @@ public class DefaultLabelService implements LabelService {
 
     @Override
     @Transactional
-    public void updateLabel(Integer id, String value, Date date) {
+    public void updateLabel(Integer id, String value, String date) {
         this.repository.findById(id)
                 .ifPresentOrElse(label -> {
                     label.setValue(value);
-                    label.setDate(date);
+                    label.setDate(LocalDate.parse(date));
                 }, () -> {
                     throw new NoSuchElementException();
                 });

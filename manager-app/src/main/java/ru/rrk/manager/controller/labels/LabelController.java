@@ -51,6 +51,7 @@ public class LabelController {
         }
     }
 
+    @PostMapping("delete")
     public String deleteLabel(@ModelAttribute("label") Label label) {
         this.restClient.deleteLabel(label.id());
         return "redirect:/clinic/labels/list";

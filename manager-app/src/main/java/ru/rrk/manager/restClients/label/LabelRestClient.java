@@ -9,11 +9,11 @@ import java.util.Optional;
 public interface LabelRestClient {
     List<Label> findAllLabels();
 
-    Label createLabel(String value, Date date);
+    Label createLabel(String value, String date);
 
     Optional<Label> findLabel(int labelId);
 
-    void updateLabel(int labelId, String value, Date date);
+    void updateLabel(int labelId, String value, String date);
 
     void deleteLabel(int labelId);
 }

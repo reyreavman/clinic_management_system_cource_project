@@ -10,7 +10,7 @@
 <ul>
     <li><strong>ID</strong>: <span data-th-text="${label.id}"></span></li>
     <li><strong>Буквенно-цифровое значение</strong>: <span data-th-text="${label.value}"></span></li>
-    <li><strong>Дата занесения в реестр</strong>: <span data-th-date="${label.date}"></span></li>
+    <li><strong>Дата занесения в реестр</strong>: <span data-th-text="${label.date}"></span></li>
 </ul>
 <a data-th-href="@{/clinic/labels/{labelId}/edit(labelId=${label.id})}">Изменить</a><br><br>
 <form method="post" data-th-action="@{/clinic/labels/{labelId}/delete(labelId=${label.id})}">
