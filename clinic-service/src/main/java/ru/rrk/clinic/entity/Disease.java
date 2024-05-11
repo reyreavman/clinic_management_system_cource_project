@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(schema = "clinic", name = "t_disease")
+@Table(schema = "clinic", name = "t_icd_catalogue")
 public class Disease {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

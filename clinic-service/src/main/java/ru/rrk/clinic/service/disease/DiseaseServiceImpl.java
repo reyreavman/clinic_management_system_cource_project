@@ -16,8 +16,6 @@ public class DiseaseServiceImpl implements DiseaseService {
 
     @Override
     public Iterable<Disease> findAllDiseases(String filter) {
-        if (filter != null && !filter.isBlank())
-            return this.repository.findAllByName("%" + filter + "%");
         return this.repository.findAll();
     }
 

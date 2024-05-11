@@ -4,5 +4,4 @@ import org.springframework.data.repository.CrudRepository;
 import ru.rrk.clinic.entity.Disease;
 
 public interface DiseaseRepository extends CrudRepository<Disease, Integer> {
-    Iterable<Disease> findAllByName(String filter);
 }
