@@ -1,4 +1,4 @@
-package ru.rrk.manager.restClients.vet.vet;
+package ru.rrk.manager.restClients.pet.breed;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -6,9 +6,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.vets.vet.payload.NewVetPayload;
-import ru.rrk.manager.controller.vets.vet.payload.UpdateVetPayload;
-import ru.rrk.manager.entity.vet.Vet;
+import ru.rrk.manager.controller.pet.breeds.payload.NewPetBreedPayload;
+import ru.rrk.manager.controller.pet.breeds.payload.UpdatePetBreedPayload;
+import ru.rrk.manager.entity.pet.PetBreed;
 import ru.rrk.manager.restClients.BadRequestException;
 
 import java.util.List;
@@ -16,30 +16,30 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class VetRestClientImpl implements VetRestClient {
-    private static final ParameterizedTypeReference<List<Vet>> VETS_TYPE_REFERENCE = new ParameterizedTypeReference<List<Vet>>() {
+public class PetBreedRestClientImpl implements PetBreedRestClient {
+    private static final ParameterizedTypeReference<List<PetBreed>> BREEDS_TYPE_REFERENCE = new ParameterizedTypeReference<List<PetBreed>>() {
     };
     private final RestClient client;
 
     @Override
-    public List<Vet> findAllVets(String filter) {
+    public List<PetBreed> findAllBreeds(String filter) {
         return this.client
                 .get()
-                .uri("clinic-api/vets?filter={filter}", filter)
+                .uri("clinic-api/pets/breeds?filter={filter}", filter)
                 .retrieve()
-                .body(VETS_TYPE_REFERENCE);
+                .body(BREEDS_TYPE_REFERENCE);
     }
 
     @Override
-    public Vet createVet(String firstName, String lastName, Integer speciality) {
+    public PetBreed createBreed(String name, Integer typeId) {
         try {
             return this.client
                     .post()
-                    .uri("clinic-api/vets")
+                    .uri("clinic-api/pets/breeds")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new NewVetPayload(firstName, lastName, speciality))
+                    .body(new NewPetBreedPayload(name, typeId))
                     .retrieve()
-                    .body(Vet.class);
+                    .body(PetBreed.class);
         } catch (HttpClientErrorException.BadRequest exception) {
             ProblemDetail problemDetail = exception.getResponseBodyAs(ProblemDetail.class);
             throw new BadRequestException((List<String>) problemDetail.getProperties().get("errors"));
@@ -47,27 +47,27 @@ public class VetRestClientImpl implements VetRestClient {
     }
 
     @Override
-    public Optional<Vet> findVet(int vetId) {
+    public Optional<PetBreed> findBreed(int breedId) {
         try {
             return Optional.ofNullable(
                     this.client
                             .get()
-                            .uri("clinic-api/vets/{vetId}", vetId)
+                            .uri("clinic-api/pets/breeds/{breedId}", breedId)
                             .retrieve()
-                            .body(Vet.class));
+                            .body(PetBreed.class));
         } catch (HttpClientErrorException.NotFound exception) {
             return Optional.empty();
         }
     }
 
     @Override
-    public void updateVet(int vetId, String firstName, String lastName, Integer speciality_id) {
+    public void updateBreed(int breedId, String name, Integer typeId) {
         try {
             this.client
                     .patch()
-                    .uri("clinic-api/vets/{vetId}", vetId)
+                    .uri("clinic-api/pets/breeds/{breedId}", breedId)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new UpdateVetPayload(firstName, lastName, speciality_id))
+                    .body(new UpdatePetBreedPayload(name, typeId))
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.BadRequest exception) {
@@ -77,11 +77,11 @@ public class VetRestClientImpl implements VetRestClient {
     }
 
     @Override
-    public void deleteVet(int vetId) {
+    public void deleteBreed(int breedId) {
         try {
             this.client
                     .delete()
-                    .uri("/clinic-api/vets/{vetId}", vetId)
+                    .uri("/clinic-api/pets/breeds/{breedId}", breedId)
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {
