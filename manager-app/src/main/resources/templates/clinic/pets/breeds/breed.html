@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${breed.name}]] &ndash; Ветеринарная клиника </title>
+</head>
+<body>
+<a data-th-href="@{/clinic/pets/breeds/list}">&larr; К списку пород</a>
+<h1 data-th-text="${breed.name}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${breed.id}"></span></li>
+    <li><strong>Название</strong>: <span data-th-text="${breed.name}"></span></li>
+    <li><strong>Вид</strong>: <span data-th-text="${breed.type.name}"></span></li>
+</ul>
+<a data-th-href="@{/clinic/pets/breeds/{breedId}/edit(breedId=${breed.id})}">Изменить</a>
+<form method="post" data-th-action="@{/clinic/pets/breeds/{breedId}/delete(breedId=${breed.id})}">
+    <button type="submit">Удалить</button>
+</form>
+</body>
+</html>

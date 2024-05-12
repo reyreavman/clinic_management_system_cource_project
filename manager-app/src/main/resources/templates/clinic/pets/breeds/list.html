@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список врачей &ndash; Ветеринарная клиник</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/pets/breeds/create}">+ Добавить информацию о породе</a>
+<h1>Список пород</h1>
+<form method="get" data-th-action="@{/clinic/pets/breeds/list}">
+    <label>Фильтр:<input type="text" name="filter" data-th-value="${filter}">
+        <button type="submit">Поиск</button>
+    </label>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Название породы</th>
+        <th>Вид животного</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="breed, iterstat : ${breeds}">
+        <td>
+            <a data-th-href="@{/clinic/pets/breeds/{breedId}(breedId=${breed.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${breed.name}"></a>
+        </td>
+        <td>
+            <a data-th-text="${breed.type.name}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -29,19 +29,20 @@ public class PetBreedsController {
 
     @GetMapping("create")
     public String getNewBreedPage(Model model) {
-        model.addAttribute("types", this.typeRestClient.findAllTypes(null));
+        model.addAttribute("petTypes", this.typeRestClient.findAllTypes(null));
         return "clinic/pets/breeds/new_breed";
     }
 
     @PostMapping("create")
     public String createBreed(NewPetBreedPayload payload, Model model) {
         try {
-            PetBreed breed = this.breedRestClient.createBreed(payload.name(), payload.petTypeId());
+            System.out.println(payload.typeId());
+            PetBreed breed = this.breedRestClient.createBreed(payload.name(), payload.typeId());
             return "redirect:/clinic/pets/breeds/%d".formatted(breed.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
-            return "clinic/vets/new_vet";
+            return "clinic/pets/breeds/new_breed";
         }
     }
 }

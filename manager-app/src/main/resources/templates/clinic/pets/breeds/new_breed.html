@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая порода &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/pets/breeds/list}">&larr; К списку пород</a>
+<h1>Новая порода</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/pets/breeds/create}">
+    <label>
+        Название породы:<br>
+        <input type="text" name="name" data-th-value="${payload?.name}">
+    </label><br>
+    <label>
+        Вид животного:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="type : ${petTypes}">
+            <td>
+                <a data-th-text="_"></a>
+            </td>
+            <td>
+                <label>
+                    <input type="radio" name="typeId" data-th-text="${type.name}"
+                           data-th-value="${type.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

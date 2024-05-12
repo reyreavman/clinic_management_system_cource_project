@@ -46,12 +46,12 @@ public class PetBreedController {
                               UpdatePetBreedPayload payload,
                               Model model) {
         try {
-            this.breedRestClient.updateBreed(breed.id(), payload.name(), payload.petTypeId());
+            this.breedRestClient.updateBreed(breed.id(), payload.name(), payload.typeId());
             return "redirect:/clinic/pets/breeds/%d".formatted(breed.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
-            return "clinic/vets/edit";
+            return "clinic/pets/breeds/edit";
         }
     }
 
