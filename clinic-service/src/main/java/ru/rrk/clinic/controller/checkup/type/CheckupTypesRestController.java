@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("clinic-api/checkuptypes/")
+@RequestMapping("clinic-api/checkups/types")
 public class CheckupTypesRestController {
     private final CheckupTypeService service;
 
@@ -38,8 +38,8 @@ public class CheckupTypesRestController {
             CheckupType type = this.service.createType(payload.type());
             return ResponseEntity
                     .created(uriComponentsBuilder
-                            .replacePath("/clinic-api/checkuptype/{checkuptypeId}")
-                            .build(Map.of("checkuptypeId", type.getId())))
+                            .replacePath("/clinic-api/checkups/types/{typeId}")
+                            .build(Map.of("typeId", type.getId())))
                     .body(type);
         }
     }
