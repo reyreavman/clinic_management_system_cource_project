@@ -36,7 +36,6 @@ public class PetBreedsController {
     @PostMapping("create")
     public String createBreed(NewPetBreedPayload payload, Model model) {
         try {
-            System.out.println(payload.typeId());
             PetBreed breed = this.breedRestClient.createBreed(payload.name(), payload.typeId());
             return "redirect:/clinic/pets/breeds/%d".formatted(breed.id());
         } catch (BadRequestException exception) {
