@@ -10,10 +10,10 @@ import org.springframework.web.client.RestClient;
 import ru.rrk.manager.restClients.client.ClientRestClientImpl;
 import ru.rrk.manager.restClients.disease.DiseaseRestClientImpl;
 import ru.rrk.manager.restClients.gender.GenderRestClientImpl;
-import ru.rrk.manager.restClients.label.LabelRestClientImpl;
+import ru.rrk.manager.restClients.pet.label.LabelRestClientImpl;
 import ru.rrk.manager.restClients.receptionist.ReceptionistRestClientImpl;
-import ru.rrk.manager.restClients.speciality.SpecialityRestClientImpl;
-import ru.rrk.manager.restClients.vet.VetRestClientImpl;
+import ru.rrk.manager.restClients.vet.speciality.SpecialityRestClientImpl;
+import ru.rrk.manager.restClients.vet.vet.VetRestClientImpl;
 import ru.rrk.manager.security.OAuthClientHttpRequestInterceptor;
 
 @Configuration

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о бирке &ndash; [[${label.value}]]</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/pets/labels/{labelId}(labelId=${label.id})}">&larr; К профилю бирки</a>
+<h1>Редактирование информации о бирке &ndash; [[${label.value}]]</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/pets/labels/{labelId}/edit(labelId=${label.id})}">
+    <label>
+        Буквенно-цифровое значение:<br>
+        <input type="text" name="value" data-th-value="${payload != null ? payload.value : label.value}">
+    </label><br>
+    <label>
+        Дата:<br>
+        <input type="date" name="date" data-th-value="${payload != null ? payload.date : label.date}">
+    </label><br>
+    <button type="submit">Изменить</button>
+</form>
+</body>
+</html>
