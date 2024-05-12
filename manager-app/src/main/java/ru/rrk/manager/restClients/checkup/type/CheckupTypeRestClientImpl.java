@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class DefaultCheckupTypeRestClient implements CheckupTypeRestClient {
+public class CheckupTypeRestClientImpl implements CheckupTypeRestClient {
     private static final ParameterizedTypeReference<List<CheckupType>> CHECKUPTYPE_TYPE_REFERENCE = new ParameterizedTypeReference<List<CheckupType>>() {
     };
     private final RestClient client;
