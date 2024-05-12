@@ -1,5 +1,6 @@
 package ru.rrk.manager.entity;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список регистраторов &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/receptionists/create}">+ Добавить регистратора</a>
+<h1>Список регистраторов</h1>
+<form method="get" data-th-action="@{/clinic/receptionists/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="receptionist, iterstat : ${receptionists}">
+        <td>
+            <a data-th-href="@{/clinic/receptionists/{receptionistId}(receptionistId=${receptionist.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${receptionist.firstName}"></a>
+        </td>
+        <td>
+            <a data-th-text="${receptionist.lastName}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

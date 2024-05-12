@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${receptionist.fullName}]] &ndash; Ветеринарная клиника </title>
+</head>
+<body>
+<a data-th-href="@{/clinic/receptionists/list}">&larr; К списку регистраторов</a>
+<h1 data-th-text="${receptionist.fullName}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${receptionist.id}"></span></li>
+    <li><strong>Имя</strong>: <span data-th-text="${receptionist.firstName}"></span></li>
+    <li><strong>Фамилия</strong>: <span data-th-text="${receptionist.lastName}"></span></li>
+</ul>
+<a data-th-href="@{/clinic/receptionists/{receptionistId}/edit(receptionistId=${receptionist.id})}">Изменить</a><br><br>
+<form method="post" data-th-action="@{/clinic/receptionists/{receptionistId}/delete(receptionistId=${receptionist.id})}">
+    <button type="submit">Удалить</button>
+</form>
+</body>
+</html>
