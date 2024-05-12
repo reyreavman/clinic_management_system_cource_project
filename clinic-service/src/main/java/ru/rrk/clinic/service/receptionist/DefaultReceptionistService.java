@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ReceptionistServiceImpl implements ReceptionistService {
+public class DefaultReceptionistService implements ReceptionistService {
     private final ReceptionistRepository repository;
 
     @Override

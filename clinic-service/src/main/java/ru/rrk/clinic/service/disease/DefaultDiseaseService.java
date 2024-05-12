@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class DiseaseServiceImpl implements DiseaseService {
+public class DefaultDiseaseService implements DiseaseService {
     private final DiseaseRepository repository;
 
     @Override
