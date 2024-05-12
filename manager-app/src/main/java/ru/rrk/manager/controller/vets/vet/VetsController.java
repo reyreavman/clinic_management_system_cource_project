@@ -35,9 +35,8 @@ public class VetsController {
 
     @PostMapping("create")
     public String createVet(NewVetPayload payload, Model model) {
-        System.out.println("%s triggered! payload.speciality_id=%d".formatted(this.getClass().getName(), payload.speciality_id()));
         try {
-            Vet vet = this.vetRestClient.createVet(payload.firstName(), payload.lastName(), payload.speciality_id());
+            Vet vet = this.vetRestClient.createVet(payload.firstName(), payload.lastName(), payload.specialityId());
             return "redirect:/clinic/vets/%d".formatted(vet.getId());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
