@@ -11,6 +11,7 @@ import ru.rrk.manager.restClients.checkup.type.CheckupTypeRestClientImpl;
 import ru.rrk.manager.restClients.client.ClientRestClientImpl;
 import ru.rrk.manager.restClients.disease.DiseaseRestClientImpl;
 import ru.rrk.manager.restClients.gender.GenderRestClientImpl;
+import ru.rrk.manager.restClients.pet.breed.PetBreedRestClientImpl;
 import ru.rrk.manager.restClients.pet.label.LabelRestClientImpl;
 import ru.rrk.manager.restClients.pet.type.PetTypeRestClientImpl;
 import ru.rrk.manager.restClients.receptionist.ReceptionistRestClientImpl;
@@ -147,6 +148,21 @@ public class BeansConfig {
             OAuth2AuthorizedClientRepository authorizedClientRepository,
             @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
         return new PetTypeRestClientImpl(RestClient.builder()
+                .baseUrl(clinicBaseUri)
+                .requestInterceptor(
+                        new OAuthClientHttpRequestInterceptor(
+                                new DefaultOAuth2AuthorizedClientManager(
+                                        clientRegistrationRepository, authorizedClientRepository), registrationId))
+                .build());
+    }
+
+    @Bean
+    public PetBreedRestClientImpl petBreedRestClient(
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository,
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+        return new PetBreedRestClientImpl(RestClient.builder()
                 .baseUrl(clinicBaseUri)
                 .requestInterceptor(
                         new OAuthClientHttpRequestInterceptor(
