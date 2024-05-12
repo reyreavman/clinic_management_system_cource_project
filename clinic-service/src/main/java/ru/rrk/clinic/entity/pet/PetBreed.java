@@ -17,13 +17,13 @@ public class PetBreed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "c_type_id")
-    @NotNull
-    private PetType type;
-
     @Column(name = "c_name")
     @NotNull
     @Size(max = 100)
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "c_type_id")
+    @NotNull
+    private PetType type;
 }

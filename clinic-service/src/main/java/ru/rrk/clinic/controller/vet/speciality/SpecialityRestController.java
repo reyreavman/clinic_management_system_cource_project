@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.rrk.clinic.controller.vet.speciality.payload.UpdateSpecialityPayload;
 import ru.rrk.clinic.entity.vet.Speciality;
-import ru.rrk.clinic.service.vet.vet.speciality.SpecialityService;
+import ru.rrk.clinic.service.vet.speciality.SpecialityService;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;

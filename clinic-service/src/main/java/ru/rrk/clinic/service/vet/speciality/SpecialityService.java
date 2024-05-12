@@ -1,4 +1,4 @@
-package ru.rrk.clinic.service.vet.vet.speciality;
+package ru.rrk.clinic.service.vet.speciality;
 
 import ru.rrk.clinic.entity.vet.Speciality;
 

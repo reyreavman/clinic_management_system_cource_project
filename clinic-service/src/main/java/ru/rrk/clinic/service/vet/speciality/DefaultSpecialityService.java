@@ -1,4 +1,4 @@
-package ru.rrk.clinic.service.vet.vet.speciality;
+package ru.rrk.clinic.service.vet.speciality;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

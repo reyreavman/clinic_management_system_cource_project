@@ -25,8 +25,8 @@ public class DefaultVetService implements VetService {
 
     @Override
     @Transactional
-    public Vet createVet(String firstName, String lastName, Integer speciality_id) {
-        return this.vetRepository.save(new Vet(null, firstName, lastName, this.specialityRepository.findById(speciality_id).get()));
+    public Vet createVet(String firstName, String lastName, Integer specialityId) {
+        return this.vetRepository.save(new Vet(null, firstName, lastName, this.specialityRepository.findById(specialityId).orElseThrow(NoSuchElementException::new)));
     }
 
     @Override
@@ -36,12 +36,12 @@ public class DefaultVetService implements VetService {
 
     @Override
     @Transactional
-    public void updateVet(Integer id, String firstName, String lastName, Integer speciality_id) {
+    public void updateVet(Integer id, String firstName, String lastName, Integer specialityId) {
         this.vetRepository.findById(id)
                 .ifPresentOrElse(vet -> {
                     vet.setFirstName(firstName);
                     vet.setLastName(lastName);
-                    vet.setSpeciality(this.specialityRepository.findById(speciality_id).get());
+                    vet.setSpeciality(this.specialityRepository.findById(specialityId).orElseThrow(NoSuchElementException::new));
                 }, () -> {
                     throw new NoSuchElementException();
                 });
