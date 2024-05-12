@@ -6,10 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.rrk.clinic.controller.checkup.type.payload.NewCheckupTypePayload;
 import ru.rrk.clinic.entity.checkup.CheckupType;
@@ -30,6 +27,7 @@ public class CheckupTypesRestController {
         return this.service.findAllTypes();
     }
 
+    @PostMapping
     public ResponseEntity<?> createType(@Valid @RequestBody NewCheckupTypePayload payload,
                                         BindingResult bindingResult,
                                         UriComponentsBuilder uriComponentsBuilder) throws BindException {
