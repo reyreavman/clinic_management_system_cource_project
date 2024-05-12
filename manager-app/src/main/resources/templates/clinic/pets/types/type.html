@@ -8,7 +8,7 @@
 <a data-th-href="@{/clinic/pets/types/list}">&larr; К списку видов животных</a>
 <h1 data-th-text="${type.name}"></h1>
 <ul>
-    <li><strong>ID</strong>: <span data-th-text="${client.id}"></span></li>
+    <li><strong>ID</strong>: <span data-th-text="${type.id}"></span></li>
     <li><strong>Название</strong>: <span data-th-text="${type.name}"></span></li>
 </ul>
 <a data-th-href="@{/clinic/pets/types/{typeId}/edit(typeId=${type.id})}">Изменить</a>

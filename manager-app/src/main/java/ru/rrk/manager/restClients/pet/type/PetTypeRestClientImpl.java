@@ -25,7 +25,7 @@ public class PetTypeRestClientImpl implements PetTypeRestClient {
     public List<PetType> findAllTypes(String filter) {
         return this.client
                 .get()
-                .uri("/clinic-api/pets/types/?filter={filter}", filter)
+                .uri("/clinic-api/pets/types?filter={filter}", filter)
                 .retrieve()
                 .body(PETTYPE_TYPE_REFERENCE);
     }

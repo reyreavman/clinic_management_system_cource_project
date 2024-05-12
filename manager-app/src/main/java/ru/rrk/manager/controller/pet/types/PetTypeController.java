@@ -47,7 +47,7 @@ public class PetTypeController {
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
-            return "clinic/clients/edit";
+            return "clinic/pets/types/edit";
         }
     }
 

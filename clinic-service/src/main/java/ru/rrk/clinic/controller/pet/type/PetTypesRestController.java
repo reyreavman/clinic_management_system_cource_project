@@ -39,7 +39,7 @@ public class PetTypesRestController {
             PetType type = this.service.createType(payload.name());
             return ResponseEntity
                     .created(uriComponentsBuilder
-                            .replacePath("/clinic-api/pets.types/{typeId}")
+                            .replacePath("/clinic-api/pets/types/{typeId}")
                             .build(Map.of("typeId", type.getId())))
                     .body(type);
         }
