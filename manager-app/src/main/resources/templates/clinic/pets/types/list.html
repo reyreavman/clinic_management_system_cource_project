@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список видов животных &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/pets/types/create}">+ Добавить информацию о новом виде животного</a>
+<h1>Список видов животных</h1>
+<form method="get" data-th-action="@{/clinic/pets/types/list}">
+    <label>Фильтр:<input type="text" name="filter" data-th-value="${filter}">
+        <button type="submit">Поиск</button>
+    </label>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Название</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="type, iterstat : ${types}">
+        <td>
+            <a data-th-href="@{/clinic/pets/types/{typeId}(typeId=${type.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${type.name}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
