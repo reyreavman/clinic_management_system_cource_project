@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
+import ru.rrk.manager.controller.receptionists.payload.NewReceptionistPayload;
+import ru.rrk.manager.controller.receptionists.payload.UpdateReceptionistPayload;
 import ru.rrk.manager.entity.Receptionist;
 import ru.rrk.manager.restClients.BadRequestException;
 
