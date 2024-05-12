@@ -51,7 +51,7 @@ public class Pet {
 
     @Column(name = "c_birth_date")
     @Nullable
-    private LocalDate birthDay;
+    private LocalDate birthday;
 
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "c_label_id")
