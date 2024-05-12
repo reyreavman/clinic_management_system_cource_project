@@ -1,4 +1,4 @@
-package ru.rrk.clinic.entity;
+package ru.rrk.clinic.entity.checkup;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

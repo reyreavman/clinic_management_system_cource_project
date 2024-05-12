@@ -1,4 +1,7 @@
 package ru.rrk.clinic.repository.checkup.type;
 
-public interface CheckupTypeRepository {
+import org.springframework.data.repository.CrudRepository;
+import ru.rrk.clinic.entity.checkup.CheckupType;
+
+public interface CheckupTypeRepository extends CrudRepository<CheckupType, Integer> {
 }
