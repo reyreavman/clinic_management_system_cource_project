@@ -34,7 +34,9 @@ public class VetsRestController {
         } else {
             Vet vet = this.service.createVet(payload.firstName(), payload.lastName(), payload.speciality_id());
             return ResponseEntity
-                    .created(uriComponentsBuilder.replacePath("/clinic-api/vets/{vetId}").build(Map.of("vetId", vet.getId())))
+                    .created(uriComponentsBuilder
+                            .replacePath("/clinic-api/vets/{vetId}")
+                            .build(Map.of("vetId", vet.getId())))
                     .body(vet);
         }
     }
