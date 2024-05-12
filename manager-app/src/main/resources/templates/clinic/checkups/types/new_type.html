@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый клиент &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/checkups/types/list}">&larr; К списку типов исследований</a>
+<h1>Новый тип исследований</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/checkups/types/create}">
+    <label>
+        Тип исследования:<br>
+        <input type="text" name="type" data-th-value="${payload?.type}">
+    </label><br>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список типов исследований &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/checkups/types/create}">+ Добавить новый тип исследования</a>
+<h1>Список типов исследований</h1>
+<form method="get" data-th-action="@{/clinic/checkups/types/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Тип исследования</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="type, iterstat : ${types}">
+        <td>
+            <a data-th-href="@{/clinic/checkups/types/{typeId}(typeId=${type.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${type.type}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
