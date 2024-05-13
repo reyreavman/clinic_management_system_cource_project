@@ -1,32 +1,21 @@
-image quay.io/keycloak/keycloak
---name=clinic-keycloak
--e "KEYCLOAK_ADMIN=admin",
--e "KEYCLOAK_ADMIN_PASSWORD=admin",
+# KUPANG-cource-project
+## Инфраструктура
+### Keycloak
 
-image postgres:16
---name=clinic-db
--p 5445:5432
--e "POSTGRES_DB=clinic"
--e "POSTGRES_USER=clinic"
--e "POSTGRES_PASSWORD=clinic"
+В проекте используется как OAuth 2.0/OIDC-сервер для авторизации сервисов и аутентификации пользователей.
 
-image postgres:16
---name=clinic-manager-db
--p 5443:5432
--e "POSTGRES_DB=manager"
--e "POSTGRES_USER=manager"
--e "POSTGRES_PASSWORD=manager"
+Запуск в Docker:
 
-module clinic-service
-server:
-port:8081
+```shell
+docker run --name clinic-keycloak -p 8085:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -v ./config/keycloak/import:/opt/keycloak/data/import quay.io/keycloak/keycloak:23.0.7 start-dev --import-realm
+```
 
-module manager-app
-server:
-port:80
+### PostgreSQL
 
-users:
-user:
-username:j.dewar
-password:password
-role:manager
+В проекте используется в качестве БД модуля каталога.
+
+Запуск в Docker:
+
+```shell
+docker run --name clinic-db -p 5445:5432 -e POSTGRES_USER=clinic -e POSTGRES_PASSWORD=clinic -e POSTGRES_DB=clinic postgres:16
+```
