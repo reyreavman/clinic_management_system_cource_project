@@ -79,7 +79,7 @@ public class CheckupResultRestClientImpl implements CheckupResultRestClient {
         try {
             this.client
                     .delete()
-                    .uri("/clinic-api/checkups/results/resultId", resultId)
+                    .uri("/clinic-api/checkups/results/{resultId}", resultId)
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {

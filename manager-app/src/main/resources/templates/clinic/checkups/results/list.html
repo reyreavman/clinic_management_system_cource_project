@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список результатов исследований &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/checkups/results/create}">+ Добавить новый результат исследования</a>
+<h1>Список результатов исследования</h1>
+<form method="get" data-th-action="@{/clinic/checkups/results/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Результаты исследования</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="result, iterstat : ${results}">
+        <td>
+            <a data-th-href="@{/clinic/checkups/results/{resultId}(resultId=${result.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${result.description}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

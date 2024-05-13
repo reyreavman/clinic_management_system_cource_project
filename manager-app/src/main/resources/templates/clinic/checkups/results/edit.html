@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о результатах исследования &ndash; [[${result.id}]]</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/checkups/results/{resultId}(resultId=${result.id})}">&larr; К информации о результатах исследования</a>
+<h1>Редактирование информации о результатах исследования &ndash; [[${result.id}]]</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/checkups/results/{resultId}/edit(resultId=${result.id})}">
+    <label>
+        Результаты исследования:<br>
+        <input type="text" name="description" data-th-value="${payload != null ? payload.description : result.description}">
+    </label><br>
+    <br>
+    <button type="submit">Изменить</button>
+</form>
+</body>
+</html>
