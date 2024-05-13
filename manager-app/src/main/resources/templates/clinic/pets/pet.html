@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>[[${client.fullName}]] &ndash; Ветеринарная клиника </title>
+    <title>[[${pet.name}]] &ndash; Ветеринарная клиника </title>
 </head>
 <body>
-<a data-th-href="@{/clinic/clients/list}">&larr; К списку клиентов</a>
-<h1 data-th-text="${client.fullName}"></h1>
+<a data-th-href="@{/clinic/pets/list}">&larr; К списку питомцев</a>
+<h1 data-th-text="${pet.name}"></h1>
 <ul>
-    <li><strong>ID</strong>: <span data-th-text="${client.id}"></span></li>
-    <li><strong>Имя</strong>: <span data-th-text="${client.firstName}"></span></li>
-    <li><strong>Фамилия</strong>: <span data-th-text="${client.lastName}"></span></li>
-    <li><strong>Номер телефона</strong>: <span data-th-text="${client.phoneNumber}"></span></li>
-    <li><strong>Электронная почта</strong>: <span data-th-text="${client.email}"></span></li>
+    <li><strong>ID</strong>: <span data-th-text="${pet.id}"></span></li>
+    <li><strong>Имя</strong>: <span data-th-text="${pet.name}"></span></li>
+    <li><strong>Владелец</strong>: <span data-th-text="${pet.client.fullName}"></span></li>
+    <li><strong>Вид</strong>: <span data-th-text="${pet.type.name}"></span></li>
+    <li><strong>Порода</strong>: <span data-th-text="${pet.breed.name}"></span></li>
+    <li><strong>Пол</strong>: <span data-th-text="${pet.gender.gender}"></span></li>
+    <li><strong>День рождения</strong>: <span data-th-text="${pet.birthday}"></span></li>
+    <li><strong>Клеймо</strong>: <span data-th-text="${pet.label.value}"></span></li>
 </ul>
-<a data-th-href="@{/clinic/clients/{clientId}/edit(clientId=${client.id})}">Изменить</a>
-<form method="post" data-th-action="@{/clinic/clients/{clientId}/delete(clientId=${client.id})}">
+<a data-th-href="@{/clinic/pets/{petId}/edit(petId=${pet.id})}">Изменить</a>
+<form method="post" data-th-action="@{/clinic/pets/{petId}/delete(petId=${pet.id})}">
     <button type="submit">Удалить</button>
 </form>
 </body>

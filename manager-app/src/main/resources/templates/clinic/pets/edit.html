@@ -16,7 +16,7 @@
 <form method="post" data-th-action="@{/clinic/pets/{petId}/edit(petId=${pet.id})}">
     <label>
         Имя:<br>
-        <input type="text" name="name" data-th-value="${payload != null ? payload.name : client.name}">
+        <input type="text" name="name" data-th-value="${payload != null ? payload.name : pet.name}">
     </label><br>
     <label>
         Владелец:<br>
@@ -29,7 +29,7 @@
             </td>
             <td>
                 <label>
-                    <input type="radio" name="clientId" data-th-text="${client.fullname}"
+                    <input type="radio" name="clientId" data-th-text="${client.fullName}"
                            data-th-value="${client.id}">
                 </label>
             </td>
@@ -92,7 +92,7 @@
     </table>
     <label>
         День рождения:<br>
-        <input type="date" name="birthday" data-th-value="${payload != null ? payload.birthday : client.birthday}">
+        <input type="date" name="birthday" data-th-value="${payload != null ? payload.birthday : pet.birthday}">
     </label><br>
     <label>
         Клеймо:<br>

@@ -26,7 +26,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr data-th-each="pet, iterstat : ${pet}">
+    <tr data-th-each="pet, iterstat : ${pets}">
         <td>
             <a data-th-href="@{/clinic/pets/{petId}(petId=${pet.id})}"
                data-th-text="${iterstat.count}"></a>
@@ -35,7 +35,7 @@
             <a data-th-text="${pet.name}"></a>
         </td>
         <td>
-            <a data-th-text="${pet.client.fullname}"></a>
+            <a data-th-text="${pet.client.fullName}"></a>
         </td>
         <td>
             <a data-th-text="${pet.type.name}"></a>

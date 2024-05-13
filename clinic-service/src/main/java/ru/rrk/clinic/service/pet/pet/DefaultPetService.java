@@ -38,6 +38,7 @@ public class DefaultPetService implements PetService {
         return this.petRepository.save(
                 Pet.builder()
                         .id(null)
+                        .name(name)
                         .client(this.clientRepository.findById(clientId).orElseThrow(NoSuchElementException::new))
                         .type(this.typeRepository.findById(typeId).orElseThrow(NoSuchElementException::new))
                         .breed(this.breedRepository.findById(breedId).orElseThrow(NoSuchElementException::new))

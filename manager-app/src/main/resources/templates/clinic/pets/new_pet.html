@@ -20,7 +20,7 @@
     </label><br>
     <label>
         Владелец:<br>
-    </label><br>
+    </label>
     <table>
         <tbody>
         <tr data-th-each="client : ${clients}">
@@ -29,7 +29,7 @@
             </td>
             <td>
                 <label>
-                    <input type="radio" name="clientId" data-th-text="${client.fullname}"
+                    <input type="radio" name="clientId" data-th-text="${client.fullName}"
                            data-th-value="${client.id}">
                 </label>
             </td>
@@ -38,7 +38,7 @@
     </table>
     <label>
         Вид:<br>
-    </label><br>
+    </label>
     <table>
         <tbody>
         <tr data-th-each="type : ${types}">
@@ -56,7 +56,7 @@
     </table>
     <label>
         Порода:<br>
-    </label><br>
+    </label>
     <table>
         <tbody>
         <tr data-th-each="breed : ${breeds}">
@@ -74,7 +74,7 @@
     </table>
     <label>
         Пол:<br>
-    </label><br>
+    </label>
     <table>
         <tbody>
         <tr data-th-each="gender : ${genders}">
@@ -92,27 +92,26 @@
     </table>
     <label>
         День рождения:<br>
-        <input type="date" name="birthday" data-th-value="${payload != null ? payload.birthday : client.birthday}">
+        <input type="date" name="birthday" data-th-value="${payload?.birthday}">
     </label><br>
     <label>
         Клеймо:<br>
-        <table>
-            <tbody>
-            <tr data-th-each="label : ${labels}">
-                <td>
-                    <a data-th-text="_"></a>
-                </td>
-                <td>
-                    <label>
-                        <input type="radio" name="labelId" data-th-text="${label.value}"
-                               data-th-value="${label.id}">
-                    </label>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </label><br>
-    <br>0
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="label : ${labels}">
+            <td>
+                <a data-th-text="_"></a>
+            </td>
+            <td>
+                <label>
+                    <input type="radio" name="labelId" data-th-text="${label.value}"
+                           data-th-value="${label.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table><br>
     <button type="submit">Добавить</button>
 </form>
 </body>
