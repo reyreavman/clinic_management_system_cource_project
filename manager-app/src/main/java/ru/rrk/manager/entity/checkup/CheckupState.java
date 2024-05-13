@@ -1,4 +1,4 @@
 package ru.rrk.manager.entity.checkup;
 
-public record CheckupState(int id, String type) {
+public record CheckupState(int id, String state) {
 }
