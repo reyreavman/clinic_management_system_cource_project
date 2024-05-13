@@ -44,7 +44,7 @@ public class CheckupStateRestController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            this.service.updateState(stateId, payload.type());
+            this.service.updateState(stateId, payload.state());
             return ResponseEntity.noContent().build();
         }
     }

@@ -36,7 +36,7 @@ public class CheckupStatesRestController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            CheckupState state = this.service.createState(payload.type());
+            CheckupState state = this.service.createState(payload.state());
             return ResponseEntity
                     .created(uriComponentsBuilder
                             .replacePath("clinic-api/checkups/states/{stateId}")
