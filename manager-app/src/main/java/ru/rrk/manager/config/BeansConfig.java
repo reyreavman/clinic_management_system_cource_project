@@ -7,6 +7,8 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.web.client.RestClient;
+import ru.rrk.manager.restClients.checkup.state.CheckupStateRestClientImpl;
+import ru.rrk.manager.restClients.checkup.type.CheckupTypeRestClient;
 import ru.rrk.manager.restClients.checkup.type.CheckupTypeRestClientImpl;
 import ru.rrk.manager.restClients.client.ClientRestClientImpl;
 import ru.rrk.manager.restClients.disease.DiseaseRestClientImpl;
@@ -179,6 +181,20 @@ public class BeansConfig {
             OAuth2AuthorizedClientRepository authorizedClientRepository,
             @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
         return new PetRestClientImpl(RestClient.builder()
+                .baseUrl(clinicBaseUri)
+                .requestInterceptor(
+                        new OAuthClientHttpRequestInterceptor(
+                                new DefaultOAuth2AuthorizedClientManager(
+                                        clientRegistrationRepository, authorizedClientRepository), registrationId))
+                .build());
+    }
+
+    public CheckupStateRestClientImpl checkupStateRestClient(
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository,
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+        return new CheckupStateRestClientImpl(RestClient.builder()
                 .baseUrl(clinicBaseUri)
                 .requestInterceptor(
                         new OAuthClientHttpRequestInterceptor(
