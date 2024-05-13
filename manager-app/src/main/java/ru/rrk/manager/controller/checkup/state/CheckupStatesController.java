@@ -32,7 +32,7 @@ public class CheckupStatesController {
     public String createState(NewCheckupStatePayload payload, Model model) {
         try {
             CheckupState state = this.restClient.createState(payload.state());
-            return "redirect:/clinic/checkups/states/%d" .formatted(state.id());
+            return "redirect:/clinic/checkups/states/%d".formatted(state.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
