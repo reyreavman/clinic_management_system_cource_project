@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список клиентов &ndash; Ветеринарная клиник</title>
+    <title>Список питомцев &ndash; Ветеринарная клиник</title>
 </head>
 <body>
-<a data-th-href="@{/clinic/clients/create}">+ Добавить клиента</a>
-<h1>Список клиентов</h1>
-<form method="get" data-th-action="@{/clinic/clients/list}">
+<a data-th-href="@{/clinic/pets/create}">+ Добавить питомца</a>
+<h1>Список питомцев</h1>
+<form method="get" data-th-action="@{/clinic/pets/list}">
     <label>Фильтр:<input type="text" name="filter" data-th-value="${filter}">
         <button type="submit">Поиск</button>
     </label>
@@ -17,28 +17,40 @@
     <tr>
         <th>#</th>
         <th>Имя</th>
-        <th>Фамилия</th>
-        <th>Номер телефона</th>
-        <th>Электронная почта</th>
+        <th>Владелец</th>
+        <th>Вид</th>
+        <th>Порода</th>
+        <th>Пол</th>
+        <th>День рождения</th>
+        <th>Клеймо</th>
     </tr>
     </thead>
     <tbody>
-    <tr data-th-each="client, iterstat : ${clients}">
+    <tr data-th-each="pet, iterstat : ${pet}">
         <td>
-            <a data-th-href="@{/clinic/clients/{clientId}(clientId=${client.id})}"
+            <a data-th-href="@{/clinic/pets/{petId}(petId=${pet.id})}"
                data-th-text="${iterstat.count}"></a>
         </td>
         <td>
-            <a data-th-text="${client.firstName}"></a>
+            <a data-th-text="${pet.name}"></a>
         </td>
         <td>
-            <a data-th-text="${client.lastName}"></a>
+            <a data-th-text="${pet.client.fullname}"></a>
         </td>
         <td>
-            <a data-th-text="${client.phoneNumber}"></a>
+            <a data-th-text="${pet.type.name}"></a>
         </td>
         <td>
-            <a data-th-text="${client.email}"></a>
+            <a data-th-text="${pet.breed.name}"></a>
+        </td>
+        <td>
+            <a data-th-text="${pet.gender.gender}"></a>
+        </td>
+        <td>
+            <a data-th-text="${pet.birthday}"></a>
+        </td>
+        <td>
+            <a data-th-text="${pet.label.value}"></a>
         </td>
     </tr>
     </tbody>

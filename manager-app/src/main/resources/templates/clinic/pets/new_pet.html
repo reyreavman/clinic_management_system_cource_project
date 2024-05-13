@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Редактирование информации о питомце &ndash; [[${pet.name}]]</title>
+    <title>Новый питомец &ndash; Ветеринарная клиника</title>
 </head>
 <body>
-<a data-th-href="@{/clinic/pets/{petId}(petId=${pet.id})}">&larr; К профилю питомца</a>
-<h1>Редактирование информации о питомце &ndash; [[${pet.name}]]</h1>
+<a data-th-href="@{/clinic/pets/list}">&larr; К списку питомцев</a>
+<h1>Новый питомец</h1>
 <div data-th-if="${errors}">
     <h2>Допущены ошибки</h2>
     <ul>
         <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
     </ul>
 </div>
-<form method="post" data-th-action="@{/clinic/pets/{petId}/edit(petId=${pet.id})}">
+<form method="post" data-th-action="@{/clinic/pets/create}">
     <label>
         Имя:<br>
-        <input type="text" name="name" data-th-value="${payload != null ? payload.name : client.name}">
+        <input type="text" name="name" data-th-value="${payload?.name}">
     </label><br>
     <label>
         Владелец:<br>
@@ -112,7 +112,8 @@
             </tbody>
         </table>
     </label><br>
-    <button type="submit">Изменить</button>
+    <br>0
+    <button type="submit">Добавить</button>
 </form>
 </body>
 </html>
