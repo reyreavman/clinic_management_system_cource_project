@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.pet.types.payload.NewPetTypePayload;
-import ru.rrk.manager.controller.pet.types.payload.UpdatePetTypePayload;
+import ru.rrk.manager.controller.pets.types.payload.NewPetTypePayload;
+import ru.rrk.manager.controller.pets.types.payload.UpdatePetTypePayload;
 import ru.rrk.manager.entity.pet.PetType;
 import ru.rrk.manager.restClients.BadRequestException;
 

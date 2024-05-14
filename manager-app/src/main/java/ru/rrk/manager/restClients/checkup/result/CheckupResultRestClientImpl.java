@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.checkup.result.payload.NewCheckupResultPayload;
-import ru.rrk.manager.controller.checkup.result.payload.UpdateCheckupResultPayload;
+import ru.rrk.manager.controller.checkups.result.payload.NewCheckupResultPayload;
+import ru.rrk.manager.controller.checkups.result.payload.UpdateCheckupResultPayload;
 import ru.rrk.manager.entity.checkup.CheckupResult;
 import ru.rrk.manager.restClients.BadRequestException;
 

@@ -1,4 +1,4 @@
-package ru.rrk.manager.controller.appoinments.result.state;
+package ru.rrk.manager.controller.checkups.state;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -7,54 +7,54 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.manager.controller.appoinments.result.state.payload.UpdateAppointmentResultStatePayload;
-import ru.rrk.manager.entity.appointments.result.AppointmentResultState;
+import ru.rrk.manager.controller.checkups.state.payload.UpdateCheckupStatePayload;
+import ru.rrk.manager.entity.checkup.CheckupState;
 import ru.rrk.manager.restClients.BadRequestException;
-import ru.rrk.manager.restClients.appointment.result.state.AppointmentResultStateRestClient;
+import ru.rrk.manager.restClients.checkup.state.CheckupStateRestClient;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
 @Controller
+@RequestMapping("clinic/checkups/states/{stateId:\\d+}")
 @RequiredArgsConstructor
-@RequestMapping("clinic/appointments/results/states/{stateId:\\d+}")
-public class AppointmentResultsStateController {
-    private final AppointmentResultStateRestClient restClient;
+public class CheckupStateController {
+    private final CheckupStateRestClient restClient;
     private final MessageSource messageSource;
 
     @ModelAttribute("state")
-    public AppointmentResultState state(@PathVariable("stateId") int stateId) {
+    public CheckupState state(@PathVariable("stateId") int stateId) {
         return this.restClient.findState(stateId)
-                .orElseThrow(() -> new NoSuchElementException("clinic.errors.appointment.result.state.not_found"));
+                .orElseThrow(() -> new NoSuchElementException("clinic.errors.checkup.state.not_found"));
     }
 
     @GetMapping
     public String getState() {
-        return "clinic/appointments/results/states/state";
+        return "clinic/checkups/states/state";
     }
 
     @GetMapping("edit")
     public String getStateEditPage() {
-        return "clinic/appointments/results/states/edit";
+        return "clinic/checkups/states/edit";
     }
 
     @PostMapping("edit")
-    public String updateState(@ModelAttribute(name = "state", binding = false) AppointmentResultState state,
-                              UpdateAppointmentResultStatePayload payload, Model model) {
+    public String updateState(@ModelAttribute(name = "state", binding = false) CheckupState state,
+                              UpdateCheckupStatePayload payload, Model model) {
         try {
             this.restClient.updateState(state.id(), payload.state());
-            return "redirect:/clinic/appointments/results/states/%d" .formatted(state.id());
+            return "redirect:/clinic/checkups/states/%d" .formatted(state.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
-            return "clinic/appointments/results/states/edit";
+            return "clinic/checkups/states/edit";
         }
     }
 
     @PostMapping("delete")
-    public String deleteState(@ModelAttribute("state") AppointmentResultState state) {
+    public String deleteState(@ModelAttribute("state") CheckupState state) {
         this.restClient.deleteState(state.id());
-        return "redirect:/clinic/appointments/results/states/list";
+        return "redirect:/clinic/checkups/states/list";
     }
 
     @ExceptionHandler(NoSuchElementException.class)

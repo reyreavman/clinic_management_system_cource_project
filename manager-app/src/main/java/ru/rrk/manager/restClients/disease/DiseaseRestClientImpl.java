@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.disease.payload.NewDiseasePayload;
-import ru.rrk.manager.controller.disease.payload.UpdateDiseasePayload;
+import ru.rrk.manager.controller.diseases.payload.NewDiseasePayload;
+import ru.rrk.manager.controller.diseases.payload.UpdateDiseasePayload;
 import ru.rrk.manager.entity.Disease;
 import ru.rrk.manager.restClients.BadRequestException;
 
