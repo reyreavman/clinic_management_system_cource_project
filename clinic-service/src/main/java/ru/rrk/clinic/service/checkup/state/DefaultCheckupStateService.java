@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CheckupStateServiceImpl implements CheckupStateService {
+public class DefaultCheckupStateService implements CheckupStateService {
     private final CheckupStateRepository repository;
 
     @Override

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список состояний результатов приема &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/appointments/results/states/create}">+ Добавить новое состояние результатов приема</a>
+<h1>Список состояний результатов приема</h1>
+<form method="get" data-th-action="@{/clinic/appointments/results/states/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Состояние результатов приема</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="state, iterstat : ${states}">
+        <td>
+            <a data-th-href="@{/clinic/appointments/results/states/{stateId}(stateId=${state.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${state.state}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
