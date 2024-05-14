@@ -30,7 +30,7 @@ public class DefaultVetService implements VetService {
     }
 
     @Override
-    public Optional<Vet> findVet(int vetId) {
+    public Optional<Vet> findVet(Integer vetId) {
         return this.vetRepository.findById(vetId);
     }
 

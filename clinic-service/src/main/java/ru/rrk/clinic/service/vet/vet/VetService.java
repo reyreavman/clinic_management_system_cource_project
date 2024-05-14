@@ -9,7 +9,7 @@ public interface VetService {
 
     Vet createVet(String firstName, String lastName, Integer specialityId);
 
-    Optional<Vet> findVet(int vetId);
+    Optional<Vet> findVet(Integer vetId);
 
     void updateVet(Integer id, String firstName, String lastName, Integer specialityId);
 

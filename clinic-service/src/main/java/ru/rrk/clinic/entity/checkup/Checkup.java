@@ -3,9 +3,9 @@ package ru.rrk.clinic.entity.checkup;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.sql.results.graph.collection.internal.EagerCollectionAssembler;
 import ru.rrk.clinic.entity.pet.Pet;
 import ru.rrk.clinic.entity.vet.Vet;
 
@@ -16,6 +16,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(schema = "clinic", name = "t_checkup")
 public class Checkup {
     @Id
