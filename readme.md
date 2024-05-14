@@ -1,4 +1,4 @@
-# KUPANG-cource-project
+# KUPANG-course-project
 ## Инфраструктура
 ### Keycloak
 
@@ -7,12 +7,12 @@
 Запуск в Docker:
 
 ```shell
-docker run --name clinic-keycloak -p 8085:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -v ./config/keycloak/import:/opt/keycloak/data/import quay.io/keycloak/keycloak:23.0.7 start-dev --import-realm
+docker run --name clinic-keycloak -p 8083:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -v ./config/keycloak/import:/opt/keycloak/data/import quay.io/keycloak/keycloak:23.0.7 start-dev --import-realm
 ```
 
 ### PostgreSQL
 
-В проекте используется в качестве БД модуля каталога.
+В проекте используется в качестве БД модуля клиники.
 
 Запуск в Docker:
 
