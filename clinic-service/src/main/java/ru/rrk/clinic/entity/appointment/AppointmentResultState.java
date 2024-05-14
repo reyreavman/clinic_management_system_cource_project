@@ -2,6 +2,7 @@ package ru.rrk.clinic.entity.appointment;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,6 @@ public class AppointmentResultState {
     private Integer id;
 
     @Column(name = "c_state_name")
+    @NotNull
     private String state;
 }
