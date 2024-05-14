@@ -17,5 +17,5 @@ public class AppointmentsResultState {
     private Integer id;
 
     @Column(name = "c_state_name")
-    private String name;
+    private String state;
 }
