@@ -2,7 +2,7 @@ package ru.rrk.clinic.service.appointment.result;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.rrk.clinic.entity.appointment.AppointmentsResultState;
+import ru.rrk.clinic.entity.appointment.AppointmentResultState;
 import ru.rrk.clinic.repository.appointment.result.AppointmentResultStateRepository;
 
 import java.util.NoSuchElementException;
@@ -14,17 +14,17 @@ public class AppointmentResultServiceImpl implements AppointmentResultService {
     private final AppointmentResultStateRepository repository;
 
     @Override
-    public Iterable<AppointmentsResultState> findAllStates() {
+    public Iterable<AppointmentResultState> findAllStates() {
         return this.repository.findAll();
     }
 
     @Override
-    public AppointmentsResultState createState(int stateId, String state) {
-        return this.repository.save(new AppointmentsResultState(null, state));
+    public AppointmentResultState createState(String state) {
+        return this.repository.save(new AppointmentResultState(null, state));
     }
 
     @Override
-    public Optional<AppointmentsResultState> findState(int stateId) {
+    public Optional<AppointmentResultState> findState(int stateId) {
         return this.repository.findById(stateId);
     }
 

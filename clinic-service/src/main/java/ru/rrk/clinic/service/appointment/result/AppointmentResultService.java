@@ -1,15 +1,15 @@
 package ru.rrk.clinic.service.appointment.result;
 
-import ru.rrk.clinic.entity.appointment.AppointmentsResultState;
+import ru.rrk.clinic.entity.appointment.AppointmentResultState;
 
 import java.util.Optional;
 
 public interface AppointmentResultService {
-    Iterable<AppointmentsResultState> findAllStates();
+    Iterable<AppointmentResultState> findAllStates();
 
-    AppointmentsResultState createState(int stateId, String state);
+    AppointmentResultState createState(String state);
 
-    Optional<AppointmentsResultState> findState(int stateId);
+    Optional<AppointmentResultState> findState(int stateId);
 
     void updateState(int stateId, String state);
 

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(schema = "clinic", name = "t_appointment_results_state")
-public class AppointmentsResultState {
+public class AppointmentResultState {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

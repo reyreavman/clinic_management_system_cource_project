@@ -1,7 +1,7 @@
 package ru.rrk.clinic.repository.appointment.result;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.rrk.clinic.entity.appointment.AppointmentsResultState;
+import ru.rrk.clinic.entity.appointment.AppointmentResultState;
 
-public interface AppointmentResultStateRepository extends CrudRepository<AppointmentsResultState, Integer> {
+public interface AppointmentResultStateRepository extends CrudRepository<AppointmentResultState, Integer> {
 }
