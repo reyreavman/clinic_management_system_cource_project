@@ -41,7 +41,7 @@ public class AppointmentResultsStateController {
     }
 
     @PostMapping("edit")
-    public String updateState(@ModelAttribute(name = "state", binding = false) CheckupState state,
+    public String updateState(@ModelAttribute(name = "state", binding = false) AppointmentResultState state,
                               UpdateAppointmentResultStatePayload payload, Model model) {
         try {
             this.restClient.updateState(state.id(), payload.state());

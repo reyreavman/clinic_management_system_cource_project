@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rrk.manager.controller.appoinments.result.state.payload.NewAppointmentResultStatePayload;
 import ru.rrk.manager.entity.appointments.result.AppointmentResultState;
@@ -22,11 +23,12 @@ public class AppointmentResultsStatesController {
         return "clinic/appointments/results/states/list";
     }
 
-    @GetMapping("edit")
+    @GetMapping("create")
     public String getNewStatePage() {
         return "clinic/appointments/results/states/new_state";
     }
 
+    @PostMapping("create")
     public String createState(NewAppointmentResultStatePayload payload, Model model) {
         try {
             AppointmentResultState state = this.restClient.createState(payload.state());

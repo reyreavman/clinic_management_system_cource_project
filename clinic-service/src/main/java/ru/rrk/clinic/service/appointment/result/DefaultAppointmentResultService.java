@@ -2,6 +2,7 @@ package ru.rrk.clinic.service.appointment.result;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.rrk.clinic.entity.appointment.AppointmentResultState;
 import ru.rrk.clinic.repository.appointment.result.AppointmentResultStateRepository;
 
@@ -19,6 +20,7 @@ public class DefaultAppointmentResultService implements AppointmentResultService
     }
 
     @Override
+    @Transactional
     public AppointmentResultState createState(String state) {
         return this.repository.save(new AppointmentResultState(null, state));
     }
@@ -29,6 +31,7 @@ public class DefaultAppointmentResultService implements AppointmentResultService
     }
 
     @Override
+    @Transactional
     public void updateState(int stateId, String state) {
         this.repository.findById(stateId)
                 .ifPresentOrElse(curState -> curState.setState(state),
@@ -38,6 +41,7 @@ public class DefaultAppointmentResultService implements AppointmentResultService
     }
 
     @Override
+    @Transactional
     public void deleteState(int stateId) {
         this.repository.deleteById(stateId);
     }

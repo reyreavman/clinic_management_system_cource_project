@@ -31,7 +31,7 @@ public class AppointmentResultStateRestController {
     }
 
     @GetMapping
-    public AppointmentResultState findState(@PathVariable("state") AppointmentResultState state) {
+    public AppointmentResultState findState(@ModelAttribute("state") AppointmentResultState state) {
         return state;
     }
 
