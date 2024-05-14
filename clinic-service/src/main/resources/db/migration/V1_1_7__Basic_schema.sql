@@ -1,0 +1,1 @@
+alter table if exists clinic.t_checkup add column if not exists c_result_id integer references clinic.t_checkup_result(id) not null

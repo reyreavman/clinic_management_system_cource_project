@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.rrk.clinic.entity.checkup.Checkup;
 import ru.rrk.clinic.repository.checkup.CheckupRepository;
+import ru.rrk.clinic.repository.checkup.result.CheckupResultRepository;
 import ru.rrk.clinic.repository.checkup.state.CheckupStateRepository;
 import ru.rrk.clinic.repository.checkup.type.CheckupTypeRepository;
 import ru.rrk.clinic.repository.pet.pet.PetRepository;
@@ -23,6 +24,7 @@ public class CheckupServiceImpl implements CheckupService {
     private final VetRepository vetRepository;
     private final CheckupTypeRepository checkupTypeRepository;
     private final CheckupStateRepository checkupStateRepository;
+    private final CheckupResultRepository checkupResultRepository;
 
     @Override
     public Iterable<Checkup> findAllCheckups() {
@@ -31,7 +33,7 @@ public class CheckupServiceImpl implements CheckupService {
 
     @Override
     @Transactional
-    public Checkup createCheckup(LocalDate date, LocalTime time, Integer petId, Integer vetId, Integer checkupTypeId, Integer checkupStateId) {
+    public Checkup createCheckup(LocalDate date, LocalTime time, Integer petId, Integer vetId, Integer checkupTypeId, Integer checkupStateId, Integer checkupResultId) {
         return this.checkupRepository.save(Checkup.builder()
                 .id(null)
                 .time(time)
@@ -40,6 +42,7 @@ public class CheckupServiceImpl implements CheckupService {
                 .vet(this.vetRepository.findById(vetId).orElseThrow(NoSuchElementException::new))
                 .checkupType(this.checkupTypeRepository.findById(checkupTypeId).orElseThrow(NoSuchElementException::new))
                 .checkupState(this.checkupStateRepository.findById(checkupStateId).orElseThrow(NoSuchElementException::new))
+                .checkupResult(this.checkupResultRepository.findById(checkupResultId).orElseThrow(NoSuchElementException::new))
                 .build());
     }
 
@@ -50,7 +53,7 @@ public class CheckupServiceImpl implements CheckupService {
 
     @Override
     @Transactional
-    public void updateCheckup(Integer checkupId, LocalDate date, LocalTime time, Integer petId, Integer vetId, Integer checkupTypeId, Integer checkupStateId) {
+    public void updateCheckup(Integer checkupId, LocalDate date, LocalTime time, Integer petId, Integer vetId, Integer checkupTypeId, Integer checkupStateId, Integer checkupResultId) {
         this.checkupRepository.findById(checkupId)
                 .ifPresentOrElse(checkup -> {
                     checkup.setDate(date);
@@ -59,6 +62,7 @@ public class CheckupServiceImpl implements CheckupService {
                     checkup.setVet(this.vetRepository.findById(vetId).orElseThrow(NoSuchElementException::new));
                     checkup.setCheckupType(this.checkupTypeRepository.findById(checkupTypeId).orElseThrow(NoSuchElementException::new));
                     checkup.setCheckupState(this.checkupStateRepository.findById(checkupStateId).orElseThrow(NoSuchElementException::new));
+                    checkup.setCheckupResult(this.checkupResultRepository.findById(checkupResultId).orElseThrow(NoSuchElementException::new));
                 }, () -> {
                     throw new NoSuchElementException();
                 });

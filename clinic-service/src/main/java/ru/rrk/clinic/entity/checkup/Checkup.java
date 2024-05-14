@@ -50,4 +50,9 @@ public class Checkup {
     @JoinColumn(name = "c_state_id")
     @NotNull
     private CheckupState checkupState;
+
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "c_result_id")
+    @NotNull
+    private CheckupResult checkupResult;
 }

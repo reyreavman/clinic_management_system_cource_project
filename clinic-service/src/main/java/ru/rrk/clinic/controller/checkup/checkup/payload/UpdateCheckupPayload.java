@@ -17,5 +17,7 @@ public record UpdateCheckupPayload(
         @NotNull
         Integer checkupTypeId,
         @NotNull
-        Integer checkupStateId) {
+        Integer checkupStateId,
+        @NotNull
+        Integer checkupResultId) {
 }

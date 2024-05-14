@@ -17,5 +17,7 @@ public record NewCheckupPayload(
         @NotNull
         Integer checkupTypeId,
         @NotNull
-        Integer checkupStateId) {
+        Integer checkupStateId,
+        @NotNull
+        Integer checkupResultId) {
 }

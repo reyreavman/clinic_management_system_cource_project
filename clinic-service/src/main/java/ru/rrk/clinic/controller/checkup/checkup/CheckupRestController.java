@@ -43,7 +43,7 @@ public class CheckupRestController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            this.service.updateCheckup(checkupId, payload.date(), payload.time(), payload.petId(), payload.vetId(), payload.checkupTypeId(), payload.checkupStateId());
+            this.service.updateCheckup(checkupId, payload.date(), payload.time(), payload.petId(), payload.vetId(), payload.checkupTypeId(), payload.checkupStateId(), payload.checkupResultId());
             return ResponseEntity.noContent().build();
         }
     }
