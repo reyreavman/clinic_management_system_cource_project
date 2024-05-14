@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AppointmentResultServiceImpl implements AppointmentResultService {
+public class DefaultAppointmentResultService implements AppointmentResultService {
     private final AppointmentResultStateRepository repository;
 
     @Override
