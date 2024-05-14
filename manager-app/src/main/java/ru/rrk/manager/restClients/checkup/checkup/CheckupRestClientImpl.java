@@ -24,7 +24,7 @@ public class CheckupRestClientImpl implements CheckupRestClient {
     private final RestClient client;
 
     @Override
-    public List<Checkup> findCheckups() {
+    public List<Checkup> findAllCheckups() {
         return this.client
                 .get()
                 .uri("clinic-api/checkups")

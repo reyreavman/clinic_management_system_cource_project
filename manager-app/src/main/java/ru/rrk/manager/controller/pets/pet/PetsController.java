@@ -30,7 +30,6 @@ public class PetsController {
 
     @GetMapping("list")
     public String getPetsList(Model model, @RequestParam(name = "filter", required = false) String filter) {
-        System.out.println(this.petRestClient.findAllPets(filter));
         model.addAttribute("pets", this.petRestClient.findAllPets(filter));
         model.addAttribute("filter", filter);
         return "clinic/pets/list";
@@ -54,7 +53,7 @@ public class PetsController {
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
-            return "clinic/pets/breeds/new_breed";
+            return "clinic/pets/new_pet";
         }
     }
 }

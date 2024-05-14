@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CheckupRestClient {
-    List<Checkup> findCheckups();
+    List<Checkup> findAllCheckups();
 
     Checkup createCheckup(LocalDate date, LocalTime time, Integer petId, Integer vetId, Integer checkupTypeId, Integer checkupStateId, Integer checkupResultId);
 
