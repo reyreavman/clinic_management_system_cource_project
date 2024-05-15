@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Исследование &ndash; Ветеринарная клиника </title>
+</head>
+<body>
+<a data-th-href="@{/clinic/checkups/list}">&larr; К списку исследований</a>
+<h1 data-th-text="'Исследование - ' + ${checkup.id}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${checkup.id}"></span></li>
+    <li><strong>Дата и время</strong>: <span data-th-text="${checkup.date} + ' ' + ${checkup.time}"></span></li>
+    <li><strong>Питомец</strong>: <span data-th-text="${checkup.pet.name}"></span></li>
+    <li><strong>Врач</strong>: <span data-th-text="${checkup.vet.fullName}"></span></li>
+    <li><strong>Тип исследования</strong>: <span data-th-text="${checkup.checkupType.type}"></span></li>
+    <li><strong>Статус</strong>: <span data-th-text="${checkup.checkupState.state}"></span></li>
+    <li><strong>Результаты</strong>: <span data-th-text="${checkup.checkupResult.description}"></span></li>
+</ul>
+<a data-th-href="@{/clinic/checkups/{checkupId}/edit(checkupId=${checkup.id})}">Изменить</a>
+<form method="post" data-th-action="@{/clinic/checkups/{checkupId}/delete(checkupId=${checkup.id})}">
+    <button type="submit">Удалить</button>
+</form>
+</body>
+</html>

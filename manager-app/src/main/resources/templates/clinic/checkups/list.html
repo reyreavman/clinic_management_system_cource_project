@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список исследований &ndash; Ветеринарная клиник</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/checkups/create}">+ Добавить информацию об исследовании</a>
+<h1>Список исследований</h1>
+<form method="get" data-th-action="@{/clinic/checkups/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Дата и время</th>
+        <th>Питомец</th>
+        <th>Врач</th>
+        <th>Тип исследования</th>
+        <th>Статус</th>
+        <th>Результаты исследования</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="checkup, iterstat : ${checkups}">
+        <td>
+            <a data-th-href="@{/clinic/checkups/{checkupId}(checkupId=${checkup.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${checkup.date} + ' ' + ${checkup.time}"></a>
+        </td>
+        <td>
+            <a data-th-text="${checkup.pet.name}"></a>
+        </td>
+        <td>
+            <a data-th-text="${checkup.vet.fullName}"></a>
+        </td>
+        <td>
+            <a data-th-text="${checkup.checkupType.type}"></a>
+        </td>
+        <td>
+            <a data-th-text="${checkup.checkupState.state}"></a>
+        </td>
+        <td>
+            <a data-th-text="${checkup.checkupResult.description}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
