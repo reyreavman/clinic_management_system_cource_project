@@ -50,7 +50,7 @@ public class DefaultPetService implements PetService {
     }
 
     @Override
-    public Optional<Pet> findPet(int petId) {
+    public Optional<Pet> findPet(Integer petId) {
         return this.petRepository.findById(petId);
     }
 

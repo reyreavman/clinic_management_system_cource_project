@@ -10,7 +10,7 @@ public interface PetService {
 
     Pet createPet(String name, Integer clientId, Integer typeId, Integer breedId, Integer genderId, LocalDate birthday, Integer labelId);
 
-    Optional<Pet> findPet(int petId);
+    Optional<Pet> findPet(Integer petId);
 
     void updatePet(Integer petId, String name, Integer clientId, Integer typeId, Integer breedId, Integer genderId, LocalDate birthday, Integer labelId);
 
