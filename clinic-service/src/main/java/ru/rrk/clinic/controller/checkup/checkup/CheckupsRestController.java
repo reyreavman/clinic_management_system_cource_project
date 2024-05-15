@@ -22,7 +22,7 @@ public class CheckupsRestController {
     private final CheckupService service;
 
     @GetMapping
-    public Iterable<Checkup> findCheckup(Principal principal) {
+    public Iterable<Checkup> findCheckups(Principal principal) {
         LoggerFactory.getLogger(CheckupsRestController.class).info("Principal: {}", principal);
         return this.service.findAllCheckups();
     }
