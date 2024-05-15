@@ -32,7 +32,7 @@ public class VetsRestController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            Vet vet = this.service.createVet(payload.firstName(), payload.lastName(), payload.speciality_id());
+            Vet vet = this.service.createVet(payload.firstName(), payload.lastName(), payload.specialityId());
             return ResponseEntity
                     .created(uriComponentsBuilder
                             .replacePath("/clinic-api/vets/{vetId}")

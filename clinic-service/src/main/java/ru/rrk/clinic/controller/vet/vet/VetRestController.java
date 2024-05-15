@@ -43,7 +43,7 @@ public class VetRestController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            this.service.updateVet(vetId, payload.firstName(), payload.lastName(), payload.speciality_id());
+            this.service.updateVet(vetId, payload.firstName(), payload.lastName(), payload.specialityId());
             return ResponseEntity.noContent().build();
         }
     }

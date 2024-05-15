@@ -46,7 +46,7 @@ public class VetController {
                             UpdateVetPayload payload,
                             Model model) {
         try {
-            this.vetRestClient.updateVet(vet.getId(), payload.firstName(), payload.lastName(), payload.speciality_id());
+            this.vetRestClient.updateVet(vet.getId(), payload.firstName(), payload.lastName(), payload.specialityId());
             return "redirect:/clinic/vets/%d".formatted(vet.getId());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
