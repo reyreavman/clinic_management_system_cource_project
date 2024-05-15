@@ -58,7 +58,7 @@ public class CheckupController {
                                 UpdateCheckupPayload payload, Model model) {
         try {
             this.checkupRestClient.updateCheckup(checkup.id(), payload.date(), payload.time(), payload.petId(), payload.vetId(), payload.checkupTypeId(), payload.checkupStateId(), payload.checkupResultId());
-            return "redirce:/clinic/checkups/%s".formatted(checkup.id());
+            return "redirect:/clinic/checkups/%s".formatted(checkup.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
@@ -68,7 +68,7 @@ public class CheckupController {
 
     @PostMapping("delete")
     public String deleteCheckup(@ModelAttribute("checkup") Checkup checkup) {
-        this.petRestClient.deletePet(checkup.id());
+        this.checkupRestClient.deleteCheckup(checkup.id());
         return "redirect:/clinic/checkups/list";
     }
 

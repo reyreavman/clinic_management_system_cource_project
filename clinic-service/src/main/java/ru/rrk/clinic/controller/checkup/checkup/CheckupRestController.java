@@ -49,7 +49,7 @@ public class CheckupRestController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteVet(@PathVariable("checkupId") int checkupId) {
+    public ResponseEntity<Void> deleteCheckup(@PathVariable("checkupId") int checkupId) {
         this.service.deleteCheckup(checkupId);
         return ResponseEntity.noContent().build();
     }
