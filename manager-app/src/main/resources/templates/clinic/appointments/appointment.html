@@ -14,6 +14,7 @@
     <li><strong>Врач</strong>: <span data-th-text="${appointment.vet.fullName}"></span></li>
     <li><strong>Предварительное описание</strong>: <span data-th-text="${appointment.description}"></span></li>
     <li><strong>Исследование</strong>: <span data-th-text="${appointment.checkup?.id}"></span></li>
+    <li><strong>Регистратор</strong>: <span data-th-text="${appointment.receptionist.fullName}"></span></li>
 </ul>
 <a data-th-href="@{/clinic/appointments/{appointmentId}/edit(appointmentId=${appointment.id})}">Изменить</a>
 <form method="post" data-th-action="@{/clinic/appointments/{appointmentId}/delete(appointmentId=${appointment.id})}">

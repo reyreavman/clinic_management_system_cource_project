@@ -12,6 +12,7 @@ import ru.rrk.manager.restClients.BadRequestException;
 import ru.rrk.manager.restClients.appointment.appointment.AppointmentRestClient;
 import ru.rrk.manager.restClients.checkup.checkup.CheckupRestClient;
 import ru.rrk.manager.restClients.pet.pet.PetRestClient;
+import ru.rrk.manager.restClients.receptionist.ReceptionistRestClient;
 import ru.rrk.manager.restClients.vet.vet.VetRestClient;
 
 @Controller
@@ -22,6 +23,7 @@ public class AppointmentsController {
     private final PetRestClient petRestClient;
     private final VetRestClient vetRestClient;
     private final CheckupRestClient checkupRestClient;
+    private final ReceptionistRestClient receptionistRestClient;
 
     @GetMapping("list")
     public String getAppointmentsList(Model model) {
@@ -34,13 +36,15 @@ public class AppointmentsController {
         model.addAttribute("pets", this.petRestClient.findAllPets(null));
         model.addAttribute("vets", this.vetRestClient.findAllVets(null));
         model.addAttribute("checkups", this.checkupRestClient.findAllCheckups());
+        model.addAttribute("receptionists", this.receptionistRestClient.findAllReceptionists());
         return "clinic/appointments/new_appointment";
     }
 
     @PostMapping("create")
     public String createAppointment(NewAppointmentPayload payload, Model model) {
         try {
-            Appointment appointment = this.appointmentRestClient.createAppointment(payload.petId(), payload.vetId(), payload.date(), payload.time(), payload.description(), payload.checkupId());
+            System.out.println(payload.receptionistId());
+            Appointment appointment = this.appointmentRestClient.createAppointment(payload.petId(), payload.vetId(), payload.date(), payload.time(), payload.description(), payload.checkupId(), payload.receptionistId());
             return "redirect:/clinic/appointments/%d".formatted(appointment.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);

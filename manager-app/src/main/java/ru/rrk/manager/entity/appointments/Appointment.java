@@ -2,6 +2,7 @@ package ru.rrk.manager.entity.appointments;
 
 
 import lombok.Builder;
+import ru.rrk.manager.entity.Receptionist;
 import ru.rrk.manager.entity.checkup.Checkup;
 import ru.rrk.manager.entity.pet.Pet;
 import ru.rrk.manager.entity.vet.Vet;
@@ -17,6 +18,7 @@ public record Appointment(
         LocalDate date,
         LocalTime time,
         String description,
-        Checkup checkup
+        Checkup checkup,
+        Receptionist receptionist
 ) {
 }

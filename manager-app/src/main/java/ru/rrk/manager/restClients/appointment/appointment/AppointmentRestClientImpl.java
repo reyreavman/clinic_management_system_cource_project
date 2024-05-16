@@ -33,13 +33,13 @@ public class AppointmentRestClientImpl implements AppointmentRestClient {
     }
 
     @Override
-    public Appointment createAppointment(Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId) {
+    public Appointment createAppointment(Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId) {
         try {
             return this.client
                     .post()
                     .uri("clinic-api/appointments")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new NewAppointmentPayload(petId, vetId, date, time, description, checkupId))
+                    .body(new NewAppointmentPayload(petId, vetId, date, time, description, checkupId, receptionistId))
                     .retrieve()
                     .body(Appointment.class);
         } catch (HttpClientErrorException.BadRequest exception) {
@@ -63,13 +63,13 @@ public class AppointmentRestClientImpl implements AppointmentRestClient {
     }
 
     @Override
-    public void updateAppointment(int appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId) {
+    public void updateAppointment(int appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId) {
         try {
             this.client
                     .patch()
                     .uri("clinic-api/appointments/{appointmentId}", appointmentId)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new UpdateAppointmentPayload(petId, vetId, date, time, description, checkupId))
+                    .body(new UpdateAppointmentPayload(petId, vetId, date, time, description, checkupId, receptionistId))
                     .retrieve()
                     .toBodilessEntity();
         }  catch (HttpClientErrorException.BadRequest exception) {

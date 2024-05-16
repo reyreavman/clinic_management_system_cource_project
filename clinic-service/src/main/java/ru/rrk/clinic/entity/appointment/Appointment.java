@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rrk.clinic.entity.Receptionist;
 import ru.rrk.clinic.entity.checkup.Checkup;
 import ru.rrk.clinic.entity.pet.Pet;
 import ru.rrk.clinic.entity.vet.Vet;
@@ -49,4 +50,9 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_checkup_id")
     private Checkup checkup;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "c_receptionist_id")
+    @NotNull
+    private Receptionist receptionist;
 }

@@ -1,0 +1,1 @@
+alter table if exists clinic.t_appointment add column if not exists c_receptionist_id integer references clinic.t_receptionist(id);

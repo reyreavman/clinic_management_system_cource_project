@@ -9,6 +9,7 @@ public record UpdateAppointmentPayload(
         LocalDate date,
         LocalTime time,
         String description,
-        Integer checkupId
+        Integer checkupId,
+        Integer receptionistId
 ) {
 }

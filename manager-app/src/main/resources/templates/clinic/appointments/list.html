@@ -18,6 +18,7 @@
         <th>Врач</th>
         <th>Предварительное описание</th>
         <th>Исследование</th>
+        <th>Регистратор</th>
     </tr>
     </thead>
     <tbody>
@@ -30,16 +31,23 @@
             <a data-th-text="${appointment.date} + ' ' + ${appointment.time}"></a>
         </td>
         <td>
-            <a data-th-text="${appointment.pet.name}"></a>
+            <a data-th-href="@{/clinic/pets/{petId}(petId=${pet.id})}"
+               data-th-text="${appointment.pet.name}"></a>
         </td>
         <td>
-            <a data-th-text="${appointment.vet.fullName}"></a>
+            <a data-th-href="@{/clinic/vets/{vetId}(vetId=${vet.id})}"
+               data-th-text="${appointment.vet.fullName}"></a>
         </td>
         <td>
             <a data-th-text="${appointment.description}"></a>
         </td>
         <td>
-            <a data-th-text="${appointment.checkup?.id}"></a>
+            <a data-th-href="@{/clinic/checkups/{checkupId}(checkupId=${checkup?.id})}"
+               data-th-text="${appointment.checkup?.id}"></a>
+        </td>
+        <td>
+            <a data-th-href="@{/clinic/receptionists/{receptionistId}(receptionistId=${receptionistId.id})}"
+               data-th-text="${appointments.receptionist.fullName}"></a>
         </td>
     </tr>
     </tbody>

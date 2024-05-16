@@ -86,6 +86,21 @@
         </tr>
         </tbody>
     </table>
+    <label>
+        Регистратор:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="receptionist: ${receptionists}">
+            <td>
+                <label>
+                    <input type="radio" name="receptionistId" data-th-text="${receptionist.fullName}"
+                           data-th-value="${receptionist.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     <button type="submit">Добавить</button>
 </form>
 </body>

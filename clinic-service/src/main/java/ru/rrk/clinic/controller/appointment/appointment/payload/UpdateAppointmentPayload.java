@@ -15,6 +15,8 @@ public record UpdateAppointmentPayload(
         @NotNull
         LocalTime time,
         String description,
-        Integer checkupId
+        Integer checkupId,
+        @NotNull
+        Integer receptionistId
 ) {
 }

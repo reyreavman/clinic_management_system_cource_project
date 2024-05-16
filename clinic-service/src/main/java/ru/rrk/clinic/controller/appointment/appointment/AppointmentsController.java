@@ -35,7 +35,7 @@ public class AppointmentsController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            Appointment appointment = this.service.createAppointment(payload.petId(), payload.vetId(), payload.date(), payload.time(), payload.description(), payload.checkupId());
+            Appointment appointment = this.service.createAppointment(payload.petId(), payload.vetId(), payload.date(), payload.time(), payload.description(), payload.checkupId(), payload.receptionistId());
             return ResponseEntity
                     .created(uriComponentsBuilder
                             .replacePath("clinic-api/appointments/{appointmentId}")

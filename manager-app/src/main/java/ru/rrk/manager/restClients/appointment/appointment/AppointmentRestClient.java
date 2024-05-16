@@ -10,11 +10,11 @@ import java.util.Optional;
 public interface AppointmentRestClient {
     List<Appointment> findAllAppointments();
 
-    Appointment createAppointment(Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId);
+    Appointment createAppointment(Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId);
 
     Optional<Appointment> findAppointment(int appointmentId);
 
-    void updateAppointment(int appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId);
+    void updateAppointment(int appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId);
 
     void deleteAppointment(int appointmentId);
 

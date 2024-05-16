@@ -43,7 +43,7 @@ public class AppointmentController {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
         } else {
-            this.service.updateAppointment(appointmentId, payload.petId(), payload.vetId(), payload.date(), payload.time(), payload.description(), payload.checkupId());
+            this.service.updateAppointment(appointmentId, payload.petId(), payload.vetId(), payload.date(), payload.time(), payload.description(), payload.checkupId(), payload.receptionistId());
             return ResponseEntity.noContent().build();
         }
     }

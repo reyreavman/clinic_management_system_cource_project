@@ -7,6 +7,7 @@ import ru.rrk.clinic.entity.appointment.Appointment;
 import ru.rrk.clinic.repository.appointment.appointment.AppointmentRepository;
 import ru.rrk.clinic.repository.checkup.CheckupRepository;
 import ru.rrk.clinic.repository.pet.pet.PetRepository;
+import ru.rrk.clinic.repository.receptionist.ReceptionistRepository;
 import ru.rrk.clinic.repository.vet.VetRepository;
 
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final PetRepository petRepository;
     private final VetRepository vetRepository;
     private final CheckupRepository checkupRepository;
+    private final ReceptionistRepository receptionistRepository;
 
     @Override
     public Iterable<Appointment> findAllAppointments() {
@@ -29,7 +31,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     @Transactional
-    public Appointment createAppointment(Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId) {
+    public Appointment createAppointment(Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId) {
         if (checkupId != null) {
             return this.appointmentRepository.save(
                     Appointment.builder()
@@ -39,16 +41,18 @@ public class AppointmentServiceImpl implements AppointmentService {
                             .time(time)
                             .description(description)
                             .checkup(this.checkupRepository.findById(checkupId).orElseThrow(NoSuchElementException::new))
+                            .receptionist(this.receptionistRepository.findById(receptionistId).orElseThrow(NoSuchElementException::new))
                             .build());
         }
         return this.appointmentRepository.save(
                 Appointment.builder()
-                .pet(this.petRepository.findById(petId).orElseThrow(NoSuchElementException::new))
-                .vet(this.vetRepository.findById(vetId).orElseThrow(NoSuchElementException::new))
-                .date(date)
-                .time(time)
-                .description(description)
-                .build());
+                        .pet(this.petRepository.findById(petId).orElseThrow(NoSuchElementException::new))
+                        .vet(this.vetRepository.findById(vetId).orElseThrow(NoSuchElementException::new))
+                        .date(date)
+                        .time(time)
+                        .description(description)
+                        .receptionist(this.receptionistRepository.findById(receptionistId).orElseThrow(NoSuchElementException::new))
+                        .build());
     }
 
     @Override
@@ -58,7 +62,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     @Transactional
-    public void updateAppointment(Integer appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId) {
+    public void updateAppointment(Integer appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId) {
         this.appointmentRepository.findById(appointmentId)
                 .ifPresentOrElse(appointment -> {
                             appointment.setPet(this.petRepository.findById(petId).orElseThrow(NoSuchElementException::new));
@@ -66,7 +70,9 @@ public class AppointmentServiceImpl implements AppointmentService {
                             appointment.setDate(date);
                             appointment.setTime(time);
                             appointment.setDescription(description);
-                            if (checkupId != null) appointment.setCheckup(this.checkupRepository.findById(checkupId).orElseThrow(NoSuchElementException::new));
+                            if (checkupId != null)
+                                appointment.setCheckup(this.checkupRepository.findById(checkupId).orElseThrow(NoSuchElementException::new));
+                            appointment.setReceptionist(this.receptionistRepository.findById(receptionistId).orElseThrow(NoSuchElementException::new));
                         }, () -> {
                             throw new NoSuchElementException();
                         }

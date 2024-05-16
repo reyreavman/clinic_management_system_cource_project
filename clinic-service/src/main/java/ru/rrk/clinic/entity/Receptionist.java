@@ -26,5 +26,4 @@ public class Receptionist {
     @NotNull
     @Size(max = 100)
     private String lastName;
-
 }
