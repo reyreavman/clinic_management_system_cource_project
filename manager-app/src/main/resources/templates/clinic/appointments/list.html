@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список приёмов &ndash; Ветеринарная клиник</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/appointments/create}">+ Добавить новый приём</a>
+<h1>Список приёмов</h1>
+<form method="get" data-th-action="@{/clinic/appointments/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Дата и время</th>
+        <th>Питомец</th>
+        <th>Врач</th>
+        <th>Предварительное описание</th>
+        <th>Исследование</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="appointment, iterstat : ${appointments}">
+        <td>
+            <a data-th-href="@{/clinic/appointments/{appointmentId}(appointmentId=${appointment.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${appointment.date} + ' ' + ${appointment.time}"></a>
+        </td>
+        <td>
+            <a data-th-text="${appointment.pet.name}"></a>
+        </td>
+        <td>
+            <a data-th-text="${appointment.vet.fullName}"></a>
+        </td>
+        <td>
+            <a data-th-text="${appointment.description}"></a>
+        </td>
+        <td>
+            <a data-th-text="${appointment.checkup.id}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

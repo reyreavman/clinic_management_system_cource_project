@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Приём &ndash; Ветеринарная клиника </title>
+</head>
+<body>
+<a data-th-href="@{/clinic/appointments/list}">&larr; К списку приёмов</a>
+<h1 data-th-text="'Приём - ' + ${appointment.id}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${appointment.id}"></span></li>
+    <li><strong>Дата и время</strong>: <span data-th-text="${appointment.date} + ' ' + ${appointment.time}"></span></li>
+    <li><strong>Питомец</strong>: <span data-th-text="${appointment.pet.name}"></span></li>
+    <li><strong>Врач</strong>: <span data-th-text="${appointment.vet.fullName}"></span></li>
+    <li><strong>Предварительное описание</strong>: <span data-th-text="${appointment.description}"></span></li>
+    <li><strong>Исследование</strong>: <span data-th-text="${appointment.checkup.id}"></span></li>
+</ul>
+<a data-th-href="@{/clinic/appointments/{appointmentId}/edit(appointmentId=${appointment.id})}">Изменить</a>
+<form method="post" data-th-action="@{/clinic/appointments/{appointmentId}/delete(appointmentId=${appointment.id})}">
+    <button type="submit">Удалить</button>
+</form>
+</body>
+</html>

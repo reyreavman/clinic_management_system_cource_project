@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о приёме &ndash; [[${appointment.id}]]</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/appointments/{appointmentId}(appointmentId=${appointment.id})}">&larr; К исследованию</a>
+<h1>Редактирование информации о приёме &ndash; [[${appointment.id}]]</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/checkups/{checkupId}/edit(checkupId=${checkup.id})}">
+    <table>
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Время</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <label>
+                    <input type="date" name="date" data-th-value="${payload?.date}">
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="time" name="time" min="09:00" max="18:00"
+                           data-th-value="${payload?.time}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Питомец:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="pet : ${pets}">
+            <td>
+                <label>
+                    <input type="radio" name="petId" data-th-text="${pet.name}"
+                           data-th-value="${pet.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Врач:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="vet : ${vets}">
+            <td>
+                <label>
+                    <input type="radio" name="vetId" data-th-text="${vet.fullName}"
+                           data-th-value="${vet.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Предварительное описание:<br>
+        <input type="text" name="description" data-th-value="${payload?.description}">
+    </label>
+    <label>
+        Назначенное исследование:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="checkup : ${checkups}">
+            <td>
+                <label>
+                    <input type="radio" name="checkup" data-th-text="${checkup.id}"
+                           data-th-value="${checkup.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit">Изменить</button>
+</form>
+</body>
+</html>
