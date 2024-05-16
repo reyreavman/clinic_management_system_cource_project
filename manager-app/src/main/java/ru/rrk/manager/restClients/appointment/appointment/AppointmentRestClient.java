@@ -1,6 +1,6 @@
 package ru.rrk.manager.restClients.appointment.appointment;
 
-import ru.rrk.manager.entity.appointments.appointment.Appointment;
+import ru.rrk.manager.entity.appointments.Appointment;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.rrk.manager.controller.appoinments.result.state.payload.UpdateAppointmentResultStatePayload;
-import ru.rrk.manager.entity.appointments.result.AppointmentResultState;
+import ru.rrk.manager.entity.appointments.AppointmentResultState;
 import ru.rrk.manager.restClients.BadRequestException;
 import ru.rrk.manager.restClients.appointment.result.state.AppointmentResultStateRestClient;
 

@@ -35,7 +35,7 @@ public class CheckupController {
     @ModelAttribute("checkup")
     public Checkup checkup(@PathVariable("checkupId") int checkupId) {
         return this.checkupRestClient.findCheckup(checkupId)
-                .orElseThrow(() -> new NoSuchElementException("clinic.errors."));
+                .orElseThrow(() -> new NoSuchElementException("clinic.errors.checkup.not_found"));
     }
 
     @GetMapping
@@ -58,7 +58,7 @@ public class CheckupController {
                                 UpdateCheckupPayload payload, Model model) {
         try {
             this.checkupRestClient.updateCheckup(checkup.id(), payload.date(), payload.time(), payload.petId(), payload.vetId(), payload.checkupTypeId(), payload.checkupStateId(), payload.checkupResultId());
-            return "redirect:/clinic/checkups/%s".formatted(checkup.id());
+            return "redirect:/clinic/checkups/%d".formatted(checkup.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());

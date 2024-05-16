@@ -8,7 +8,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.manager.controller.appoinments.result.state.payload.NewAppointmentResultStatePayload;
 import ru.rrk.manager.controller.appoinments.result.state.payload.UpdateAppointmentResultStatePayload;
-import ru.rrk.manager.entity.appointments.result.AppointmentResultState;
+import ru.rrk.manager.entity.appointments.AppointmentResultState;
 import ru.rrk.manager.restClients.BadRequestException;
 
 import java.util.List;

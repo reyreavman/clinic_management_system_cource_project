@@ -1,6 +1,6 @@
 package ru.rrk.manager.restClients.appointment.result.state;
 
-import ru.rrk.manager.entity.appointments.result.AppointmentResultState;
+import ru.rrk.manager.entity.appointments.AppointmentResultState;
 
 import java.util.List;
 import java.util.Optional;

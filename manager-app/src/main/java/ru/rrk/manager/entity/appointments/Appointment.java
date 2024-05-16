@@ -1,4 +1,4 @@
-package ru.rrk.manager.entity.appointments.appointment;
+package ru.rrk.manager.entity.appointments;
 
 
 import lombok.Builder;

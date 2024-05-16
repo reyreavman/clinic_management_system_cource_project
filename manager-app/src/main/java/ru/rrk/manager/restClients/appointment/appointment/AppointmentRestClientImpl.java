@@ -1,6 +1,5 @@
 package ru.rrk.manager.restClients.appointment.appointment;
 
-import com.google.gson.annotations.JsonAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
@@ -9,7 +8,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.manager.controller.appoinments.appointment.payload.NewAppointmentPayload;
 import ru.rrk.manager.controller.appoinments.appointment.payload.UpdateAppointmentPayload;
-import ru.rrk.manager.entity.appointments.appointment.Appointment;
+import ru.rrk.manager.entity.appointments.Appointment;
 import ru.rrk.manager.restClients.BadRequestException;
 
 import java.time.LocalDate;
