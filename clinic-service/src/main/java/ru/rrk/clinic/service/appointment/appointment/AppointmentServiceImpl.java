@@ -30,16 +30,25 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     @Transactional
     public Appointment createAppointment(Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId) {
+        if (checkupId != null) {
+            return this.appointmentRepository.save(
+                    Appointment.builder()
+                            .pet(this.petRepository.findById(petId).orElseThrow(NoSuchElementException::new))
+                            .vet(this.vetRepository.findById(vetId).orElseThrow(NoSuchElementException::new))
+                            .date(date)
+                            .time(time)
+                            .description(description)
+                            .checkup(this.checkupRepository.findById(checkupId).orElseThrow(NoSuchElementException::new))
+                            .build());
+        }
         return this.appointmentRepository.save(
                 Appointment.builder()
-                        .pet(this.petRepository.findById(petId).orElseThrow(NoSuchElementException::new))
-                        .vet(this.vetRepository.findById(vetId).orElseThrow(NoSuchElementException::new))
-                        .date(date)
-                        .time(time)
-                        .description(description)
-                        .checkup(this.checkupRepository.findById(checkupId).orElseThrow(NoSuchElementException::new))
-                        .build()
-        );
+                .pet(this.petRepository.findById(petId).orElseThrow(NoSuchElementException::new))
+                .vet(this.vetRepository.findById(vetId).orElseThrow(NoSuchElementException::new))
+                .date(date)
+                .time(time)
+                .description(description)
+                .build());
     }
 
     @Override
@@ -57,7 +66,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                             appointment.setDate(date);
                             appointment.setTime(time);
                             appointment.setDescription(description);
-                            appointment.setCheckup(this.checkupRepository.findById(checkupId).orElseThrow(NoSuchElementException::new));
+                            if (checkupId != null) appointment.setCheckup(this.checkupRepository.findById(checkupId).orElseThrow(NoSuchElementException::new));
                         }, () -> {
                             throw new NoSuchElementException();
                         }

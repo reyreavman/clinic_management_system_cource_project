@@ -46,7 +46,7 @@ public class Appointment {
     @Column(name = "c_description")
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_checkup_id")
     private Checkup checkup;
 }

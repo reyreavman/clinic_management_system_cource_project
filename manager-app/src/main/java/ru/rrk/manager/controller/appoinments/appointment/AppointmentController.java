@@ -36,7 +36,7 @@ public class AppointmentController {
 
     @GetMapping
     public String getAppointment() {
-        return "clinic/appointments/appointments";
+        return "clinic/appointments/appointment";
     }
 
     @GetMapping("edit")

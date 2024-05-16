@@ -13,7 +13,7 @@
         <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
     </ul>
 </div>
-<form method="post" data-th-action="@{/clinic/checkups/{checkupId}/edit(checkupId=${checkup.id})}">
+<form method="post" data-th-action="@{/clinic/appointments/{appointmentId}/edit(appointmentId=${appointment.id})}">
     <table>
         <thead>
         <tr>
@@ -70,7 +70,7 @@
     <label>
         Предварительное описание:<br>
         <input type="text" name="description" data-th-value="${payload?.description}">
-    </label>
+    </label><br>
     <label>
         Назначенное исследование:<br>
     </label>
