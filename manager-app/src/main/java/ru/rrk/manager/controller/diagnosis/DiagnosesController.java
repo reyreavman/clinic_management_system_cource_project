@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rrk.manager.controller.diagnosis.payload.NewDiagnosisPayload;
 import ru.rrk.manager.entity.Diagnosis;
@@ -30,6 +31,7 @@ public class DiagnosesController {
         return "clinic/diagnoses/new_diagnosis";
     }
 
+    @PostMapping("create")
     public String createDiagnosis(NewDiagnosisPayload payload, Model model) {
         try {
             Diagnosis diagnosis = this.diagnosisRestClient.createDiagnosis(payload.diseaseId(), payload.description());

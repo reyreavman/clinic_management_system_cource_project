@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый диагноз &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/diagnoses/list}">&larr; К списку диагнозов</a>
+<h1>Новый диагноз</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/diagnoses/create}">
+    <label>
+        Заболевание:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="disease: ${diseases}">
+            <td>
+                <label>
+                    <input type="radio" name="diseaseId" data-th-value="${disease.id}" data-th-text="${disease.code}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Пояснения:<br>
+        <input type="text" name="description"
+               data-th-value="${payload?.description}">
+    </label><br><br>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

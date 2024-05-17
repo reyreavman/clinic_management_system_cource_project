@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список диагнозов &ndash; Ветеринарная клиник</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/diagnoses/create}">+ Добавить новый диагноз</a>
+<h1>Список диагнозов</h1>
+<form method="get" data-th-action="@{/clinic/diagnoses/list}">
+    <label>Фильтр:<input type="text" name="filter" data-th-value="${filter}">
+        <button type="submit">Поиск</button>
+    </label>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Код заболевания</th>
+        <th>Заболевание</th>
+        <th>Описание</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="c, iterstat : ${diagnoses}">
+        <td>
+            <a data-th-href="@{/clinic/diagnoses/{diagnosisId}(diagnosisId=${diagnosis.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-text="${diagnosis.disease.code}"></a>
+        </td>
+        <td>
+            <a data-th-text="${diagnosis.disease.description}"></a>
+        </td>
+        <td>
+            <a data-th-text="${diagnosis.description}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
