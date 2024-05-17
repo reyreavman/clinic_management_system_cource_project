@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class DefaultAppointmentResultsService implements AppointmentResultsService {
+public class DefaultAppointmentResultService implements AppointmentResultService {
     private final AppointmentResultRepository appointmentResultRepository;
     private final AppointmentRepository appointmentRepository;
     private final AppointmentResultStateRepository appointmentResultStateRepository;
