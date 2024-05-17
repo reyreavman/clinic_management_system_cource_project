@@ -47,7 +47,7 @@ public class VetRestClientImpl implements VetRestClient {
     }
 
     @Override
-    public Optional<Vet> findVet(int vetId) {
+    public Optional<Vet> findVet(Integer vetId) {
         try {
             return Optional.ofNullable(
                     this.client
@@ -61,7 +61,7 @@ public class VetRestClientImpl implements VetRestClient {
     }
 
     @Override
-    public void updateVet(int vetId, String firstName, String lastName, Integer speciality_id) {
+    public void updateVet(Integer vetId, String firstName, String lastName, Integer speciality_id) {
         try {
             this.client
                     .patch()
@@ -77,7 +77,7 @@ public class VetRestClientImpl implements VetRestClient {
     }
 
     @Override
-    public void deleteVet(int vetId) {
+    public void deleteVet(Integer vetId) {
         try {
             this.client
                     .delete()

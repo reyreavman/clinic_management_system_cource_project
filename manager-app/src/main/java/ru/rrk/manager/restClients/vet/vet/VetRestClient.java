@@ -10,9 +10,9 @@ public interface VetRestClient {
 
     Vet createVet(String firstName, String lastName, Integer speciality_id);
 
-    Optional<Vet> findVet(int vetId);
+    Optional<Vet> findVet(Integer vetId);
 
-    void updateVet(int vetId, String firstName, String lastName, Integer speciality_id);
+    void updateVet(Integer vetId, String firstName, String lastName, Integer speciality_id);
 
-    void deleteVet(int vetId);
+    void deleteVet(Integer vetId);
 }
