@@ -20,7 +20,7 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("clinic-api/appointments/{appointmentId:\\d+}")
-public class AppointmentController {
+public class AppointmentRestController {
     private final AppointmentService service;
     private final MessageSource messageSource;
 

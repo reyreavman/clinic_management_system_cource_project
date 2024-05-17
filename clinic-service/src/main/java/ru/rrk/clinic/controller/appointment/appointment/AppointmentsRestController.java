@@ -18,12 +18,12 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("clinic-api/appointments")
-public class AppointmentsController {
+public class AppointmentsRestController {
     private final AppointmentService service;
 
     @GetMapping
     public Iterable<Appointment> findAppointments(Principal principal) {
-        LoggerFactory.getLogger(AppointmentsController.class).info("Principal: {}", principal);
+        LoggerFactory.getLogger(AppointmentsRestController.class).info("Principal: {}", principal);
         return this.service.findAllAppointments();
     }
 
