@@ -17,7 +17,7 @@ import java.util.Locale;
 import java.util.NoSuchElementException;
 
 @Controller
-@RequestMapping("clinic/diseases/{diseaseId:\\d+}")
+@RequestMapping("clinic/diagnoses/diseases/{diseaseId:\\d+}")
 @RequiredArgsConstructor
 public class DiseaseController {
     private final DiseaseRestClient restClient;
@@ -26,17 +26,17 @@ public class DiseaseController {
     @ModelAttribute("disease")
     public Disease disease(@PathVariable("diseaseId") int diseaseId) {
         return this.restClient.findDisease(diseaseId)
-                .orElseThrow(() -> new NoSuchElementException("clinic.errors.disease.not_found"));
+                .orElseThrow(() -> new NoSuchElementException("clinic.errors.diagnosis.disease.not_found"));
     }
 
     @GetMapping
     public String getDisease() {
-        return "clinic/diseases/disease";
+        return "clinic/diagnoses/diseases/disease";
     }
 
     @GetMapping("edit")
     public String getDiseaseEditPage() {
-        return "clinic/diseases/edit";
+        return "clinic/diagnoses/diseases/edit";
     }
 
     @PostMapping("edit")
@@ -44,18 +44,18 @@ public class DiseaseController {
                                 UpdateDiseasePayload payload, Model model) {
         try {
             this.restClient.updateDisease(disease.id(), payload.code(), payload.description());
-            return "redirect:/clinic/diseases/%d".formatted(disease.id());
+            return "redirect:/clinic/diagnoses/diseases/%d".formatted(disease.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
-            return "clinic/diseases/edit";
+            return "clinic/diagnoses/diseases/edit";
         }
     }
 
     @PostMapping("delete")
     public String deleteDisease(@ModelAttribute("disease") Disease disease) {
         this.restClient.deleteDisease(disease.id());
-        return "redirect:/clinic/diseases/list";
+        return "redirect:/clinic/diagnoses/diseases/list";
     }
 
     @ExceptionHandler(NoSuchElementException.class)

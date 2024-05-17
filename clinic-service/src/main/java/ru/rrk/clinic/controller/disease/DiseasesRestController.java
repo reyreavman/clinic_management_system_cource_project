@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("clinic-api/diseases")
+@RequestMapping("clinic-api/diagnoses/diseases")
 public class DiseasesRestController {
     private final DiseaseService service;
 
@@ -40,7 +40,7 @@ public class DiseasesRestController {
             Disease disease = this.service.createDisease(payload.code(), payload.description());
             return ResponseEntity
                     .created(uriComponentsBuilder
-                            .replacePath("/clinic-api/diseases/{diseaseId}")
+                            .replacePath("/clinic-api/diagnoses/diseases/{diseaseId}")
                             .build(Map.of("diseaseId", disease.getId())))
                     .body(disease);
         }

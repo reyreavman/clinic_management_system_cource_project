@@ -19,7 +19,7 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("clinic-api/diseases/{diseaseId:\\d+}")
+@RequestMapping("clinic-api/diagnoses/diseases/{diseaseId:\\d+}")
 public class DiseaseRestController {
     private final DiseaseService service;
     private final MessageSource messageSource;
@@ -27,7 +27,7 @@ public class DiseaseRestController {
     @ModelAttribute("disease")
     public Disease getDisease(@PathVariable("diseaseId") int diseaseId) {
         return this.service.findDisease(diseaseId)
-                .orElseThrow(() -> new NoSuchElementException("clinic.errors.disease.not_found"));
+                .orElseThrow(() -> new NoSuchElementException("clinic.errors.diagnoses.disease.not_found"));
     }
 
     @GetMapping

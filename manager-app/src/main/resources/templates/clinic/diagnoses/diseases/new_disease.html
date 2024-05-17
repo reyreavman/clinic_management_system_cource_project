@@ -5,7 +5,7 @@
     <title>Новое заболевание &ndash; Ветеринарная клиника</title>
 </head>
 <body>
-<a data-th-href="@{/clinic/diseases/list}">&larr; К списку заболеваний</a>
+<a data-th-href="@{/clinic/diagnoses/diseases/list}">&larr; К списку заболеваний</a>
 <h1>Новое заболевание</h1>
 <div data-th-if="${errors}">
     <h2>Допущены ошибки</h2>
@@ -13,7 +13,7 @@
         <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
     </ul>
 </div>
-<form method="post" data-th-action="@{/clinic/diseases/create}">
+<form method="post" data-th-action="@{/clinic/diagnoses/diseases/create}">
     <label>
         Код заболевания:<br>
         <input type="text" name="code" data-th-value="${payload?.code}">

@@ -25,7 +25,7 @@ public class DiseaseRestClientImpl implements DiseaseRestClient {
     public List<Disease> findAllDiseases(String filter) {
         return this.client
                 .get()
-                .uri("/clinic-api/diseases?filter={filter}", filter)
+                .uri("/clinic-api/diagnoses/diseases?filter={filter}", filter)
                 .retrieve()
                 .body(DISEASE_TYPE_REFERENCE);
     }
@@ -35,7 +35,7 @@ public class DiseaseRestClientImpl implements DiseaseRestClient {
         try {
             return this.client
                     .post()
-                    .uri("/clinic-api/diseases")
+                    .uri("/clinic-api/diagnoses/diseases")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new NewDiseasePayload(code, description))
                     .retrieve()
@@ -51,7 +51,7 @@ public class DiseaseRestClientImpl implements DiseaseRestClient {
         try {
             return Optional.ofNullable(this.client
                     .get()
-                    .uri("/clinic-api/diseases/{diseaseId}", diseaseId)
+                    .uri("/clinic-api/diagnoses/diseases/{diseaseId}", diseaseId)
                     .retrieve()
                     .body(Disease.class));
         } catch (HttpClientErrorException.NotFound exception) {
@@ -64,7 +64,7 @@ public class DiseaseRestClientImpl implements DiseaseRestClient {
         try {
             this.client
                     .patch()
-                    .uri("/clinic-api/diseases/{diseaseId}", diseaseId)
+                    .uri("/clinic-api/diagnoses/diseases/{diseaseId}", diseaseId)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new UpdateDiseasePayload(code, description))
                     .retrieve().toBodilessEntity();
@@ -79,7 +79,7 @@ public class DiseaseRestClientImpl implements DiseaseRestClient {
         try {
             this.client
                     .delete()
-                    .uri("/clinic-api/diseases/{diseaseId}", diseaseId)
+                    .uri("/clinic-api/diagnoses/diseases/{diseaseId}", diseaseId)
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound exception) {
