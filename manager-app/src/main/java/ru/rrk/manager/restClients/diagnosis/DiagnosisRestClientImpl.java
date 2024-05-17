@@ -23,7 +23,7 @@ public class DiagnosisRestClientImpl implements DiagnosisRestClient {
 
     @Override
     public List<Diagnosis> findAllDiagnosis() {
-        this.client
+        return this.client
                 .get()
                 .uri("clinic-api/diagnoses")
                 .retrieve()
@@ -49,11 +49,11 @@ public class DiagnosisRestClientImpl implements DiagnosisRestClient {
     @Override
     public Optional<Diagnosis> findDiagnosis(Integer diagnosisId) {
         try {
-            this.client
+            return Optional.ofNullable(this.client
                     .get()
                     .uri("clinic-api/diagnoses/{diagnosisId}", diagnosisId)
                     .retrieve()
-                    .body(Diagnosis.class);
+                    .body(Diagnosis.class));
         } catch (HttpClientErrorException.NotFound exception) {
             return Optional.empty();
         }
