@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.rrk.clinic.controller.appointment.result.state.payload.UpdateAppointmentResultStatePayload;
 import ru.rrk.clinic.entity.appointment.AppointmentResultState;
-import ru.rrk.clinic.service.appointment.result.AppointmentResultService;
+import ru.rrk.clinic.service.appointment.result.AppointmentResultStateService;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -21,7 +21,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @RequestMapping("clinic-api/appointments/results/states/{stateId:\\d+}")
 public class AppointmentResultStateRestController {
-    private final AppointmentResultService service;
+    private final AppointmentResultStateService service;
     private final MessageSource messageSource;
 
     @ModelAttribute("state")

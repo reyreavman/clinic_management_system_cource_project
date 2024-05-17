@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.rrk.clinic.controller.appointment.result.state.payload.NewAppointmentResultStatePayload;
 import ru.rrk.clinic.entity.appointment.AppointmentResultState;
-import ru.rrk.clinic.service.appointment.result.AppointmentResultService;
+import ru.rrk.clinic.service.appointment.result.AppointmentResultStateService;
 
 import java.security.Principal;
 import java.util.Map;
@@ -19,7 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping("clinic-api/appointments/results/states")
 public class AppointmentResultStatesRestController {
-    private final AppointmentResultService service;
+    private final AppointmentResultStateService service;
 
     @GetMapping
     public Iterable<AppointmentResultState> findAllResults(Principal principal) {

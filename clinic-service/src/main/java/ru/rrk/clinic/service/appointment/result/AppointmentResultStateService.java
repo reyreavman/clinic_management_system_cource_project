@@ -4,7 +4,7 @@ import ru.rrk.clinic.entity.appointment.AppointmentResultState;
 
 import java.util.Optional;
 
-public interface AppointmentResultService {
+public interface AppointmentResultStateService {
     Iterable<AppointmentResultState> findAllStates();
 
     AppointmentResultState createState(String state);
