@@ -1,0 +1,1 @@
+alter table clinic.t_diagnoses rename column description to c_description;
