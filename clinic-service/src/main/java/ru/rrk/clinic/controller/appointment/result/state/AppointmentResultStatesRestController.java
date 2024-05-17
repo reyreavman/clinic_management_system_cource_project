@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.rrk.clinic.controller.appointment.result.state.payload.NewAppointmentResultStatePayload;
 import ru.rrk.clinic.entity.appointment.AppointmentResultState;
-import ru.rrk.clinic.service.appointment.result.AppointmentResultStateService;
+import ru.rrk.clinic.service.appointment.result.state.AppointmentResultStateService;
 
 import java.security.Principal;
 import java.util.Map;

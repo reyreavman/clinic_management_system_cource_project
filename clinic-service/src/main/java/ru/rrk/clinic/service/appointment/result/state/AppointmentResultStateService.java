@@ -1,4 +1,4 @@
-package ru.rrk.clinic.service.appointment.result;
+package ru.rrk.clinic.service.appointment.result.state;
 
 import ru.rrk.clinic.entity.appointment.AppointmentResultState;
 

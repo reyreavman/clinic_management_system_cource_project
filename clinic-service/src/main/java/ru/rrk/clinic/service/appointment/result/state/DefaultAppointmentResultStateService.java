@@ -1,4 +1,4 @@
-package ru.rrk.clinic.service.appointment.result;
+package ru.rrk.clinic.service.appointment.result.state;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.rrk.clinic.controller.appointment.result.state.payload.UpdateAppointmentResultStatePayload;
 import ru.rrk.clinic.entity.appointment.AppointmentResultState;
-import ru.rrk.clinic.service.appointment.result.AppointmentResultStateService;
+import ru.rrk.clinic.service.appointment.result.state.AppointmentResultStateService;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
