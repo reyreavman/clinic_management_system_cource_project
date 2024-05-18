@@ -43,7 +43,6 @@ public class AppointmentsController {
     @PostMapping("create")
     public String createAppointment(NewAppointmentPayload payload, Model model) {
         try {
-            System.out.println(payload.receptionistId());
             Appointment appointment = this.appointmentRestClient.createAppointment(payload.petId(), payload.vetId(), payload.date(), payload.time(), payload.description(), payload.checkupId(), payload.receptionistId());
             return "redirect:/clinic/appointments/%d".formatted(appointment.id());
         } catch (BadRequestException exception) {
