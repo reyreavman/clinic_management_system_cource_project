@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.appoinments.result.state.payload.NewAppointmentResultStatePayload;
-import ru.rrk.manager.controller.appoinments.result.state.payload.UpdateAppointmentResultStatePayload;
+import ru.rrk.manager.controller.appoinments.results.state.payload.NewAppointmentResultStatePayload;
+import ru.rrk.manager.controller.appoinments.results.state.payload.UpdateAppointmentResultStatePayload;
 import ru.rrk.manager.entity.appointments.AppointmentResultState;
 import ru.rrk.manager.restClients.BadRequestException;
 

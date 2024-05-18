@@ -14,5 +14,5 @@ public interface AppointmentResultRestClient {
 
     void updateAppointmentResult(Integer appointmentResultId, Integer currentAppointment, Integer nextAppointment, Integer state, Integer diagnosis, String advice, String prescription);
 
-    void deleteAppointment(Integer appointmentResultId);
+    void deleteAppointmentResult(Integer appointmentResultId);
 }

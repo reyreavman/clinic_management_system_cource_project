@@ -3,7 +3,7 @@ package ru.rrk.manager.entity.appointments;
 import ru.rrk.manager.entity.Diagnosis;
 
 public record AppointmentResult(
-        int appointmentResultId,
+        int id,
         Appointment currentAppointment,
         Appointment nextAppointment,
         AppointmentResultState state,

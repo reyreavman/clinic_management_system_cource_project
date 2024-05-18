@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.manager.controller.appoinments.result.result.payload.NewAppointmentResultPayload;
-import ru.rrk.manager.controller.appoinments.result.result.payload.UpdateAppointmentResultPayload;
+import ru.rrk.manager.controller.appoinments.results.result.payload.NewAppointmentResultPayload;
+import ru.rrk.manager.controller.appoinments.results.result.payload.UpdateAppointmentResultPayload;
 import ru.rrk.manager.entity.appointments.AppointmentResult;
 import ru.rrk.manager.restClients.BadRequestException;
 
@@ -79,7 +79,7 @@ public class AppointmentResultRestClientImpl implements AppointmentResultRestCli
 
 
     @Override
-    public void deleteAppointment(Integer appointmentResultId) {
+    public void deleteAppointmentResult(Integer appointmentResultId) {
         try {
             this.client
                     .delete()
