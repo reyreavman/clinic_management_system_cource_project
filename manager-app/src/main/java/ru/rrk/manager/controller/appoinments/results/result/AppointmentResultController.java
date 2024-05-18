@@ -52,7 +52,7 @@ public class AppointmentResultController {
                                           UpdateAppointmentResultPayload payload, Model model) {
         try {
             this.resultRestClient.updateAppointmentResult(appointmentResult.id(), payload.currentAppointmentId(), payload.nextAppointmentId(), payload.stateId(), payload.diagnosisId(), payload.advice(), payload.prescription());
-            return "redirect:/clinic/appointments/results/edit";
+            return "redirect:/clinic/appointments/results/%d".formatted(appointmentResult.id());
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());

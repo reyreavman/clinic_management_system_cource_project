@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый результат приема &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/appointments/results/list}">&larr; К списку результатов</a>
+<h1>Новый результат</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/clinic/appointments/results/create}">
+    <label>
+        Прием:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="currentAppointment : ${appointments}">
+            <td>
+                <label>
+                    <input type="radio" name="currentAppointmentId" data-th-text="${currentAppointment.id}"
+                           data-th-value="${currentAppointment.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Следующий прием:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="nextAppointment : ${appointments}">
+            <td>
+                <label>
+                    <input type="radio" name="nextAppointmentId" data-th-text="${nextAppointment.id}"
+                           data-th-value="${nextAppointment.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Статус:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="state : ${states}">
+            <td>
+                <label>
+                    <input type="radio" name="stateId" data-th-text="${state.state}"
+                           data-th-value="${state.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Диагноз:<br>
+    </label>
+    <table>
+        <tbody>
+        <tr data-th-each="diagnosis : ${diagnoses}">
+            <td>
+                <label>
+                    <input type="radio" name="diagnosisId" data-th-text="${diagnosis.disease.description}"
+                           data-th-value="${diagnosis.id}">
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        Советы по уходу:<br>
+        <input type="text" name="advice" data-th-value="${payload?.advice}">
+        <br>
+    </label>
+    <label>
+        Назначение<br>
+        <input type="text" name="prescription" data-th-value="${payload?.prescription}">
+        <br>
+    </label><br>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

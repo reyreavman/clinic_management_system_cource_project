@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rrk.manager.controller.appoinments.results.result.payload.NewAppointmentResultPayload;
-import ru.rrk.manager.entity.appointments.Appointment;
 import ru.rrk.manager.entity.appointments.AppointmentResult;
 import ru.rrk.manager.restClients.BadRequestException;
 import ru.rrk.manager.restClients.appointment.appointment.AppointmentRestClient;
@@ -35,7 +34,7 @@ public class AppointmentResultsController {
         model.addAttribute("appointments", this.appointmentRestClient.findAllAppointments());
         model.addAttribute("states", this.appointmentResultStateRestClient.findAllStates());
         model.addAttribute("diagnoses", this.diagnosisRestClient.findAllDiagnosis());
-        return "clinic/appointments/results/new_results";
+        return "clinic/appointments/results/new_result";
     }
 
     @PostMapping("create")
@@ -46,7 +45,7 @@ public class AppointmentResultsController {
         } catch (BadRequestException exception) {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", exception.getErrors());
-            return "clinic/appointments/results/new_results";
+            return "clinic/appointments/results/new_result";
         }
     }
 }

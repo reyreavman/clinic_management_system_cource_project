@@ -31,7 +31,7 @@ public class AppointmentResultRestController {
     }
 
     @GetMapping
-    public AppointmentResult findAppointmentResult(@ModelAttribute("AppointmentResult") AppointmentResult appointmentResult) {
+    public AppointmentResult findAppointmentResult(@ModelAttribute("appointmentResult") AppointmentResult appointmentResult) {
         return appointmentResult;
     }
 

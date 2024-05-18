@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты приемов &ndash; Ветеринарная клиника </title>
+</head>
+<body>
+<a data-th-href="@{/clinic/appointments/results/list}">&larr; К списку результатов приёмов</a>
+<h1 data-th-text="'Приём - ' + ${appointmentResult.id}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${appointmentResult.id}"></span></li>
+    <li><strong>Приём</strong>: <span data-th-text="${appointmentResult.currentAppointment.date}"></span></li>
+    <li><strong>Следующий приём</strong>: <span data-th-text="${appointmentResult.nextAppointment.date}"></span></li>
+    <li><strong>Статус</strong>: <span data-th-text="${appointmentResult.state.state}"></span></li>
+    <li><strong>Диагноз</strong>: <span data-th-text="${appointmentResult.diagnosis.disease.description}"></span></li>
+    <li><strong>Советы по уходу</strong>: <span data-th-text="${appointmentResult.advice}"></span></li>
+    <li><strong>Назначение</strong>: <span data-th-text="${appointmentResult.prescription}"></span></li>
+</ul>
+<a data-th-href="@{/clinic/appointments/results/{resultId}/edit(resultId=${appointmentResult.id})}">Изменить</a>
+<form method="post" data-th-action="@{/clinic/appointments/results/{resultId}/delete(resultId=${appointmentResult.id})}">
+    <button type="submit">Удалить</button>
+</form>
+</body>
+</html>

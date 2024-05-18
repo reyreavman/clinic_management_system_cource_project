@@ -31,23 +31,23 @@
             <a data-th-text="${appointment.date} + ' ' + ${appointment.time}"></a>
         </td>
         <td>
-            <a data-th-href="@{/clinic/pets/{petId}(petId=${pet.id})}"
+            <a data-th-href="@{/clinic/pets/{petId}(petId=${appointment.pet.id})}"
                data-th-text="${appointment.pet.name}"></a>
         </td>
         <td>
-            <a data-th-href="@{/clinic/vets/{vetId}(vetId=${vet.id})}"
+            <a data-th-href="@{/clinic/vets/{vetId}(vetId=${appointment.vet.id})}"
                data-th-text="${appointment.vet.fullName}"></a>
         </td>
         <td>
             <a data-th-text="${appointment.description}"></a>
         </td>
         <td>
-            <a data-th-href="@{/clinic/checkups/{checkupId}(checkupId=${checkup?.id})}"
+            <a data-th-href="@{/clinic/checkups/{checkupId}(checkupId=${appointment.checkup?.id})}"
                data-th-text="${appointment.checkup?.id}"></a>
         </td>
         <td>
-            <a data-th-href="@{/clinic/receptionists/{receptionistId}(receptionistId=${receptionistId.id})}"
-               data-th-text="${appointments.receptionist.fullName}"></a>
+            <a data-th-href="@{/clinic/receptionists/{receptionistId}(receptionistId=${appointment.receptionist.id})}"
+               data-th-text="${appointment.receptionist.fullName}"></a>
         </td>
     </tr>
     </tbody>

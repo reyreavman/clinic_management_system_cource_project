@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr data-th-each="c, iterstat : ${diagnoses}">
+    <tr data-th-each="diagnosis, iterstat : ${diagnoses}">
         <td>
             <a data-th-href="@{/clinic/diagnoses/{diagnosisId}(diagnosisId=${diagnosis.id})}"
                data-th-text="${iterstat.count}"></a>

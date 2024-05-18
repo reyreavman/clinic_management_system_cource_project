@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список результатов приёмов &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<a data-th-href="@{/clinic/appointments/results/create}">+ Добавить новый результат приёма</a>
+<h1>Список результатов приёмов</h1>
+<form method="get" data-th-action="@{/clinic/appointments/results/list}">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Прием</th>
+        <th>Следующий прием</th>
+        <th>Состояние</th>
+        <th>Диагноз</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="result, iterstat : ${results}">
+        <td>
+            <a data-th-href="@{/clinic/appointments/results/{resultId}(resultId=${result.id})}"
+               data-th-text="${iterstat.count}"></a>
+        </td>
+        <td>
+            <a data-th-href="@{/clinic/appointments/{appointmentId}(appointmentId=${result.currentAppointment.id})}"
+               data-th-text="${result.currentAppointment.date}"></a>
+        </td>
+        <td>
+            <a data-th-href="@{/clinic/appointments/{appointmentId}(appointmentId=${result.nextAppointment.id})}"
+               data-th-text="${result.nextAppointment.date}"></a>
+        </td>
+        <td>
+            <a data-th-text="${result.state.state}"></a>
+        </td>
+        <td>
+            <a data-th-text="${result.diagnosis.disease.description}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
