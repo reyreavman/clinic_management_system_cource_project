@@ -285,6 +285,7 @@ public class BeansConfig {
                 .build());
     }
 
+    @Bean
     public AppointmentResultRestClientImpl appointmentResultRestClient(
             @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
             ClientRegistrationRepository clientRegistrationRepository,
