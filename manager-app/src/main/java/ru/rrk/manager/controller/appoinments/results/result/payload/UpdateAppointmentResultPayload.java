@@ -1,4 +1,4 @@
-package ru.rrk.manager.controller.appoinments.result.result.payload;
+package ru.rrk.manager.controller.appoinments.results.result.payload;
 
 public record UpdateAppointmentResultPayload(
         Integer currentAppointmentId,

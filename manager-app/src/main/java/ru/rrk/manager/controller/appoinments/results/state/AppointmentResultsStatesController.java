@@ -1,4 +1,4 @@
-package ru.rrk.manager.controller.appoinments.result.state;
+package ru.rrk.manager.controller.appoinments.results.state;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.rrk.manager.controller.appoinments.result.state.payload.NewAppointmentResultStatePayload;
+import ru.rrk.manager.controller.appoinments.results.state.payload.NewAppointmentResultStatePayload;
 import ru.rrk.manager.entity.appointments.AppointmentResultState;
 import ru.rrk.manager.restClients.BadRequestException;
 import ru.rrk.manager.restClients.appointment.result.state.AppointmentResultStateRestClient;
