@@ -1,4 +1,4 @@
-# KUPANG-course-project
+# course-project
 ## Инфраструктура
 ### Keycloak
 
