@@ -1,8 +1,8 @@
-package ru.rrk.clinic.controller.appointment.result.payload;
+package ru.rrk.clinic.controller.appointment.results.result.payload;
 
 import jakarta.validation.constraints.NotNull;
 
-public record NewAppointmentResultPayload(
+public record UpdateAppointmentResultPayload(
         @NotNull
         Integer currentAppointmentId,
         Integer nextAppointmentId,

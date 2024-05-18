@@ -1,4 +1,4 @@
-package ru.rrk.clinic.controller.appointment.result.state;
+package ru.rrk.clinic.controller.appointment.results.state;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.clinic.controller.appointment.result.state.payload.UpdateAppointmentResultStatePayload;
+import ru.rrk.clinic.controller.appointment.results.state.payload.UpdateAppointmentResultStatePayload;
 import ru.rrk.clinic.entity.appointment.AppointmentResultState;
 import ru.rrk.clinic.service.appointment.result.state.AppointmentResultStateService;
 
