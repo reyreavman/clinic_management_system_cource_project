@@ -49,7 +49,7 @@ public class AppointmentRestClientImpl implements AppointmentRestClient {
     }
 
     @Override
-    public Optional<Appointment> findAppointment(int appointmentId) {
+    public Optional<Appointment> findAppointment(Integer appointmentId) {
         try {
             return Optional.ofNullable(
                     this.client
@@ -63,7 +63,7 @@ public class AppointmentRestClientImpl implements AppointmentRestClient {
     }
 
     @Override
-    public void updateAppointment(int appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId) {
+    public void updateAppointment(Integer appointmentId, Integer petId, Integer vetId, LocalDate date, LocalTime time, String description, Integer checkupId, Integer receptionistId) {
         try {
             this.client
                     .patch()
@@ -79,7 +79,7 @@ public class AppointmentRestClientImpl implements AppointmentRestClient {
     }
 
     @Override
-    public void deleteAppointment(int appointmentId) {
+    public void deleteAppointment(Integer appointmentId) {
         try {
             this.client
                     .delete()
