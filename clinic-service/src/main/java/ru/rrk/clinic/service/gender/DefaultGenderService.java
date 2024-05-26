@@ -35,7 +35,9 @@ public class DefaultGenderService implements GenderService {
     public void updateGender(int genderId, String genderValue) {
         this.repository.findById(genderId)
                 .ifPresentOrElse(gender -> gender.setGender(genderValue),
-                        () -> {throw new NoSuchElementException();});
+                        () -> {
+                            throw new NoSuchElementException();
+                        });
     }
 
     @Override

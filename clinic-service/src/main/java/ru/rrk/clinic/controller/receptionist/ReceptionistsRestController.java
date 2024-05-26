@@ -8,7 +8,6 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import ru.rrk.clinic.controller.client.ClientsRestController;
 import ru.rrk.clinic.controller.receptionist.payload.NewReceptionistPayload;
 import ru.rrk.clinic.entity.Receptionist;
 import ru.rrk.clinic.service.receptionist.ReceptionistService;

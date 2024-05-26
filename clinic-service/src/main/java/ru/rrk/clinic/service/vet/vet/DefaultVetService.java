@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.rrk.clinic.entity.vet.Vet;
-import ru.rrk.clinic.repository.vet.speciality.SpecialityRepository;
 import ru.rrk.clinic.repository.vet.VetRepository;
+import ru.rrk.clinic.repository.vet.speciality.SpecialityRepository;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;

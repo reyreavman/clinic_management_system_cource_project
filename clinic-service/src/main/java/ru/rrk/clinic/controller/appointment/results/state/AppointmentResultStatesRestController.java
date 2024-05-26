@@ -29,8 +29,8 @@ public class AppointmentResultStatesRestController {
 
     @PostMapping
     public ResponseEntity<?> createState(@Valid @RequestBody NewAppointmentResultStatePayload payload,
-                                                              BindingResult bindingResult,
-                                                              UriComponentsBuilder uriComponentsBuilder) throws BindException {
+                                         BindingResult bindingResult,
+                                         UriComponentsBuilder uriComponentsBuilder) throws BindException {
         if (bindingResult.hasErrors()) {
             if (bindingResult instanceof BindException exception) throw exception;
             else throw new BindException(bindingResult);
