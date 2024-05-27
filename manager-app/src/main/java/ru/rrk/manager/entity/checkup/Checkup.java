@@ -8,5 +8,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Builder
-public record Checkup(int id, LocalDate date, LocalTime time, Pet pet, Vet vet, CheckupType checkupType, CheckupState checkupState, CheckupResult checkupResult) {
+public record Checkup(
+        int id,
+        LocalDate date,
+        LocalTime time,
+        Pet pet,
+        Vet vet,
+        CheckupType checkupType,
+        CheckupState checkupState,
+        CheckupResult checkupResult) {
 }
