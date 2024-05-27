@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Рабочий кабинет &ndash; Ветеринарная клиника </title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .addNewAppointment{
+            position: absolute;
+            top: 100px;
+            left: 10px;
+        }
+        .allAppointmentsList{
+            position: absolute;
+            top: 100px;
+            left: 200px;
+        }
+        .addNewCheckup{
+            position: absolute;
+            top: 100px;
+            right: 300px;
+        }
+        .allCheckupsList{
+            position: absolute;
+            top: 100px;
+            right: 0;
+        }
+        .appointmentsList{
+            position: absolute;
+            top: 165px;
+            font-size: 1rem;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .checkupsList{
+            position: absolute;
+            top: 165px;
+            right: 0;
+            font-size: 0.9rem;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        table, td, th{
+            border: 1px solid #333;
+        }
+        td, td{
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1>Рабочий кабинет</h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="addNewAppointment">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/create(receptionistId=${receptionist.id})}">
+            + Новый приём</a>
+    </div>
+    <div class="allAppointmentsList">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/list(receptionistId=${receptionist.id})}">
+            Список всех приёмов</a>
+    </div>
+    <div class="addNewCheckup">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/create(receptionistId=${receptionist.id})}">
+            + Новое обследование</a>
+    </div>
+    <div class="allCheckupsList">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/list(receptionistId=${receptionist.id})}">
+            Список всех обследований</a>
+    </div>
+    <div class="appointmentsList">
+        <h3 style="text-align: left; font-size: 1.11rem;">Список сегодняшних приёмов</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>ФИО врача</th>
+                <th>Предварительное описание</th>
+                <th>Исследование</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>09:30</td>
+                <td>Бебрик</td>
+                <td>Ванечка Манырин</td>
+                <td>Отсутствует</td>
+                <td>Не назначено</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="checkupsList">
+        <h3 style="text-align: left; font-size: 1.105rem;">Список сегодняшних исследований</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>ФИО врача</th>
+                <th>Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>16:30</td>
+                <td>Бебрик</td>
+                <td>Ванечка Манырин</td>
+                <td>Ожидается</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
