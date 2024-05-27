@@ -3,6 +3,25 @@ kupang:
     clinic:
       uri: http://127.0.0.1:8081
       registration-id: keycloak
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5442/users
+    username: user
+    password: user
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8083/realms/clinic
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: user-app
+            client-secret: JKkD5GiXNKznILRD5xGpgikQqdpX9mC8
+            scope:
+              - openid
+              - microprofile-jwt
 server:
   port: 8085
 logging:
