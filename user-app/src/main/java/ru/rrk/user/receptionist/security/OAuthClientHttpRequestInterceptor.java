@@ -1,4 +1,4 @@
-package ru.rrk.manager.security;
+package ru.rrk.user.receptionist.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
