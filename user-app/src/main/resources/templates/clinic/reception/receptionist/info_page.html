@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет &ndash; Ветеринарная клиника </title>
+</head>
+<body>
+<a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.Id})}">&larr; К рабочему
+    кабинету</a>
+<h1 data-th-text="${receptionist.fullName}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${receptionist.id}"></span></li>
+    <li><strong>Имя</strong>: <span data-th-text="${receptionist.firstName}"></span></li>
+    <li><strong>Фамилия</strong>: <span data-th-text="${receptionist.lastName}"></span></li>
+</ul>
+</body>
+</html>
