@@ -1,6 +1,6 @@
-package ru.rrk.user.receptionist.entity.pet;
+package ru.rrk.user.receptionist.dto.pet;
 
-import ru.rrk.user.receptionist.entity.Client;
+import ru.rrk.user.receptionist.dto.Client;
 
 import java.time.LocalDate;
 

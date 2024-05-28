@@ -1,4 +1,4 @@
-package ru.rrk.user.receptionist.entity;
+package ru.rrk.user.receptionist.dto;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,13 +1,13 @@
-package ru.rrk.user.receptionist.converter;
+package ru.rrk.user.receptionist.mapper.checkup;
 
 import org.springframework.core.convert.converter.Converter;
-import ru.rrk.user.receptionist.dto.CheckupDTO;
-import ru.rrk.user.receptionist.entity.checkup.Checkup;
+import ru.rrk.user.receptionist.viewModels.checkup.CheckupViewSummary;
+import ru.rrk.user.receptionist.dto.checkup.Checkup;
 
-public class CheckupDTOConverter implements Converter<Checkup, CheckupDTO> {
+public class CheckupViewSummaryConverter implements Converter<Checkup, CheckupViewSummary> {
     @Override
-    public CheckupDTO convert(Checkup checkup) {
-        return CheckupDTO.builder()
+    public CheckupViewSummary convert(Checkup checkup) {
+        return CheckupViewSummary.builder()
                 .id(checkup.id())
                 .time(checkup.time())
                 .petId(checkup.pet().id())

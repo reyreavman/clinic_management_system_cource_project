@@ -1,4 +1,4 @@
-package ru.rrk.user.receptionist.entity.pet;
+package ru.rrk.user.receptionist.dto.pet;
 
 public record Gender(int id, String gender) {
 }

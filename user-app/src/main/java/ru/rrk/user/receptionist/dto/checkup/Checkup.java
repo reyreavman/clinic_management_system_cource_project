@@ -1,8 +1,8 @@
-package ru.rrk.user.receptionist.entity.checkup;
+package ru.rrk.user.receptionist.dto.checkup;
 
 import lombok.Builder;
-import ru.rrk.user.receptionist.entity.pet.Pet;
-import ru.rrk.user.receptionist.entity.vet.Vet;
+import ru.rrk.user.receptionist.dto.pet.Pet;
+import ru.rrk.user.receptionist.dto.vet.Vet;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

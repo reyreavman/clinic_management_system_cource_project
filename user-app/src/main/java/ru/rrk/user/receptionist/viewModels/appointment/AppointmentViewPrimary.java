@@ -1,13 +1,13 @@
-package ru.rrk.user.receptionist.dto;
+package ru.rrk.user.receptionist.viewModels.appointment;
 
 import lombok.Builder;
-import ru.rrk.user.receptionist.entity.checkup.Checkup;
+import ru.rrk.user.receptionist.dto.checkup.Checkup;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Builder
-public record AppointmentDTO(
+public record AppointmentViewPrimary(
         int id,
         int petId,
         String petName,

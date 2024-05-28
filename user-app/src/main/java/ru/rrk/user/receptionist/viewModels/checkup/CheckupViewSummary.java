@@ -1,11 +1,11 @@
-package ru.rrk.user.receptionist.dto;
+package ru.rrk.user.receptionist.viewModels.checkup;
 
 import lombok.Builder;
 
 import java.time.LocalTime;
 
 @Builder
-public record CheckupDTO(
+public record CheckupViewSummary(
         int id,
         LocalTime time,
         int petId,
