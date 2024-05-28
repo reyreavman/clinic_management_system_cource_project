@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новое обследование &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .newCheckup {
+            position: absolute;
+            top: 85px;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <form class="newCheckup" method="post"
+          data-th-action="@{/clinic/reception/receptionist/{receptionistId}/checkups/create(receptionistId=${receptionist.id})}">
+        <h2 style="text-align: left; font-size: 1.3rem;">Новое обследование</h2><br>
+        <div class="dateTime">
+            <label>
+                Дата:
+                <input type="date" name="date" data-th-attr="min=${#dates.createNow()}" max="2025-01-01" data-th-value="${payload?.date}"><br><br>
+            </label>
+            <label>
+                Время:
+                <input type="time" name="time" min="09:00:00" max="16:00:00" data-th-value="${payload?.time}"><br><br>
+            </label>
+        </div>
+        <div class="petChoice">
+            <label>
+                Питомец:
+                <select name="petId" required>
+                    <option name="petId" data-th-each="pet : ${pets}" data-th-text="${pet.id} + ' - ' + ${pet.name}"
+                            data-th-value="${pet.id}"></option>
+                </select>
+            </label><br><br>
+        </div>
+        <div class="vetChoice">
+            <label>
+                Врач:
+                <select name="vetId" required>
+                    <option name="vetId" data-th-each="vet : ${vets}" data-th-text="${vet.id} + ' ' + ${vet.fullName}"
+                            data-th-value="${vet.id}"></option>
+                </select>
+            </label><br><br>
+        </div>
+        <div class="typeChoice">
+            <label>
+                Тип исследования:
+                <select name="typeId" required>
+                    <option name="typeId" data-th-each="type : ${types}" data-th-text="${type.type}"
+                            data-th-value="${type.id}"></option>
+                </select>
+            </label><br><br>
+        </div>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+</body>
+</html>

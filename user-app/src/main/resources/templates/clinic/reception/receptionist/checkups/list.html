@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Рабочий кабинет &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .checkupsList{
+            position: absolute;
+            top: 95px;
+            font-size: 1rem;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        table, td, th{
+            border: 1px solid #333;
+        }
+        td, td{
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="checkupsList">
+        <h2 style="text-align: left; font-size: 1.3rem;">Список всех обследований</h2>
+        <table style="width: 120%;">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>ФИО врача</th>
+                <th>Тип обследования</th>
+                <th>Статус</th>
+                <th>Результаты</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="checkup, iterstat: ${checkups}">
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointment/{checkupId}/info(receptionistId=${receptionist.id}, checkupId=${checkup.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.date}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.time}"></a>
+                </td>
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pet/{petId}/info(receptionistId=${receptionist.id}, petId=${checkup.petId})}"
+                       data-th-text="${checkup.petName}"></a>
+                </td>
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vet/{vetId}/info(receptionistId=${receptionist.id}, petId=${checkup.vetId})}"
+                       data-th-text="${checkup.vetName}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.type}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.state}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.result != null ? checkup.result: 'Отсутствуют'}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
