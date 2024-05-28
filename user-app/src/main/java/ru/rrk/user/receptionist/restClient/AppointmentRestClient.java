@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.user.receptionist.entity.Appointment;
+import ru.rrk.user.receptionist.dto.Appointment;
 
 import java.util.List;
 import java.util.Optional;

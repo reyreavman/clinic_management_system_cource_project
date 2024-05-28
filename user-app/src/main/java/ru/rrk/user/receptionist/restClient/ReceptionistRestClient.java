@@ -3,7 +3,7 @@ package ru.rrk.user.receptionist.restClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
-import ru.rrk.user.receptionist.entity.Receptionist;
+import ru.rrk.user.receptionist.dto.Receptionist;
 
 import java.util.Optional;
 
