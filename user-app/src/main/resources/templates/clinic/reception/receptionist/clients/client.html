@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиент &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .clientInfo {
+            position: absolute;
+            top: 75px;
+        }
+        .petInfo {
+            position: absolute;
+            top: 75px;
+            right: 0px;
+        }
+        table, td, th{
+            align: left;
+            border: 1px solid #333;
+        }
+        tr, td{
+            align: left;
+            padding: 7px 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="clientInfo">
+        <h2 style="font-size: 1.5rem;" data-th-text="'Клиент - ' + ${client.firstName} + ' ' + ${client.lastName}"></h2>
+        <table>
+            <tr>
+                <th>Имя</th>
+                <td data-th-text="${client.firstName}"></td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td data-th-text="${client.lastName}"></td>
+            </tr>
+            <tr>
+                <th>Номер телефона</th>
+                <td data-th-text="${client.phoneNumber}"></td>
+            </tr>
+            <tr>
+                <th>email</th>
+                <td data-th-text="${client.email}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="petInfo">
+        <h2 style="font-size: 1.5rem;">Питомцы</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Вид</th>
+                <th>Порода</th>
+                <th>Дата рождения</th>
+                <th>Дата клеймения</th>
+                <th>Клеймо</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="pet, iterstat : ${pets}">
+                <td data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${pet.id})}" data-th-text="${iterstat.count}"></td>
+                <td data-th-text="${pet.name}"></td>
+                <td data-th-text="${pet.type}"></td>
+                <td data-th-text="${pet.breed}"></td>
+                <td data-th-text="${pet.birthday}"></td>
+                <td data-th-text="${pet.labelDate}"></td>
+                <td data-th-text="${pet.labelValue}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
