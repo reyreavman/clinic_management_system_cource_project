@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый приём &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .newAppointment {
+            position: absolute;
+            top: 70px;
+        }
+        .fromExistsClients {
+            position: absolute;
+            top: 250px;
+            width: 300px;
+            font-size: 1rem;
+        }
+        .hiddenSelect {
+            display: none;
+        }
+        .hiddenSelect:target {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="newAppointment">
+        <form method="post" data-th-action="@{/clinic/reception/receptionist/{receptionistId}/appointments/create}">
+            <h2>Новый приём</h2>
+            <div class="dateTime">
+                <label>
+                    Дата:
+                    <input type="date" name="date" data-th-attr="min=${#dates.createNow()}" max="2025-01-01" data-th-value="${payload?.date}"><br><br>
+                </label>
+                <label>
+                    Время:
+                    <input type="time" name="time" min="09:00:00" max="17:40:00" data-th-value="${payload?.time}"><br><br>
+                </label>
+            </div>
+            <div class="clientChoice">
+                <label>
+                    Клиент:
+                    <select name="clientId" required>
+                        <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"
+                                data-th-value="${client.id}"></option>
+                    </select>
+                </label>
+            </div>
+            <div class="clientChoice">
+                <label>
+                    Клиент:
+                    <select name="clientId" required>
+                        <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"
+                                data-th-value="${client.id}"></option>
+                    </select>
+                </label>
+            </div>
+            <div class="petChoice">
+                <label>
+                    Клиент:
+                    <select name="clientId" required>
+                        <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"
+                                data-th-value="${client.id}"></option>
+                    </select>
+                </label>
+            </div>
+<!--            <div class="newClient">-->
+<!--                <strong>Новый клиент:</strong><br><br>-->
+<!--                <label>-->
+<!--                    Имя:<br>-->
+<!--                    <input type="text" name="firstName" data-th-value="${payload?.firstName}">-->
+<!--                </label><br>-->
+<!--                <label>-->
+<!--                    Фамилия:<br>-->
+<!--                    <input type="text" name="lastName" data-th-value="${payload?.lastName}">-->
+<!--                </label><br>-->
+<!--                <label>-->
+<!--                    Номер телефона:<br>-->
+<!--                    <input type="tel" name="phoneNumber" placeholder="999-999-99-99"-->
+<!--                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" data-th-value="${payload?.phoneNumber}">-->
+<!--                </label><br>-->
+<!--                <label>-->
+<!--                    Электронная почта:<br>-->
+<!--                    <input type="email" name="email" placeholder="info@example.com" data-th-value="${payload?.email}">-->
+<!--                </label><br><br>-->
+<!--            </div>-->
+<!--            <div class="fromExistsClients">-->
+<!--                <a href="#select1">Или выбрать из существующих:</a><br><br>-->
+<!--                <select id="select1" class="hiddenSelect" name="clientId">-->
+<!--                    <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"-->
+<!--                            data-th-value="${client.id}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+
+            <!--            <button style="position: absolute; top: 300px;" type="submit">Добавить</button>-->
+        </form>
+
+
+    </div>
+</div>
+</body>
+</html>

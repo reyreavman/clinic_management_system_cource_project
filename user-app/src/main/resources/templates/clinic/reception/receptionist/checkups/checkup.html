@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Обследование &ndash; Ветеринарная клиника </title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .checkupInfo {
+            position: absolute;
+            top: 85px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="checkupInfo">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/list(receptionistId=${receptionist.id})}">&larr; К списку исследований</a>
+        <h2>Обследование</h2>
+        <ul>
+            <li><strong>ID</strong>: <span data-th-text="${checkup.id}"></span></li>
+            <li><strong>Дата и время</strong>: <span data-th-text="${checkup.date}"></span></li>
+            <li><strong>Время</strong>: <span data-th-text="${checkup.time}"></span></li>
+            <li><strong>Питомец</strong>: <span data-th-text="${checkup.petName} + ' - ' + ${checkup.petId}" ></span></li>
+            <li><strong>Врач</strong>: <span data-th-text="${checkup.vetFullName}"></span></li>
+            <li><strong>Тип обследования</strong>: <span data-th-text="${checkup.type}"></span></li>
+            <li><strong>Статус</strong>: <span data-th-text="${checkup.state}"></span></li>
+            <li><strong>Результаты</strong>: <span data-th-text="${checkup.result != null ? checkup.result : 'отсутствуют'}"></span></li>
+        </ul>
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/{checkupId}/edit(receptionistId=${receptionist.id}, checkupId=${checkup.id})}">Изменить</a><br><br>
+        <form method="post" data-th-action="@{/clinic/reception/receptionist/{receptionistId}/checkups/{checkupId}/delete(receptionistId=${receptionist.id}, checkupId=${checkup.id})}">
+            <button type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
