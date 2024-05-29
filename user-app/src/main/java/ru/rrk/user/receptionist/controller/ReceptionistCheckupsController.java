@@ -1,17 +1,21 @@
 package ru.rrk.user.receptionist.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupPayload;
+import ru.rrk.user.receptionist.controller.payload.NewCheckupDetailsPayload;
+import ru.rrk.user.receptionist.controller.payload.NewCheckupSummaryPayload;
 import ru.rrk.user.receptionist.dto.Receptionist;
 import ru.rrk.user.receptionist.dto.checkup.Checkup;
-import ru.rrk.user.receptionist.mapper.checkup.CheckupPayloadNormalizer;
-import ru.rrk.user.receptionist.mapper.checkup.CheckupViewPrimaryConverter;
 import ru.rrk.user.receptionist.mapper.PetViewSummaryConverter;
 import ru.rrk.user.receptionist.mapper.VetViewSummaryConverter;
-import ru.rrk.user.receptionist.restClient.*;
+import ru.rrk.user.receptionist.mapper.checkup.CheckupPayloadNormalizer;
+import ru.rrk.user.receptionist.mapper.checkup.CheckupViewPrimaryConverter;
+import ru.rrk.user.receptionist.restClient.PetRestClient;
+import ru.rrk.user.receptionist.restClient.ReceptionistRestClient;
+import ru.rrk.user.receptionist.restClient.VetRestClient;
 import ru.rrk.user.receptionist.restClient.checkup.CheckupRestClient;
 import ru.rrk.user.receptionist.restClient.checkup.CheckupTypeRestClient;
 
@@ -48,11 +52,18 @@ public class ReceptionistCheckupsController {
     }
 
     @PostMapping("create")
-    public String createNewCheckup(NewCheckupPayload payload, Model model) {
+    public String createNewCheckup(NewCheckupSummaryPayload payload, Model model) {
         try {
-            payload = this.checkupPayloadNormalizer.normalizePayload(payload);
-            Checkup checkup = this.checkupRestClient.createCheckup(payload.getDate(), payload.getTime(), payload.getPetId(), payload.getVetId(), payload.getTypeId(), payload.getStateId(), payload.getResultId());
-            return "redirect:/clinic/reception/receptionist/{receptionistId:\\d+}/checkups/%d".formatted(checkup);
+            NewCheckupDetailsPayload payloadDetails = this.checkupPayloadNormalizer.normalizePayload(payload);
+            Checkup checkup = this.checkupRestClient.createCheckup(
+                    payloadDetails.date(),
+                    payloadDetails.time(),
+                    payloadDetails.petId(),
+                    payloadDetails.vetId(),
+                    payloadDetails.checkupTypeId(),
+                    payloadDetails.checkupStateId(),
+                    payloadDetails.checkupResultId());
+            return "redirect:/clinic/reception/receptionist/{receptionistId}/checkups/%d".formatted(checkup.id());
         } catch (BadRequestException exception) {
             model.addAttribute("errors", exception.getErrors());
             return "clinic/reception/receptionist/checkups/create";
@@ -61,6 +72,8 @@ public class ReceptionistCheckupsController {
 
     @GetMapping("list")
     public String getCheckupsListPage(Model model) {
+//        , HttpServletRequest request in arguments
+//        System.out.println(request.getHeader("referer") + " - triggered");
         model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupViewPrimaryConverter::convert).toList());
         return "clinic/reception/receptionist/checkups/list";
     }

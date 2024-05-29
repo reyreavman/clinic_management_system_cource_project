@@ -11,9 +11,12 @@ import ru.rrk.user.receptionist.dto.Receptionist;
 import ru.rrk.user.receptionist.mapper.appointment.AppointmentViewSummaryConverter;
 import ru.rrk.user.receptionist.mapper.checkup.CheckupViewSummaryConverter;
 import ru.rrk.user.receptionist.restClient.AppointmentRestClient;
-import ru.rrk.user.receptionist.restClient.checkup.CheckupRestClient;
 import ru.rrk.user.receptionist.restClient.ReceptionistRestClient;
+import ru.rrk.user.receptionist.restClient.checkup.CheckupRestClient;
+import ru.rrk.user.receptionist.viewModels.appointment.AppointmentViewSummary;
+import ru.rrk.user.receptionist.viewModels.checkup.CheckupViewSummary;
 
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -34,9 +37,8 @@ public class ReceptionistMainController {
 
     @GetMapping
     public String getReceptionistMainPage(Model model) {
-        model.addAttribute("appointments", this.appointmentRestClient.findAllAppointments().stream().map(this.appointmentViewSummaryConverter::convert).toList());
-        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupViewSummaryConverter::convert).toList());
-
+        model.addAttribute("appointments", this.appointmentRestClient.findAllAppointments().stream().map(this.appointmentViewSummaryConverter::convert).sorted(Comparator.comparing(AppointmentViewSummary::time)).toList());
+        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupViewSummaryConverter::convert).sorted(Comparator.comparing(CheckupViewSummary::time)).toList());
         return "clinic/reception/receptionist/main_page";
     }
 
