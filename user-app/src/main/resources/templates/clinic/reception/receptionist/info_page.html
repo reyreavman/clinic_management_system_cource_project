@@ -3,15 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Личный кабинет &ndash; Ветеринарная клиника </title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 70px;
+        }
+    </style>
 </head>
 <body>
-<a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.Id})}">&larr; К рабочему
-    кабинету</a>
-<h1 data-th-text="${receptionist.fullName}"></h1>
-<ul>
-    <li><strong>ID</strong>: <span data-th-text="${receptionist.id}"></span></li>
-    <li><strong>Имя</strong>: <span data-th-text="${receptionist.firstName}"></span></li>
-    <li><strong>Фамилия</strong>: <span data-th-text="${receptionist.lastName}"></span></li>
-</ul>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <h2 data-th-text="${receptionist.fullName}"></h2>
+        <ul>
+            <li><strong>ID</strong>: <span data-th-text="${receptionist.id}"></span></li>
+            <li><strong>Имя</strong>: <span data-th-text="${receptionist.firstName}"></span></li>
+            <li><strong>Фамилия</strong>: <span data-th-text="${receptionist.lastName}"></span></li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>

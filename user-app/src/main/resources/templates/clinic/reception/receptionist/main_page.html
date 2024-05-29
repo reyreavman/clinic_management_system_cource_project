@@ -24,15 +24,20 @@
             top: 27px;
             right: 0;
         }
-        .addNewAppointment{
+        .addNewClient{
             position: absolute;
             top: 100px;
             left: 10px;
         }
-        .allAppointmentsList{
+        .allClientsList{
             position: absolute;
             top: 100px;
             left: 200px;
+        }
+        .allAppointmentsList{
+            position: absolute;
+            top: 100px;
+            left: 460px;
         }
         .addNewCheckup{
             position: absolute;
@@ -100,9 +105,13 @@
         <a data-th-text="${receptionist.fullName}"
            data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
     </div>
-    <div class="addNewAppointment">
-        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/create(receptionistId=${receptionist.id})}">
-            + Новый приём</a>
+    <div class="addNewClient">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/create(receptionistId=${receptionist.id})}">
+            + Новый клиент</a>
+    </div>
+    <div class="allClientsList">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/list(receptionistId=${receptionist.id})}">
+            Список всех клиентов</a>
     </div>
     <div class="allAppointmentsList">
         <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/list(receptionistId=${receptionist.id})}">
@@ -132,25 +141,25 @@
             <tbody>
             <tr data-th-each="appointment, iterstat: ${appointments}">
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointment/{appointmentId}/info(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/{appointmentId}(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}"
                        data-th-text="${iterstat.count}"></a>
                 </td>
                 <td>
                     <a data-th-text="${appointment.time}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pet/{petId}/info(receptionistId=${receptionist.id}, petId=${appointment.petId})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${appointment.petId})}"
                        data-th-text="${appointment.petName}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vet/{vetId}/info(receptionistId=${receptionist.id}, vetId=${appointment.vetId})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vets/{vetId}(receptionistId=${receptionist.id}, vetId=${appointment.vetId})}"
                        data-th-text="${appointment.vetFullName}"></a>
                 </td>
                 <td>
                     <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
                 </td>
                 <td>
-                    <a data-th-text="${appointment.checkup != null ? appointment.checkup.id : 'Не назначено'}"></a>
+                    <a data-th-text="${appointment.checkup != null ? appointment.checkup.id : 'не назначено'}"></a>
                     <a data-th-if="${appointment.checkup != null}"
                        data-th-attr="data-tooltip=${appointment.checkup.id"></a>
                 </td>
@@ -173,18 +182,18 @@
             <tbody>
             <tr data-th-each="checkup, iterstat: ${checkups}">
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointment/{checkupId}/info(receptionistId=${receptionist.id}, checkupId=${checkup.id})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/{checkupId}(receptionistId=${receptionist.id}, checkupId=${checkup.id})}"
                        data-th-text="${iterstat.count}"></a>
                 </td>
                 <td>
                     <a data-th-text="${checkup.time}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pet/{petId}/info(receptionistId=${receptionist.id}, petId=${checkup.petId})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${checkup.petId})}"
                        data-th-text="${checkup.petName}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vet/{vetId}/info(receptionistId=${receptionist.id}, petId=${checkup.vetId})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vets/{vetId}(receptionistId=${receptionist.id}, petId=${checkup.vetId})}"
                        data-th-text="${checkup.vetName}"></a>
                 </td>
                 <td>

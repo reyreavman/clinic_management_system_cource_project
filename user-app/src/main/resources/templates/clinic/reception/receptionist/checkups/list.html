@@ -70,7 +70,7 @@
             <tbody>
             <tr data-th-each="checkup, iterstat: ${checkups}">
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointment/{checkupId}/info(receptionistId=${receptionist.id}, checkupId=${checkup.id})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/{checkupId}(receptionistId=${receptionist.id}, checkupId=${checkup.id})}"
                        data-th-text="${iterstat.count}"></a>
                 </td>
                 <td>
@@ -80,12 +80,12 @@
                     <a data-th-text="${checkup.time}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pet/{petId}/info(receptionistId=${receptionist.id}, petId=${checkup.petId})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${checkup.petId})}"
                        data-th-text="${checkup.petName}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vet/{vetId}/info(receptionistId=${receptionist.id}, petId=${checkup.vetId})}"
-                       data-th-text="${checkup.vetName}"></a>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vets/{vetId}(receptionistId=${receptionist.id}, petId=${checkup.vetId})}"
+                       data-th-text="${checkup.vetFullName}"></a>
                 </td>
                 <td>
                     <a data-th-text="${checkup.type}"></a>
