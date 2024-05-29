@@ -7,7 +7,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.user.receptionist.controller.BadRequestException;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupPayload;
+import ru.rrk.user.receptionist.controller.payload.NewCheckupDetailsPayload;
 import ru.rrk.user.receptionist.dto.checkup.Checkup;
 
 import java.time.LocalDate;
@@ -48,7 +48,7 @@ public class CheckupRestClient {
                     .post()
                     .uri("clinic-api/checkups")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(new NewCheckupPayload(date, time, petId, vetId, checkupTypeId, checkupStateId, checkupResultId))
+                    .body(new NewCheckupDetailsPayload(date, time, petId, vetId, checkupTypeId, checkupStateId, checkupResultId))
                     .retrieve()
                     .body(Checkup.class);
         } catch (HttpClientErrorException.BadRequest exception) {
