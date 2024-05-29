@@ -39,4 +39,9 @@ public class ConvertersConfig {
     public VetViewSummaryConverter vetViewSummaryConverter() {
         return new VetViewSummaryConverter();
     }
+
+    @Bean
+    public PetViewPrimaryConverter petViewPrimaryConverter() {
+        return new PetViewPrimaryConverter();
+    }
 }
