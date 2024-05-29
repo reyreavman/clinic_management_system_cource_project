@@ -136,4 +136,79 @@ public class RestClientBeansConfig {
                                         clientRegistrationRepository, authorizedClientRepository), registrationId))
                 .build());
     }
+
+    @Bean
+    public PetTypeRestClient petTypeRestClient(
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository,
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+        return new PetTypeRestClient(RestClient.builder()
+                .baseUrl(clinicBaseUri)
+                .requestInterceptor(
+                        new OAuthClientHttpRequestInterceptor(
+                                new DefaultOAuth2AuthorizedClientManager(
+                                        clientRegistrationRepository, authorizedClientRepository), registrationId))
+                .build());
+    }
+
+    @Bean
+    public PetBreedRestClient petBreedRestClient(
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository,
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+        return new PetBreedRestClient(RestClient.builder()
+                .baseUrl(clinicBaseUri)
+                .requestInterceptor(
+                        new OAuthClientHttpRequestInterceptor(
+                                new DefaultOAuth2AuthorizedClientManager(
+                                        clientRegistrationRepository, authorizedClientRepository), registrationId))
+                .build());
+    }
+
+    @Bean
+    public GenderRestClient genderRestClient(
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository,
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+        return new GenderRestClient(RestClient.builder()
+                .baseUrl(clinicBaseUri)
+                .requestInterceptor(
+                        new OAuthClientHttpRequestInterceptor(
+                                new DefaultOAuth2AuthorizedClientManager(
+                                        clientRegistrationRepository, authorizedClientRepository), registrationId))
+                .build());
+    }
+
+    @Bean
+    public LabelRestClient labelRestClient(
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository,
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+        return new LabelRestClient(RestClient.builder()
+                .baseUrl(clinicBaseUri)
+                .requestInterceptor(
+                        new OAuthClientHttpRequestInterceptor(
+                                new DefaultOAuth2AuthorizedClientManager(
+                                        clientRegistrationRepository, authorizedClientRepository), registrationId))
+                .build());
+    }
+
+    @Bean
+    public ClientRestClient clientRestClient(
+            @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository,
+            @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+        return new ClientRestClient(RestClient.builder()
+                .baseUrl(clinicBaseUri)
+                .requestInterceptor(
+                        new OAuthClientHttpRequestInterceptor(
+                                new DefaultOAuth2AuthorizedClientManager(
+                                        clientRegistrationRepository, authorizedClientRepository), registrationId))
+                .build());
+    }
 }
