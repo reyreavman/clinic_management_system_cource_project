@@ -33,6 +33,15 @@
             top: 75px;
             right: 0px;
         }
+        .createPet {
+            position: absolute;
+            top: 25px;
+            left: 250px;
+        }
+        .appointmentInfo {
+            position: absolute;
+            top: 380px;
+        }
         table, td, th{
             align: left;
             border: 1px solid #333;
@@ -40,6 +49,11 @@
         tr, td{
             align: left;
             padding: 7px 5px;
+        }
+        .returnToLastPage {
+            position: absolute;
+            top: 100px;
+            right: 0px;
         }
     </style>
 </head>
@@ -72,13 +86,20 @@
                 <td data-th-text="${client.phoneNumber}"></td>
             </tr>
             <tr>
-                <th>email</th>
+                <th>Email</th>
                 <td data-th-text="${client.email}"></td>
             </tr>
         </table>
+        <br>
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}/edit(receptionistId=${receptionist.id}, clientId=${client.id})}">
+            Изменить информацию о клиенте</a>
     </div>
     <div class="petInfo">
-        <h2 style="font-size: 1.5rem;">Питомцы</h2>
+        <h2 style="font-size: 1.5rem;">Список питомцев</h2>
+        <div class="createPet">
+            <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}/pets/create(receptionistId=${receptionist.id}, clientId=${client.id})}">Добавить
+                питомца</a>
+        </div>
         <table>
             <thead>
             <tr>
@@ -93,7 +114,10 @@
             </thead>
             <tbody>
             <tr data-th-each="pet, iterstat : ${pets}">
-                <td data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${pet.id})}" data-th-text="${iterstat.count}"></td>
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${pet.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
                 <td data-th-text="${pet.name}"></td>
                 <td data-th-text="${pet.type}"></td>
                 <td data-th-text="${pet.breed}"></td>
@@ -103,6 +127,36 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div class="appointmentInfo" data-th-if="${not #lists.isEmpty(appointments)}">
+        <h2 style="font-size: 1.5rem;">Список приемов</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>ФИО врача</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="appointment, iterstat : ${appointments}">
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/{appointmentId}(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td data-th-text="${appointment.date}"></td>
+                <td data-th-text="${appointment.time}"></td>
+                <td data-th-text="${appointment.petName}"></td>
+                <td data-th-text="${appointment.vetFullName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="returnToLastPage">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/list(receptionistId=${receptionist.id})}">Вернуться
+            назад</a>
     </div>
 </div>
 </body>

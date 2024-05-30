@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Рабочий кабинет &ndash; Ветеринарная клиника </title>
+    <title>Список клиентов &ndash; Ветеринарная клиника </title>
     <style>
         .content {
             position: relative;
@@ -24,7 +24,7 @@
             top: 27px;
             right: 0;
         }
-        .appointmentsList {
+        .clientsList {
             position: absolute;
             top: 95px;
             font-size: 1rem;
@@ -36,33 +36,15 @@
         }
         td, td{
             padding: 10px 20px;
-        }
-        [data-tooltip] {
-            position: relative; /* Относительное позиционирование */
-        }
-        [data-tooltip]::after {
-            content: attr(data-tooltip); /* Выводим текст */
-            position: absolute; /* Абсолютное позиционирование */
-            width: 150px; /* Ширина подсказки */
-            left: 0; top: 0; /* Положение подсказки */
-            background: #000000; /* Синий цвет фона */
-            color: #ffffff; /* Цвет текста */
-            padding: 0.5em; /* Поля вокруг текста */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
-            pointer-events: none; /* Подсказка */
-            opacity: 0; /* Подсказка невидима */
-            transition: 0.5s; /* Время появления подсказки */
-        }
-        [data-tooltip]:hover::after {
-            opacity: 1; /* Показываем подсказку */
-            top: 2em; /* Положение подсказки */
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="content">
     <div class="firstHeader">
-        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий кабинет</a></h1>
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
     </div>
     <div class="hr">
         <hr>
@@ -71,47 +53,31 @@
         <a data-th-text="${receptionist.fullName}"
            data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
     </div>
-    <div class="appointmentsList">
-        <h2 style="text-align: left; font-size: 1.3rem;">Список всех приёмов</h2>
+    <div class="clientsList">
+        <h2 style="text-align: left; font-size: 1.3rem;">Список всех клиентов</h2>
         <table style="width: 120%;">
             <thead>
             <tr>
                 <th>#</th>
-                <th>Дата</th>
-                <th>Время</th>
-                <th>Питомец</th>
-                <th>ФИО врача</th>
-                <th>Предварительное описание</th>
-                <th>Обследование</th>
+                <th>ФИО</th>
+                <th>Номер телефона</th>
+                <th>EMAIL</th>
             </tr>
             </thead>
             <tbody>
-            <tr data-th-each="appointment, iterstat: ${appointments}">
+            <tr data-th-each="client, iterstat: ${clients}">
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointment/{appointmentId}/info(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}(receptionistId=${receptionist.id}, clientId=${client.id})}"
                        data-th-text="${iterstat.count}"></a>
                 </td>
                 <td>
-                    <a data-th-text="${appointment.date}"></a>
+                    <a data-th-text="${client.firstName} + ' ' + ${client.lastName}"></a>
                 </td>
                 <td>
-                    <a data-th-text="${appointment.time}"></a>
+                    <a data-th-text="${client.phoneNumber}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pet/{petId}/info(receptionistId=${receptionist.id}, petId=${appointment.petId})}"
-                       data-th-text="${appointment.petName}"></a>
-                </td>
-                <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vet/{vetId}/info(receptionistId=${receptionist.id}, vetId=${appointment.vetId})}"
-                       data-th-text="${appointment.vetFullName}"></a>
-                </td>
-                <td>
-                    <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
-                </td>
-                <td>
-                    <a data-th-text="${appointment.checkup != null ? appointment.checkup.id : 'Не назначено'}"></a>
-                    <a data-th-if="${appointment.checkup != null}"
-                       data-th-attr="data-tooltip=${appointment.checkup.id"></a>
+                    <a data-th-text="${client.email}"></a>
                 </td>
             </tr>
             </tbody>
