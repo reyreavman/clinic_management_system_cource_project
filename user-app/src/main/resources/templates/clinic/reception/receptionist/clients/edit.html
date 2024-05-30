@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о клиенте &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .editClient {
+            position: absolute;
+            top: 70px;
+        }
+        .returnToLastPage {
+            position: absolute;
+            top: 90px;
+            right: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="editClient">
+        <h3>Редактирование информации о клиенте:</h3>
+        <form method="post"
+              data-th-action="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}/edit(receptionistId=${receptionist.id}, clientId=${client.id})}">
+            <label>
+                Имя:<br>
+                <input type="text" name="firstName"
+                       data-th-value="${payload != null ? payload.firstName : client.firstName}">
+            </label><br>
+            <label>
+                Фамилия:<br>
+                <input type="text" name="lastName"
+                       data-th-value="${payload != null ? payload.lastName : client.lastName}">
+            </label><br>
+            <label>
+                Номер телефона:<br>
+                <input type="text" name="phoneNumber" placeholder="999-999-99-99"
+                       data-th-value="${payload != null ? payload.phoneNumber : client.phoneNumber}">
+            </label><br>
+            <label>
+                Электронная почта:<br>
+                <input type="text" name="email" placeholder="info@example.com"
+                       data-th-value="${payload != null ? payload.email : client.email}">
+            </label>
+            <br><br>
+            <button type="submit">Изменить</button>
+        </form>
+    </div>
+    <div class="returnToLastPage">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}(receptionistId=${receptionist.id}, clientId=${client.id})}">Вернуться назад</a>
+    </div>
+</div>
+</body>
+</html>
