@@ -1,6 +1,5 @@
 package ru.rrk.user.receptionist.controller;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.rrk.user.receptionist.controller.payload.NewClientPayload;
 import ru.rrk.user.receptionist.controller.payload.NewLabelPayload;
 import ru.rrk.user.receptionist.controller.payload.NewPetPayload;
-import ru.rrk.user.receptionist.dto.Client;
 import ru.rrk.user.receptionist.dto.Receptionist;
 import ru.rrk.user.receptionist.dto.pet.Breed;
-import ru.rrk.user.receptionist.dto.pet.Label;
-import ru.rrk.user.receptionist.dto.pet.Pet;
 import ru.rrk.user.receptionist.dto.pet.Type;
 import ru.rrk.user.receptionist.restClient.*;
 
@@ -43,18 +39,21 @@ public class ReceptionistClientsController {
     }
 
     @GetMapping("list")
-    public String getClientsListPage() {
-        return "clinic/receptionist/clients/list";
+    public String getClientsListPage(Model model) {
+        model.addAttribute("clients", this.clientRestClient.findAllClients(null));
+        return "clinic/reception/receptionist/clients/list";
     }
 
     @PostMapping("create")
-    public String createNewClient(NewClientPayload clientPayload, NewPetPayload petPayload, NewLabelPayload labelPayload, Model model) {
+    public String createNewClient(@PathVariable("receptionistId") int receptionistId,
+                                  NewClientPayload clientPayload, NewPetPayload petPayload,
+                                  NewLabelPayload labelPayload, Model model) {
         try {
             Integer typeId = this.petBreedRestClient.findBreed(petPayload.breedId()).map(Breed::type).map(Type::id).orElseThrow(NoSuchElementException::new);
-            Client client = this.clientRestClient.createClient(clientPayload.firstName(), clientPayload.lastName(), clientPayload.phoneNumber(), clientPayload.email());
-            Label label = this.labelRestClient.createLabel(labelPayload.value(), labelPayload.date());
-            Pet pet = this.petRestClient.createPet(petPayload.name(), client.id(), typeId, petPayload.breedId(), petPayload.genderId(), petPayload.birthday(), label.id());
-            return "clinic/reception/receptionist/{receptionistId}/clients/%d".formatted(pet.id());
+            Integer labelId = this.labelRestClient.createLabel(labelPayload.value(), labelPayload.date()).id();
+            Integer clientId = this.clientRestClient.createClient(clientPayload.firstName(), clientPayload.lastName(), clientPayload.phoneNumber(), clientPayload.email()).id();
+            this.petRestClient.createPet(petPayload.name(), clientId, typeId, petPayload.breedId(), petPayload.genderId(), petPayload.birthday(), labelId);
+            return "redirect:/clinic/reception/receptionist/%d/clients/%d".formatted(receptionistId, clientId);
         } catch (BadRequestException exception) {
             model.addAttribute("clientPayload", clientPayload);
             model.addAttribute("petPayload", petPayload);
