@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Питомец &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .petInfo {
+            position: absolute;
+            top: 75px;
+            text-align: left;
+        }
+        .appointmentsInfo {
+            position: absolute;
+            top: 75px;
+            right: 0px;
+        }
+        .createAppointment {
+            position: absolute;
+            top: 25px;
+            left: 250px;
+        }
+        .checkupInfo {
+            position: absolute;
+            top: 300px;
+            right: 0px;
+        }
+        table, td, th{
+            align: left;
+            border: 1px solid #333;
+        }
+        tr, td{
+            align: left;
+            padding: 7px 5px;
+        }
+        .returnToLastPage {
+            position: absolute;
+            top: 100px;
+            right: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="petInfo">
+        <h2 style="font-size: 1.5rem;">Информация о питомце</h2>
+        <table>
+            <tr>
+                <th>Имя</th>
+                <td data-th-text="${pet.name}"></td>
+            </tr>
+            <tr>
+                <th>Клиент</th>
+                <td><a data-th-text="${pet.client.firstName} + ' ' + ${pet.client.lastName}"
+                       data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}(receptionistId=${receptionist.id}, clientId=${pet.client.id})}"></a>
+                </td>
+            </tr>
+            <tr>
+                <th>Вид</th>
+                <td data-th-text="${pet.type.name}"></td>
+            </tr>
+            <tr>
+                <th>Порода</th>
+                <td data-th-text="${pet.breed.name}"></td>
+            </tr>
+            <tr>
+                <th>Пол</th>
+                <td data-th-text="${pet.gender.gender}"></td>
+            </tr>
+            <tr>
+                <th>Дата рождения</th>
+                <td data-th-text="${pet.birthday}"></td>
+            </tr>
+            <tr>
+                <th>Дата клеймирования</th>
+                <td data-th-text="${pet.label.date}"></td>
+            </tr>
+            <tr>
+                <th>Клеймо</th>
+                <td data-th-text="${pet.label.value}"></td>
+            </tr>
+        </table>
+        <br>
+<!--        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}/edit(receptionistId=${receptionist.id}, petId=${pet.id})}">-->
+<!--            Изменить информацию о питомце</a>-->
+    </div>
+    <div class="appointmentsInfo">
+        <h2 style="font-size: 1.5rem;">Список приемов</h2>
+        <div class="createAppointment">
+            <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}/appointments/create(receptionistId=${receptionist.id}, petId=${pet.id})}">Добавить
+                новый прием</a>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>ФИО врача</th>
+                <th>Описание</th>
+                <th>Обследование</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="appointment, iterstat : ${appointments}">
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/{appointmentId}(receptionistId=${receptionist.id}, petId=${pet.id}, appointmentId=${appointment.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td data-th-text="${appointment.date}"></td>
+                <td data-th-text="${appointment.time}"></td>
+                <td data-th-text="${appointment.vetFullName}"></td>
+                <td data-th-text="${appointment.description}"></td>
+                <td data-th-text="${appointment.checkup != null ? appointment.checkup.state : 'отсутствует'}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="checkupInfo" data-th-if="${not #lists.isEmpty(checkups)}">
+        <h2 style="font-size: 1.5rem;">Обследования</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>ФИО врача</th>
+                <th>Тип</th>
+                <th>Статус</th>
+                <th>Результаты</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="checkup, iterstat : ${checkups}">
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/{checkupId}(receptionistId=${receptionist.id}, checkupId=${checkup.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td data-th-text="${checkup.date}"></td>
+                <td data-th-text="${checkup.time}"></td>
+                <td data-th-text="${checkup.vetFullName}"></td>
+                <td data-th-text="${checkup.type}"></td>
+                <td data-th-text="${checkup.state}"></td>
+                <td data-th-text="${checkup.result}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="returnToLastPage" data-th-if="${request}">
+        <a data-th-href="${request}">Вернуться
+            назад</a>
+    </div>
+</div>
+</body>
+</html>

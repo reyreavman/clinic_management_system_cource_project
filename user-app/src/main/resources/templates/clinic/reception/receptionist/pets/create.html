@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый питомец &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .newPet {
+            position: absolute;
+            top: 75px;
+            left: 0px;
+        }
+        .returnToLastPage {
+            position: absolute;
+            top: 100px;
+            right: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="newPet">
+        <form method="post"
+              data-th-action="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}/pets/create(receptionistId=${receptionist.id}, clientId=${client.id})}">
+            <h3>Информация о питомце:</h3>
+            <label>
+                Имя:<br>
+                <input type="text" name="name" data-th-value="${petPayload?.name}">
+            </label><br>
+            <label>
+                Дата рождения:<br>
+                <input type="date" name="birthday" data-th-value="${petPayload?.birthday}">
+            </label><br>
+            <label>
+                Дата клеймения:<br>
+                <input type="date" name="date" data-th-value="${labelPayload?.date}">
+            </label><br>
+            <label>
+                Клеймо:<br>
+                <input type="text" name="value" data-th-value="${labelPayload?.value}">
+            </label><br>
+            <label>
+                Порода:<br>
+                <select name="breedId" required>
+                    <option name="breedId" data-th-each="breed: ${breeds}"
+                            data-th-text="${breed.type.name} + ' - ' + ${breed.name}"
+                            data-th-value="${breed.id}"></option>
+                </select>
+            </label><br>
+            <label>
+                Пол:<br>
+                <select name="genderId" required>
+                    <option name="genderId" data-th-each="gender: ${genders}"
+                            data-th-text="${gender.gender}" data-th-value="${gender.id}"></option>
+                </select>
+            </label><br>
+            <button style="font-size: 1.2rem; position: absolute; top: 400px; left: 0px;" type="submit">Добавить
+            </button>
+        </form>
+    </div>
+    <div class="returnToLastPage">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/{clientId}(receptionistId=${receptionist.id}, clientId=${client.id})}">Вернуться
+            назад</a>
+    </div>
+</div>
+</body>
+</html>
