@@ -26,39 +26,44 @@
         }
         .addNewClient{
             position: absolute;
-            top: 100px;
-            left: 10px;
+            top: 90px;
+            left: 0px;
         }
         .allClientsList{
             position: absolute;
-            top: 100px;
-            left: 200px;
+            top: 90px;
+            left: 180px;
+        }
+        .allPetsList {
+            position: absolute;
+            top: 90px;
+            left: 420px;
         }
         .allAppointmentsList{
             position: absolute;
-            top: 100px;
-            left: 460px;
+            top: 90px;
+            left: 660px;
         }
         .addNewCheckup{
             position: absolute;
-            top: 100px;
+            top: 90px;
             right: 300px;
         }
         .allCheckupsList{
             position: absolute;
-            top: 100px;
+            top: 90px;
             right: 0;
         }
         .appointmentsList{
             position: absolute;
-            top: 165px;
+            top: 120px;
             font-size: 0.95rem;
             text-align: center;
             border-collapse: collapse;
         }
         .checkupsList{
             position: absolute;
-            top: 165px;
+            top: 120px;
             right: 0;
             font-size: 0.9rem;
             text-align: center;
@@ -112,6 +117,10 @@
     <div class="allClientsList">
         <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/clients/list(receptionistId=${receptionist.id})}">
             Список всех клиентов</a>
+    </div>
+    <div class="allPetsList">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/list(receptionistId=${receptionist.id})}">
+            Список всех питомцев</a>
     </div>
     <div class="allAppointmentsList">
         <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/list(receptionistId=${receptionist.id})}">
