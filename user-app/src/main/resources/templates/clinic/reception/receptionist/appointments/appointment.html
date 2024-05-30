@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о приеме &ndash; Ветеринарная клиника</title>
+</head>
+<body>
+<div class="content">
+    <div class="appointmentInfo">
+        <h2 style="font-size: 1.5rem;" data-th-text="Приём"></h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td data-th-text="${appointment.id}"></td>
+            </tr>
+            <tr>
+                <th>Питомец</th>
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${appointment.pet.id})}"
+                       data-th-text="${appointment.pet.name}">
+                    </a>
+                </td>
+                <th>ФИО врача</th>
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vets/{vetId}(receptionistId=${receptionist.id}, vetId=${appointment.vet.id})}"
+                       data-th-text="${appointment.vet.firstName} + ' ' + ${appointment.vet.lastName}">
+                    </a>
+                </td>
+                <th>Дата</th>
+                <td>
+                    <a data-th-text="${appointment.date}">
+                    </a>
+                </td>
+                <th>Дата</th>
+                <td>
+                    <a data-th-text="${appointment.time}">
+                    </a>
+                </td>
+                <th>Описание</th>
+                <td>
+                    <a data-th-text="${appointment.description}">
+                    </a>
+                </td>
+                <th>Обследование</th>
+                <td>
+                    <a data-th-text="${appointment.checkup}">
+                    </a>
+                </td>
+                <th>Регистратор</th>
+                <td>
+                    <a data-th-text="${appointment.receptionist.firstName} + ' ' + ${appointment.receptionist.lastName}">
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
