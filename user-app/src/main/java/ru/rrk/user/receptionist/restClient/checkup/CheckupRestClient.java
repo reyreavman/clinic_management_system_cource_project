@@ -7,22 +7,23 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.user.receptionist.controller.BadRequestException;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupDetailsPayload;
+import ru.rrk.user.receptionist.controller.checkup.payload.NewCheckupDetailsPayload;
 import ru.rrk.user.receptionist.dto.checkup.Checkup;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 public class CheckupRestClient {
     private static final ParameterizedTypeReference<List<Checkup>> CHECKUP_TYPE_REFERENCE = new ParameterizedTypeReference<List<Checkup>>() {
     };
-    private final RestClient client;
+    private final RestClient restClient;
 
     public List<Checkup> findAllCheckups() {
-        return this.client
+        return this.restClient
                 .get()
                 .uri("clinic-api/checkups")
                 .retrieve()
@@ -32,7 +33,7 @@ public class CheckupRestClient {
     public Optional<Checkup> findCheckup(int checkupId) {
         try {
             return Optional.ofNullable(
-                    this.client
+                    this.restClient
                             .get()
                             .uri("clinic-api/checkups/{checkupId}", checkupId)
                             .retrieve()
@@ -44,7 +45,7 @@ public class CheckupRestClient {
 
     public Checkup createCheckup(LocalDate date, LocalTime time, Integer petId, Integer vetId, Integer checkupTypeId, Integer checkupStateId, Integer checkupResultId) {
         try {
-            return this.client
+            return this.restClient
                     .post()
                     .uri("clinic-api/checkups")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -54,6 +55,18 @@ public class CheckupRestClient {
         } catch (HttpClientErrorException.BadRequest exception) {
             ProblemDetail problemDetail = exception.getResponseBodyAs(ProblemDetail.class);
             throw new BadRequestException((List<String>) problemDetail.getProperties().get("errors"));
+        }
+    }
+
+    public void deleteCheckup(int checkupId) {
+        try {
+            this.restClient
+                    .delete()
+                    .uri("clinic-api/checkups/{checkupId}", checkupId)
+                    .retrieve()
+                    .toBodilessEntity();
+        } catch (HttpClientErrorException.NotFound exception) {
+            throw new NoSuchElementException(exception);
         }
     }
 }

@@ -7,8 +7,8 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.user.receptionist.controller.BadRequestException;
-import ru.rrk.user.receptionist.controller.payload.NewLabelPayload;
-import ru.rrk.user.receptionist.controller.payload.UpdateLabelPayload;
+import ru.rrk.user.receptionist.controller.pet.payload.label.NewLabelPayload;
+import ru.rrk.user.receptionist.controller.pet.payload.label.UpdateLabelPayload;
 import ru.rrk.user.receptionist.dto.pet.Label;
 
 import java.util.List;

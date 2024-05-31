@@ -2,32 +2,35 @@ package ru.rrk.user.receptionist.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.rrk.user.receptionist.mapper.*;
-import ru.rrk.user.receptionist.mapper.appointment.AppointmentViewPrimaryConverter;
-import ru.rrk.user.receptionist.mapper.appointment.AppointmentViewSummaryConverter;
-import ru.rrk.user.receptionist.mapper.checkup.CheckupViewPrimaryConverter;
-import ru.rrk.user.receptionist.mapper.checkup.CheckupViewSummaryConverter;
+import ru.rrk.user.receptionist.mapper.appointment.AppointmentListViewConverter;
+import ru.rrk.user.receptionist.mapper.appointment.AppointmentPrimaryViewConverter;
+import ru.rrk.user.receptionist.mapper.appointment.AppointmentSummaryViewConverter;
+import ru.rrk.user.receptionist.mapper.checkup.CheckupPrimaryViewConverter;
+import ru.rrk.user.receptionist.mapper.checkup.CheckupSummaryViewConverter;
+import ru.rrk.user.receptionist.mapper.pet.PetViewPrimaryConverter;
+import ru.rrk.user.receptionist.mapper.pet.PetViewSummaryConverter;
+import ru.rrk.user.receptionist.mapper.vet.VetSummaryViewConverter;
 
 @Configuration
 public class ConvertersConfig {
     @Bean
-    public AppointmentViewSummaryConverter appointmentViewPrimaryConverter() {
-        return new AppointmentViewSummaryConverter();
+    public AppointmentSummaryViewConverter appointmentViewPrimaryConverter() {
+        return new AppointmentSummaryViewConverter();
     }
 
     @Bean
-    public AppointmentViewPrimaryConverter appointmentViewSummaryConverter() {
-        return new AppointmentViewPrimaryConverter();
+    public AppointmentPrimaryViewConverter appointmentViewSummaryConverter() {
+        return new AppointmentPrimaryViewConverter();
     }
 
     @Bean
-    public CheckupViewSummaryConverter checkupViewSummaryConverter() {
-        return new CheckupViewSummaryConverter();
+    public CheckupSummaryViewConverter checkupViewSummaryConverter() {
+        return new CheckupSummaryViewConverter();
     }
 
     @Bean
-    public CheckupViewPrimaryConverter checkupViewPrimaryConverter() {
-        return new CheckupViewPrimaryConverter();
+    public CheckupPrimaryViewConverter checkupViewPrimaryConverter() {
+        return new CheckupPrimaryViewConverter();
     }
 
     @Bean
@@ -36,12 +39,17 @@ public class ConvertersConfig {
     }
 
     @Bean
-    public VetViewSummaryConverter vetViewSummaryConverter() {
-        return new VetViewSummaryConverter();
+    public VetSummaryViewConverter vetViewSummaryConverter() {
+        return new VetSummaryViewConverter();
     }
 
     @Bean
     public PetViewPrimaryConverter petViewPrimaryConverter() {
         return new PetViewPrimaryConverter();
+    }
+
+    @Bean
+    public AppointmentListViewConverter appointmentListViewConverter() {
+        return new AppointmentListViewConverter();
     }
 }

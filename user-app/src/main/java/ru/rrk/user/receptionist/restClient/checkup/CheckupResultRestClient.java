@@ -7,7 +7,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.user.receptionist.controller.BadRequestException;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupResultPayload;
+import ru.rrk.user.receptionist.controller.checkup.payload.NewCheckupResultPayload;
 import ru.rrk.user.receptionist.dto.checkup.CheckupResult;
 
 import java.util.List;
