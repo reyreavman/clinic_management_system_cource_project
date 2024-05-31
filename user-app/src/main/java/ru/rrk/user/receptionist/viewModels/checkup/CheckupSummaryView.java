@@ -5,7 +5,7 @@ import lombok.Builder;
 import java.time.LocalTime;
 
 @Builder
-public record CheckupViewSummary(
+public record CheckupSummaryView(
         int id,
         LocalTime time,
         int petId,

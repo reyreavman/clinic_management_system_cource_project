@@ -2,12 +2,12 @@ package ru.rrk.user.receptionist.mapper.appointment;
 
 import org.springframework.core.convert.converter.Converter;
 import ru.rrk.user.receptionist.dto.Appointment;
-import ru.rrk.user.receptionist.viewModels.appointment.AppointmentViewSummary;
+import ru.rrk.user.receptionist.viewModels.appointment.AppointmentSummaryView;
 
-public class AppointmentViewSummaryConverter implements Converter<Appointment, AppointmentViewSummary> {
+public class AppointmentSummaryViewConverter implements Converter<Appointment, AppointmentSummaryView> {
     @Override
-    public AppointmentViewSummary convert(Appointment appointment) {
-        return AppointmentViewSummary.builder()
+    public AppointmentSummaryView convert(Appointment appointment) {
+        return AppointmentSummaryView.builder()
                 .id(appointment.id())
                 .petId(appointment.pet().id())
                 .petName(appointment.pet().name())

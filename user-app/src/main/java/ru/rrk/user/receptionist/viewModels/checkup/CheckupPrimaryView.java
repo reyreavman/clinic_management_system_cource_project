@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Builder
-public record CheckupViewPrimary(
+public record CheckupPrimaryView(
         int id,
         LocalDate date,
         LocalTime time,
