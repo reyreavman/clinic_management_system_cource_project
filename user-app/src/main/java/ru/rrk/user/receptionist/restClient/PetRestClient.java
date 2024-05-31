@@ -7,8 +7,8 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.user.receptionist.controller.BadRequestException;
-import ru.rrk.user.receptionist.controller.payload.NewPetPayload;
-import ru.rrk.user.receptionist.controller.payload.UpdatePetPayload;
+import ru.rrk.user.receptionist.controller.pet.payload.NewPetPayload;
+import ru.rrk.user.receptionist.controller.pet.payload.UpdatePetPayload;
 import ru.rrk.user.receptionist.dto.pet.Pet;
 
 import java.time.LocalDate;
