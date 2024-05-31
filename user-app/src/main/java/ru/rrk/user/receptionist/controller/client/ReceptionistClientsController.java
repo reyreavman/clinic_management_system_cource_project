@@ -1,12 +1,13 @@
-package ru.rrk.user.receptionist.controller;
+package ru.rrk.user.receptionist.controller.client;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.user.receptionist.controller.payload.NewClientPayload;
-import ru.rrk.user.receptionist.controller.payload.NewLabelPayload;
-import ru.rrk.user.receptionist.controller.payload.NewPetPayload;
+import ru.rrk.user.receptionist.controller.BadRequestException;
+import ru.rrk.user.receptionist.controller.client.payload.NewClientPayload;
+import ru.rrk.user.receptionist.controller.pet.payload.label.NewLabelPayload;
+import ru.rrk.user.receptionist.controller.pet.payload.NewPetPayload;
 import ru.rrk.user.receptionist.dto.Receptionist;
 import ru.rrk.user.receptionist.dto.pet.Breed;
 import ru.rrk.user.receptionist.dto.pet.Type;

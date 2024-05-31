@@ -1,21 +1,22 @@
-package ru.rrk.user.receptionist.controller;
+package ru.rrk.user.receptionist.controller.client;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.user.receptionist.controller.payload.NewLabelPayload;
-import ru.rrk.user.receptionist.controller.payload.NewPetPayload;
-import ru.rrk.user.receptionist.controller.payload.UpdateClientPayload;
+import ru.rrk.user.receptionist.controller.BadRequestException;
+import ru.rrk.user.receptionist.controller.pet.payload.label.NewLabelPayload;
+import ru.rrk.user.receptionist.controller.pet.payload.NewPetPayload;
+import ru.rrk.user.receptionist.controller.client.payload.UpdateClientPayload;
 import ru.rrk.user.receptionist.dto.Client;
 import ru.rrk.user.receptionist.dto.Receptionist;
 import ru.rrk.user.receptionist.dto.pet.Breed;
 import ru.rrk.user.receptionist.dto.pet.Type;
-import ru.rrk.user.receptionist.mapper.PetViewPrimaryConverter;
-import ru.rrk.user.receptionist.mapper.appointment.AppointmentViewPrimaryConverter;
+import ru.rrk.user.receptionist.mapper.pet.PetViewPrimaryConverter;
+import ru.rrk.user.receptionist.mapper.appointment.AppointmentPrimaryViewConverter;
 import ru.rrk.user.receptionist.restClient.*;
-import ru.rrk.user.receptionist.viewModels.PetViewPrimary;
-import ru.rrk.user.receptionist.viewModels.appointment.AppointmentViewPrimary;
+import ru.rrk.user.receptionist.viewModels.pet.PetPrimaryView;
+import ru.rrk.user.receptionist.viewModels.appointment.AppointmentPrimaryView;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -35,7 +36,7 @@ public class ReceptionistClientController {
     private final LabelRestClient labelRestClient;
 
     private final PetViewPrimaryConverter petViewPrimaryConverter;
-    private final AppointmentViewPrimaryConverter appointmentViewPrimaryConverter;
+    private final AppointmentPrimaryViewConverter appointmentPrimaryViewConverter;
 
     @ModelAttribute("receptionist")
     public Receptionist receptionist(@PathVariable("receptionistId") int receptionistId) {
@@ -51,9 +52,9 @@ public class ReceptionistClientController {
 
     @GetMapping
     public String getClientInfoPage(@PathVariable("clientId") int clientId, Model model) {
-        List<PetViewPrimary> petList = this.petRestClient.findAllPets(null).stream().filter(pet -> pet.client().id() == clientId).map(this.petViewPrimaryConverter::convert).toList();
-        Set<Integer> petIds = petList.stream().map(PetViewPrimary::id).collect(Collectors.toSet());
-        List<AppointmentViewPrimary> appointmentList = this.appointmentRestClient.findAllAppointments().stream().filter(appointment -> petIds.contains(appointment.pet().id())).map(this.appointmentViewPrimaryConverter::convert).toList();
+        List<PetPrimaryView> petList = this.petRestClient.findAllPets(null).stream().filter(pet -> pet.client().id() == clientId).map(this.petViewPrimaryConverter::convert).toList();
+        Set<Integer> petIds = petList.stream().map(PetPrimaryView::id).collect(Collectors.toSet());
+        List<AppointmentPrimaryView> appointmentList = this.appointmentRestClient.findAllAppointments().stream().filter(appointment -> petIds.contains(appointment.pet().id())).map(this.appointmentPrimaryViewConverter::convert).toList();
 
         model.addAttribute("pets", petList);
         model.addAttribute("appointments", appointmentList);

@@ -1,4 +1,4 @@
-package ru.rrk.user.receptionist.controller.payload;
+package ru.rrk.user.receptionist.controller.client.payload;
 
 public record NewClientPayload(
         String firstName,

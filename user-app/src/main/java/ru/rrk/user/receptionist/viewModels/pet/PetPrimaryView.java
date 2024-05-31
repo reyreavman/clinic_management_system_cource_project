@@ -1,11 +1,11 @@
-package ru.rrk.user.receptionist.viewModels;
+package ru.rrk.user.receptionist.viewModels.pet;
 
 import lombok.Builder;
 
 import java.time.LocalDate;
 
 @Builder
-public record PetViewPrimary(
+public record PetPrimaryView(
         int id,
         String name,
         int clientId,

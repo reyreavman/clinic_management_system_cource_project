@@ -1,4 +1,4 @@
-package ru.rrk.user.receptionist.controller;
+package ru.rrk.user.receptionist.controller.pet;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rrk.user.receptionist.dto.Receptionist;
-import ru.rrk.user.receptionist.mapper.PetViewPrimaryConverter;
+import ru.rrk.user.receptionist.mapper.pet.PetViewPrimaryConverter;
 import ru.rrk.user.receptionist.restClient.PetRestClient;
 import ru.rrk.user.receptionist.restClient.ReceptionistRestClient;
 

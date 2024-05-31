@@ -1,16 +1,13 @@
-package ru.rrk.user.receptionist.controller;
+package ru.rrk.user.receptionist.controller.checkup;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.rrk.user.receptionist.dto.Receptionist;
-import ru.rrk.user.receptionist.mapper.checkup.CheckupViewPrimaryConverter;
+import ru.rrk.user.receptionist.mapper.checkup.CheckupPrimaryViewConverter;
 import ru.rrk.user.receptionist.restClient.ReceptionistRestClient;
 import ru.rrk.user.receptionist.restClient.checkup.CheckupRestClient;
-import ru.rrk.user.receptionist.viewModels.checkup.CheckupViewPrimary;
+import ru.rrk.user.receptionist.viewModels.checkup.CheckupPrimaryView;
 
 import java.util.NoSuchElementException;
 
@@ -20,11 +17,11 @@ import java.util.NoSuchElementException;
 public class ReceptionistCheckupController {
     private final ReceptionistRestClient receptionistRestClient;
     private final CheckupRestClient checkupRestClient;
-    private final CheckupViewPrimaryConverter checkupViewPrimaryConverter;
+    private final CheckupPrimaryViewConverter checkupPrimaryViewConverter;
 
     @ModelAttribute("checkup")
-    public CheckupViewPrimary checkup(@PathVariable("checkupId") int checkupId) {
-        return this.checkupRestClient.findCheckup(checkupId).map(this.checkupViewPrimaryConverter::convert)
+    public CheckupPrimaryView checkup(@PathVariable("checkupId") int checkupId) {
+        return this.checkupRestClient.findCheckup(checkupId).map(this.checkupPrimaryViewConverter::convert)
                 .orElseThrow(() -> new NoSuchElementException("clinic.errors.reception.checkup.not_found"));
     }
 
@@ -37,5 +34,12 @@ public class ReceptionistCheckupController {
     @GetMapping
     public String getCheckupInfoPage() {
         return "clinic/reception/receptionist/checkups/checkup";
+    }
+
+    @PostMapping("delete")
+    public String deleteCheckup(@ModelAttribute("checkup") CheckupPrimaryView checkup,
+                                @PathVariable("receptionistId") int receptionistId) {
+        this.checkupRestClient.deleteCheckup(checkup.id());
+        return "redirect:/clinic/reception/receptionist/%d/checkups/list".formatted(receptionistId);
     }
 }

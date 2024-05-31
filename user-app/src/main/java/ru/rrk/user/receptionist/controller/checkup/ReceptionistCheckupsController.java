@@ -1,18 +1,18 @@
-package ru.rrk.user.receptionist.controller;
+package ru.rrk.user.receptionist.controller.checkup;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupDetailsPayload;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupSummaryPayload;
+import ru.rrk.user.receptionist.controller.BadRequestException;
+import ru.rrk.user.receptionist.controller.checkup.payload.NewCheckupDetailsPayload;
+import ru.rrk.user.receptionist.controller.checkup.payload.NewCheckupSummaryPayload;
 import ru.rrk.user.receptionist.dto.Receptionist;
 import ru.rrk.user.receptionist.dto.checkup.Checkup;
-import ru.rrk.user.receptionist.mapper.PetViewSummaryConverter;
-import ru.rrk.user.receptionist.mapper.VetViewSummaryConverter;
 import ru.rrk.user.receptionist.mapper.checkup.CheckupPayloadNormalizer;
-import ru.rrk.user.receptionist.mapper.checkup.CheckupViewPrimaryConverter;
+import ru.rrk.user.receptionist.mapper.checkup.CheckupPrimaryViewConverter;
+import ru.rrk.user.receptionist.mapper.pet.PetViewSummaryConverter;
+import ru.rrk.user.receptionist.mapper.vet.VetSummaryViewConverter;
 import ru.rrk.user.receptionist.restClient.PetRestClient;
 import ru.rrk.user.receptionist.restClient.ReceptionistRestClient;
 import ru.rrk.user.receptionist.restClient.VetRestClient;
@@ -31,9 +31,9 @@ public class ReceptionistCheckupsController {
     private final CheckupTypeRestClient checkupTypeRestClient;
     private final CheckupRestClient checkupRestClient;
 
-    private final CheckupViewPrimaryConverter checkupViewPrimaryConverter;
+    private final CheckupPrimaryViewConverter checkupPrimaryViewConverter;
     private final PetViewSummaryConverter petViewSummaryConverter;
-    private final VetViewSummaryConverter vetViewSummaryConverter;
+    private final VetSummaryViewConverter vetSummaryViewConverter;
 
     private final CheckupPayloadNormalizer checkupPayloadNormalizer;
 
@@ -46,7 +46,7 @@ public class ReceptionistCheckupsController {
     @GetMapping("create")
     public String getNewCheckupPage(Model model) {
         model.addAttribute("pets", this.petRestClient.findAllPets(null).stream().map(this.petViewSummaryConverter::convert).toList());
-        model.addAttribute("vets", this.vetRestClient.findAllVets(null).stream().map(this.vetViewSummaryConverter::convert).toList());
+        model.addAttribute("vets", this.vetRestClient.findAllVets(null).stream().map(this.vetSummaryViewConverter::convert).toList());
         model.addAttribute("types", this.checkupTypeRestClient.findAllTypes().stream().toList());
         return "clinic/reception/receptionist/checkups/create";
     }
@@ -74,7 +74,7 @@ public class ReceptionistCheckupsController {
     public String getCheckupsListPage(Model model) {
 //        , HttpServletRequest request in arguments
 //        System.out.println(request.getHeader("referer") + " - triggered");
-        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupViewPrimaryConverter::convert).toList());
+        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupPrimaryViewConverter::convert).toList());
         return "clinic/reception/receptionist/checkups/list";
     }
 }

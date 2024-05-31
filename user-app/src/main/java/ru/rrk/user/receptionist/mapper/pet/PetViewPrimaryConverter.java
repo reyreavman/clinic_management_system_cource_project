@@ -1,13 +1,13 @@
-package ru.rrk.user.receptionist.mapper;
+package ru.rrk.user.receptionist.mapper.pet;
 
 import org.springframework.core.convert.converter.Converter;
 import ru.rrk.user.receptionist.dto.pet.Pet;
-import ru.rrk.user.receptionist.viewModels.PetViewPrimary;
+import ru.rrk.user.receptionist.viewModels.pet.PetPrimaryView;
 
-public class PetViewPrimaryConverter implements Converter<Pet, PetViewPrimary> {
+public class PetViewPrimaryConverter implements Converter<Pet, PetPrimaryView> {
     @Override
-    public PetViewPrimary convert(Pet pet) {
-        return PetViewPrimary.builder()
+    public PetPrimaryView convert(Pet pet) {
+        return PetPrimaryView.builder()
                 .id(pet.id())
                 .name(pet.name())
                 .clientId(pet.client().id())
