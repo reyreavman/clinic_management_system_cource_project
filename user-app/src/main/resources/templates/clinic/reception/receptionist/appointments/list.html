@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Рабочий кабинет &ndash; Ветеринарная клиника </title>
+    <title>Список всех приемов &ndash; Ветеринарная клиника </title>
     <style>
         .content {
             position: relative;
@@ -37,32 +37,14 @@
         td, td{
             padding: 10px 20px;
         }
-        [data-tooltip] {
-            position: relative; /* Относительное позиционирование */
-        }
-        [data-tooltip]::after {
-            content: attr(data-tooltip); /* Выводим текст */
-            position: absolute; /* Абсолютное позиционирование */
-            width: 150px; /* Ширина подсказки */
-            left: 0; top: 0; /* Положение подсказки */
-            background: #000000; /* Синий цвет фона */
-            color: #ffffff; /* Цвет текста */
-            padding: 0.5em; /* Поля вокруг текста */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
-            pointer-events: none; /* Подсказка */
-            opacity: 0; /* Подсказка невидима */
-            transition: 0.5s; /* Время появления подсказки */
-        }
-        [data-tooltip]:hover::after {
-            opacity: 1; /* Показываем подсказку */
-            top: 2em; /* Положение подсказки */
-        }
+
     </style>
 </head>
 <body>
 <div class="content">
     <div class="firstHeader">
-        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий кабинет</a></h1>
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
     </div>
     <div class="hr">
         <hr>
@@ -81,14 +63,12 @@
                 <th>Время</th>
                 <th>Питомец</th>
                 <th>ФИО врача</th>
-                <th>Предварительное описание</th>
-                <th>Обследование</th>
             </tr>
             </thead>
             <tbody>
             <tr data-th-each="appointment, iterstat: ${appointments}">
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointment/{appointmentId}/info(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/{appointmentId}(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}"
                        data-th-text="${iterstat.count}"></a>
                 </td>
                 <td>
@@ -98,20 +78,12 @@
                     <a data-th-text="${appointment.time}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pet/{petId}/info(receptionistId=${receptionist.id}, petId=${appointment.petId})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${appointment.petId})}"
                        data-th-text="${appointment.petName}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vet/{vetId}/info(receptionistId=${receptionist.id}, vetId=${appointment.vetId})}"
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vets/{vetId}(receptionistId=${receptionist.id}, vetId=${appointment.vetId})}"
                        data-th-text="${appointment.vetFullName}"></a>
-                </td>
-                <td>
-                    <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
-                </td>
-                <td>
-                    <a data-th-text="${appointment.checkup != null ? appointment.checkup.id : 'Не назначено'}"></a>
-                    <a data-th-if="${appointment.checkup != null}"
-                       data-th-attr="data-tooltip=${appointment.checkup.id"></a>
                 </td>
             </tr>
             </tbody>

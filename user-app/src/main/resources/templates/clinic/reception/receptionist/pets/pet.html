@@ -33,6 +33,7 @@
             position: absolute;
             top: 75px;
             right: 0px;
+            width: 660px;
         }
         .createAppointment {
             position: absolute;
@@ -171,7 +172,8 @@
                 <td data-th-text="${checkup.vetFullName}"></td>
                 <td data-th-text="${checkup.type}"></td>
                 <td data-th-text="${checkup.state}"></td>
-                <td data-th-text="${checkup.result}"></td>
+                <td data-th-if="${checkup.result}" data-th-text="${checkup.result}"></td>
+                <td>отсутствуют</td>
             </tr>
             </tbody>
         </table>

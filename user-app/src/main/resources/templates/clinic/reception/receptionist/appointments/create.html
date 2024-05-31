@@ -23,17 +23,16 @@
             position: absolute;
             top: 70px;
         }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
         .fromExistsClients {
             position: absolute;
             top: 250px;
             width: 300px;
             font-size: 1rem;
-        }
-        .hiddenSelect {
-            display: none;
-        }
-        .hiddenSelect:target {
-            display: block;
         }
     </style>
 </head>
@@ -51,77 +50,38 @@
            data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
     </div>
     <div class="newAppointment">
-        <form method="post" data-th-action="@{/clinic/reception/receptionist/{receptionistId}/appointments/create}">
+        <form method="post"
+              data-th-action="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}/appointments/create(receptionistId=${receptionistId}, petId=${pet.id})}">
             <h2>Новый приём</h2>
             <div class="dateTime">
                 <label>
                     Дата:
-                    <input type="date" name="date" data-th-attr="min=${#dates.createNow()}" max="2025-01-01" data-th-value="${payload?.date}"><br><br>
+                    <input type="date" name="date" data-th-attr="min=${#dates.createNow()}" max="2025-01-01"
+                           data-th-value="${payload?.date}"><br><br>
                 </label>
                 <label>
                     Время:
-                    <input type="time" name="time" min="09:00:00" max="17:40:00" data-th-value="${payload?.time}"><br><br>
+                    <input type="time" name="time" min="09:00:00" max="17:40:00"
+                           data-th-value="${payload?.time}"><br><br>
                 </label>
             </div>
-            <div class="clientChoice">
+            <div class="vetChoice">
                 <label>
-                    Клиент:
-                    <select name="clientId" required>
-                        <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"
-                                data-th-value="${client.id}"></option>
-                    </select>
+                    Врач:
+                    <select name="vetId" required>
+                        <option name="vetId" data-th-each="vet : ${vets}" data-th-text="${vet.fullName}"
+                                data-th-value="${vet.id}"></option>
+                    </select><br><br>
                 </label>
             </div>
-            <div class="clientChoice">
+            <div class="description">
                 <label>
-                    Клиент:
-                    <select name="clientId" required>
-                        <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"
-                                data-th-value="${client.id}"></option>
-                    </select>
-                </label>
+                    Описание:
+                    <input type="text" name="description" data-th-value="${payload?.description}">
+                </label><br><br>
             </div>
-            <div class="petChoice">
-                <label>
-                    Клиент:
-                    <select name="clientId" required>
-                        <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"
-                                data-th-value="${client.id}"></option>
-                    </select>
-                </label>
-            </div>
-<!--            <div class="newClient">-->
-<!--                <strong>Новый клиент:</strong><br><br>-->
-<!--                <label>-->
-<!--                    Имя:<br>-->
-<!--                    <input type="text" name="firstName" data-th-value="${payload?.firstName}">-->
-<!--                </label><br>-->
-<!--                <label>-->
-<!--                    Фамилия:<br>-->
-<!--                    <input type="text" name="lastName" data-th-value="${payload?.lastName}">-->
-<!--                </label><br>-->
-<!--                <label>-->
-<!--                    Номер телефона:<br>-->
-<!--                    <input type="tel" name="phoneNumber" placeholder="999-999-99-99"-->
-<!--                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" data-th-value="${payload?.phoneNumber}">-->
-<!--                </label><br>-->
-<!--                <label>-->
-<!--                    Электронная почта:<br>-->
-<!--                    <input type="email" name="email" placeholder="info@example.com" data-th-value="${payload?.email}">-->
-<!--                </label><br><br>-->
-<!--            </div>-->
-<!--            <div class="fromExistsClients">-->
-<!--                <a href="#select1">Или выбрать из существующих:</a><br><br>-->
-<!--                <select id="select1" class="hiddenSelect" name="clientId">-->
-<!--                    <option name="clientId" data-th-each="client : ${clients}" data-th-text="${client.fullName}"-->
-<!--                            data-th-value="${client.id}"></option>-->
-<!--                </select>-->
-<!--            </div>-->
-
-            <!--            <button style="position: absolute; top: 300px;" type="submit">Добавить</button>-->
+            <button type="submit">Добавить</button>
         </form>
-
-
     </div>
 </div>
 </body>

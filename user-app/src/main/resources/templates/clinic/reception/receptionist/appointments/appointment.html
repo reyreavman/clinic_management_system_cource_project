@@ -3,11 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Информация о приеме &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .appointmentInfo {
+            position: absolute;
+            text-align: left;
+            top: 100px;
+        }
+        .checkupInfo {
+            position: absolute;
+            text-align: left;
+            top: 100px;
+            right: 0px;
+        }
+        table, td, th{
+            align: left;
+            border: 1px solid #333;
+        }
+        tr, td{
+            align: left;
+            padding: 7px 5px;
+        }
+        .returnToLastPage {
+            position: absolute;
+            top: 90px;
+            right: 0px;
+        }
+        .deleteAppointment {
+            position: absolute;
+            top: 500px;
+        }
+    </style>
 </head>
 <body>
 <div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
     <div class="appointmentInfo">
-        <h2 style="font-size: 1.5rem;" data-th-text="Приём"></h2>
+        <h2 style="font-size: 1.5rem;">Приём</h2>
         <table>
             <tr>
                 <th>ID</th>
@@ -16,43 +77,88 @@
             <tr>
                 <th>Питомец</th>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${appointment.pet.id})}"
-                       data-th-text="${appointment.pet.name}">
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/pets/{petId}(receptionistId=${receptionist.id}, petId=${appointment.petId})}"
+                       data-th-text="${appointment.petName}">
                     </a>
                 </td>
+            </tr>
+            <tr>
                 <th>ФИО врача</th>
                 <td>
-                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vets/{vetId}(receptionistId=${receptionist.id}, vetId=${appointment.vet.id})}"
-                       data-th-text="${appointment.vet.firstName} + ' ' + ${appointment.vet.lastName}">
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/vets/{vetId}(receptionistId=${receptionist.id}, vetId=${appointment.vetId})}"
+                       data-th-text="${appointment.vetFullName}">
                     </a>
                 </td>
+            </tr>
+            <tr>
                 <th>Дата</th>
                 <td>
                     <a data-th-text="${appointment.date}">
                     </a>
                 </td>
-                <th>Дата</th>
+            </tr>
+            <tr>
+                <th>Время</th>
                 <td>
                     <a data-th-text="${appointment.time}">
                     </a>
                 </td>
+            </tr>
+            <tr>
                 <th>Описание</th>
                 <td>
                     <a data-th-text="${appointment.description}">
                     </a>
                 </td>
-                <th>Обследование</th>
-                <td>
-                    <a data-th-text="${appointment.checkup}">
-                    </a>
-                </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
                 <th>Регистратор</th>
                 <td>
-                    <a data-th-text="${appointment.receptionist.firstName} + ' ' + ${appointment.receptionist.lastName}">
+                    <a data-th-text="${receptionist.firstName} + ' ' + ${receptionist.lastName}">
                     </a>
                 </td>
             </tr>
         </table>
+    </div>
+    <div class="returnToLastPage">
+        <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/list(receptionistId=${receptionist.id})}">Вернуться
+            назад</a>
+    </div>
+    <div class="checkupInfo" data-th-if="${checkup}">
+        <h2 style="font-size: 1.5rem;" data-th-text="Обследование"></h2>
+        <table>
+            <tr>
+                <th>Дата</th>
+                <td data-th-text="${checkup.date}"></td>
+            </tr>
+            <tr>
+                <th>Время</th>
+                <td data-th-text="${checkup.time}"></td>
+            </tr>
+            <tr>
+                <th>ФИО врача</th>
+                <td data-th-text="${checkup.vetFullName}"></td>
+            </tr>
+            <tr>
+                <th>Тип обследования</th>
+                <td data-th-text="${checkup.type}"></td>
+            </tr>
+            <tr>
+                <th>Статус</th>
+                <td data-th-text="${checkup.state}"></td>
+            </tr>
+            <tr>
+                <th>Результаты</th>
+                <td data-th-text="${checkup.result} != null ? checkup.result : 'отсутствуют'"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="deleteAppointment">
+        <form method="post" data-th-action="@{/clinic/reception/receptionist/{receptionistId}/appointments/{appointmentId}/delete(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}">
+            <button type="submit">Удалить</button>
+        </form>
     </div>
 </div>
 </body>
