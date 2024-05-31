@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Врач &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .vetInfo {
+            position: absolute;
+            top: 75px;
+        }
+        .appointmentsInfo {
+            position: absolute;
+            top: 75px;
+            right: 0px;
+        }
+        .checkupsInfo {
+            position: absolute;
+            top: 380px;
+        }
+        table, td, th{
+            align: left;
+            border: 1px solid #333;
+        }
+        tr, td{
+            align: left;
+            padding: 7px 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/reception/receptionist/{receptionistId}(receptionistId=${receptionist.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${receptionist.fullName}"
+           data-th-href="@{/clinic/reception/receptionist/{receptionistId}/info(receptionistId=${receptionist.id})}"></a>
+    </div>
+    <div class="vetInfo">
+        <h2 style="font-size: 1.5rem;" data-th-text="'Врач - ' + ${vet.fullName}"></h2>
+        <table>
+            <tr>
+                <th>Имя</th>
+                <td data-th-text="${vet.firstName}"></td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td data-th-text="${vet.lastName}"></td>
+            </tr>
+            <tr>
+                <th>Специальность</th>
+                <td data-th-text="${vet.speciality}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="appointmentsInfo">
+        <h2 style="font-size: 1.5rem;">Список приемов</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Питомец</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="appointment, iterstat : ${appointments}">
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/appointments/{appointmentId}(receptionistId=${receptionist.id}, appointmentId=${appointment.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td data-th-text="${appointment.date}"></td>
+                <td data-th-text="${appointment.time}"></td>
+                <td data-th-text="${appointment.petName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="checkupsInfo" data-th-if="${not #lists.isEmpty(checkups)}">
+        <h2 style="font-size: 1.5rem;">Список обследований</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>Тип</th>
+                <th>Статус</th>
+                <th>Результаты</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="checkup, iterstat : ${checkups}">
+                <td>
+                    <a data-th-href="@{/clinic/reception/receptionist/{receptionistId}/checkups/{checkupId}(receptionistId=${receptionist.id}, checkupId=${checkup.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td data-th-text="${checkup.date}"></td>
+                <td data-th-text="${checkup.time}"></td>
+                <td data-th-text="${checkup.petName}"></td>
+                <td data-th-text="${checkup.type}"></td>
+                <td data-th-text="${checkup.state}"></td>
+                <td data-th-text="${checkup.result} != null ? ${checkup.result} : 'отсутствуют'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
