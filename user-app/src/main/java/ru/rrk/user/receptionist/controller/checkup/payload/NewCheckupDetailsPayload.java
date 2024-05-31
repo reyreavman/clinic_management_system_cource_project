@@ -1,4 +1,4 @@
-package ru.rrk.user.receptionist.controller.payload;
+package ru.rrk.user.receptionist.controller.checkup.payload;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
