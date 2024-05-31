@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rrk.user.receptionist.dto.Receptionist;
-import ru.rrk.user.receptionist.mapper.appointment.AppointmentViewSummaryConverter;
-import ru.rrk.user.receptionist.mapper.checkup.CheckupViewSummaryConverter;
+import ru.rrk.user.receptionist.mapper.appointment.AppointmentSummaryViewConverter;
+import ru.rrk.user.receptionist.mapper.checkup.CheckupSummaryViewConverter;
 import ru.rrk.user.receptionist.restClient.AppointmentRestClient;
 import ru.rrk.user.receptionist.restClient.ReceptionistRestClient;
 import ru.rrk.user.receptionist.restClient.checkup.CheckupRestClient;
-import ru.rrk.user.receptionist.viewModels.appointment.AppointmentViewSummary;
-import ru.rrk.user.receptionist.viewModels.checkup.CheckupViewSummary;
+import ru.rrk.user.receptionist.viewModels.appointment.AppointmentSummaryView;
+import ru.rrk.user.receptionist.viewModels.checkup.CheckupSummaryView;
 
 import java.util.Comparator;
 import java.util.NoSuchElementException;
@@ -26,8 +26,9 @@ public class ReceptionistMainController {
     private final ReceptionistRestClient receptionistRestClient;
     private final AppointmentRestClient appointmentRestClient;
     private final CheckupRestClient checkupRestClient;
-    private final AppointmentViewSummaryConverter appointmentViewSummaryConverter;
-    private final CheckupViewSummaryConverter checkupViewSummaryConverter;
+
+    private final AppointmentSummaryViewConverter appointmentSummaryViewConverter;
+    private final CheckupSummaryViewConverter checkupSummaryViewConverter;
 
     @ModelAttribute("receptionist")
     public Receptionist receptionist(@PathVariable("receptionistId") int receptionistId) {
@@ -37,8 +38,8 @@ public class ReceptionistMainController {
 
     @GetMapping
     public String getReceptionistMainPage(Model model) {
-        model.addAttribute("appointments", this.appointmentRestClient.findAllAppointments().stream().map(this.appointmentViewSummaryConverter::convert).sorted(Comparator.comparing(AppointmentViewSummary::time)).toList());
-        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupViewSummaryConverter::convert).sorted(Comparator.comparing(CheckupViewSummary::time)).toList());
+        model.addAttribute("appointments", this.appointmentRestClient.findAllAppointments().stream().map(this.appointmentSummaryViewConverter::convert).sorted(Comparator.comparing(AppointmentSummaryView::time)).toList());
+        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupSummaryViewConverter::convert).sorted(Comparator.comparing(CheckupSummaryView::time)).toList());
         return "clinic/reception/receptionist/main_page";
     }
 
