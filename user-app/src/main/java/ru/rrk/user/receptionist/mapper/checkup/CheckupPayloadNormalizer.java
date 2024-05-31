@@ -1,9 +1,8 @@
 package ru.rrk.user.receptionist.mapper.checkup;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupDetailsPayload;
-import ru.rrk.user.receptionist.controller.payload.NewCheckupSummaryPayload;
+import ru.rrk.user.receptionist.controller.checkup.payload.NewCheckupDetailsPayload;
+import ru.rrk.user.receptionist.controller.checkup.payload.NewCheckupSummaryPayload;
 import ru.rrk.user.receptionist.dto.checkup.CheckupState;
 import ru.rrk.user.receptionist.restClient.checkup.CheckupResultRestClient;
 import ru.rrk.user.receptionist.restClient.checkup.CheckupStateRestClient;
