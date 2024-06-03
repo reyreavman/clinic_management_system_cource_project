@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет &ndash; Ветеринарная клиника </title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .vetInfo {
+            position: absolute;
+            top: 70px;
+            left: 0px;
+        }
+        .allAppointmentsList {
+            position: absolute;
+            top: 70px;
+            right: 0px;
+        }
+        .allCheckupsList {
+            position: absolute;
+            top: 300px;
+            left: 0px;
+        }
+        table, td, th{
+            border: 1px solid #333;
+        }
+        td, td{
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/vets/vet/{vetId}(vetId=${vet.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="vetInfo">
+        <h2 data-th-text="${vet.fullName}"></h2>
+        <ul>
+            <li><strong>ID</strong>: <span data-th-text="${vet.id}"></span></li>
+            <li><strong>Имя</strong>: <span data-th-text="${vet.firstName}"></span></li>
+            <li><strong>Фамилия</strong>: <span data-th-text="${vet.lastName}"></span></li>
+            <li><strong>Специальность</strong>: <span data-th-text="${vet.speciality}"></span></li>
+        </ul>
+    </div>
+    <div class="allAppointmentsList">
+        <h3 style="text-align: left; font-size: 1.105rem;">Список всех приемов</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>Предварительное описание</th>
+                <th>Обследование</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="appointment, iterstat: ${appointments}">
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}(vetId=${vet.id}, appointmentId=${appointment.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${appointment.date}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${appointment.time}"></a>
+                </td>
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${appointment.petId})}"
+                       data-th-text="${appointment.petName}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
+                </td>
+                <td>
+                    <a>не назначено</a>
+                    <a data-th-if="${appointment.checkup != null}"
+                       data-th-href="@{/clinic/vets/vet/{vetId}/checkups/{checkupId}(vetId=${vet.id}, checkupId=${appointment.checkup.id})}">посмотреть</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="allCheckupsList">
+        <h3 style="text-align: left; font-size: 1.105rem;">Список всех обследований</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>Статус</th>
+                <th>Результаты</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="checkup, iterstat: ${checkups}">
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/checkups/{checkupId}(vetId=${vet.id}, checkupId=${checkup.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.date}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.time}"></a>
+                </td>
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${checkup.petId})}"
+                       data-th-text="${checkup.petName}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.state}"></a>
+                </td>
+                <td>
+                    <a>отсутствуют</a>
+                    <a data-th-if="${checkup.result}"
+                       data-th-text="${checkup.result}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

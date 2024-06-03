@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Рабочий кабинет &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .receptionistInfo {
+            position: absolute;
+            top: 27px;
+            right: 0px;
+        }
+        .appointmentsList {
+            position: absolute;
+            top: 70px;
+            left: 0px;
+        }
+        .checkupsList {
+            position: absolute;
+            top: 70px;
+            right: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/vets/vet/{vetId}(vetId=${vet.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="receptionistInfo">
+        <a data-th-text="${vet.fullName}"
+           data-th-href="@{/clinic/vets/vet/{vetId}/info(vetId=${vet.id})}"></a>
+    </div>
+    <div class="appointmentsList">
+        <h3 style="text-align: left; font-size: 1.11rem;">Список сегодняшних приемов</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>Предварительное описание</th>
+                <th>Обследование</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="appointment, iterstat: ${appointments}">
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}(vetId=${vet.id}, appointmentId=${appointment.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${appointment.time}"></a>
+                </td>
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${appointment.petId})}"
+                       data-th-text="${appointment.petName}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${appointment.checkup != null ? appointment.checkup.id : 'не назначено'}"></a>
+                    <a data-th-if="${appointment.checkup != null}"
+                       data-th-attr="data-tooltip=${appointment.checkup.id"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="checkupsList">
+        <h3 style="text-align: left; font-size: 1.11rem;">Список сегодняшних обследований</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Время</th>
+                <th>Питомец</th>
+                <th>Тип</th>
+                <th>Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="checkup, iterstat: ${checkups}">
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}(vetId=${vet.id}, appointmentId=${appointment.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.time}"></a>
+                </td>
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${pet.id})}"
+                       data-th-text="${checkup.petName}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.type}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${checkup.state}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
