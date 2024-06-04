@@ -19,7 +19,7 @@
             left: 0;
             font-size: 0.9rem;
         }
-        .receptionistInfo {
+        .vetInfo {
             position: absolute;
             top: 27px;
             right: 0px;
@@ -28,11 +28,23 @@
             position: absolute;
             top: 70px;
             left: 0px;
+            width: 580px;
+        }
+        .allPetsList {
+            position: absolute;
+            top: 16px;
+            left: 350px;
         }
         .checkupsList {
             position: absolute;
             top: 70px;
             right: 0px;
+        }
+        table, td, th {
+            border: 1px solid #333;
+        }
+        td, td{
+            padding: 15px 15px;
         }
     </style>
 </head>
@@ -45,11 +57,14 @@
     <div class="hr">
         <hr>
     </div>
-    <div class="receptionistInfo">
+    <div class="vetInfo">
         <a data-th-text="${vet.fullName}"
            data-th-href="@{/clinic/vets/vet/{vetId}/info(vetId=${vet.id})}"></a>
     </div>
     <div class="appointmentsList">
+        <div class="allPetsList">
+            <a data-th-href="@{/clinic/vets/vet/{vetId}/pets(vetId=${vet.id})}">Список всех питомцев</a>
+        </div>
         <h3 style="text-align: left; font-size: 1.11rem;">Список сегодняшних приемов</h3>
         <table>
             <thead>
@@ -57,7 +72,7 @@
                 <th>#</th>
                 <th>Время</th>
                 <th>Питомец</th>
-                <th>Предварительное описание</th>
+                <th>Описание</th>
                 <th>Обследование</th>
             </tr>
             </thead>
@@ -75,7 +90,7 @@
                        data-th-text="${appointment.petName}"></a>
                 </td>
                 <td>
-                    <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
+                    <a data-th-text="${appointment.description != null and not #strings.isEmpty(appointment.description) ? appointment.description : 'отсутствует'}"></a>
                 </td>
                 <td>
                     <a data-th-text="${appointment.checkup != null ? appointment.checkup.id : 'не назначено'}"></a>

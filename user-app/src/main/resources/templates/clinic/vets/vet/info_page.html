@@ -69,7 +69,7 @@
                 <th>Дата</th>
                 <th>Время</th>
                 <th>Питомец</th>
-                <th>Предварительное описание</th>
+                <th>Описание</th>
                 <th>Обследование</th>
             </tr>
             </thead>
@@ -90,7 +90,7 @@
                        data-th-text="${appointment.petName}"></a>
                 </td>
                 <td>
-                    <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
+                    <a data-th-text="${appointment.description != null and not #strings.isEmpty(appointment.description) ? appointment.description : 'отсутствует'}"></a>
                 </td>
                 <td>
                     <a>не назначено</a>
