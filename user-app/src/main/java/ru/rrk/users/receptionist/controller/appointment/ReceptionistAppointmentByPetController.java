@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.rrk.users.receptionist.controller.BadRequestException;
 import ru.rrk.users.receptionist.controller.appointment.payload.NewAppointmentPayload;
-import ru.rrk.common.dto.Appointment;
+import ru.rrk.common.dto.appointment.Appointment;
 import ru.rrk.common.dto.Receptionist;
 import ru.rrk.common.dto.pet.Pet;
 import ru.rrk.common.mapper.vet.VetViewConverter;
