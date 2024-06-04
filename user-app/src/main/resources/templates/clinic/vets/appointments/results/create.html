@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты приема &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .vetInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .createResult {
+            position: absolute;
+            top: 300px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/vets/vet/{vetId}(vetId=${vet.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="vetInfo">
+        <a data-th-text="${vet.fullName}"
+           data-th-href="@{/clinic/vets/vet/{vetId}/info(vetId=${vet.id})}"></a>
+    </div>
+    <div class="createResult">
+        <form method="post"
+              data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}/result/create(vetId=${vet.id}, appointmentId=${appointment.id})}">
+            <h2>Результаты приема</h2>
+            <div class="diagnosis">
+                <label>
+                    Заболевание:<br>
+                    <select name="diseaseId" required>
+                        <option name="diseaseId" data-th-each="disease : ${diseases}"
+                                data-th-text="${disease.code + ' - ' + disease.description}"
+                                data-th-value="${disease.id}"></option>
+                    </select><br>
+                    Описание:<br>
+                    <input type="text" name="description" data-th-value="diagnosisPayload?.description"><br>
+                    Рецепт:<br>
+                    <input type="text" name="prescription" data-th-value="resultPayload?.prescription"><br>
+                    Рекомендация:<br>
+                    <input type="text" name="advice" data-th-value="resultPayload?.advice"><br><br>
+                </label>
+            </div>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

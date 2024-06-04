@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о приеме &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .vetInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .appointmentInfo {
+            position: absolute;
+            text-align: left;
+            top: 100px;
+        }
+        .checkupInfo {
+            position: absolute;
+            text-align: left;
+            top: 100px;
+            right: 0px;
+        }
+        .setAppointmentResult {
+            position: absolute;
+            top: 380px;
+        }
+        table, td, th{
+            align: left;
+            border: 1px solid #333;
+        }
+        tr, td{
+            align: left;
+            padding: 7px 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/vets/vet/{vetId}(vetId=${vet.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="vetInfo">
+        <a data-th-text="${vet.fullName}"
+           data-th-href="@{/clinic/vets/vet/{vetId}/info(vetId=${vet.id})}"></a>
+    </div>
+    <div class="appointmentInfo">
+        <h2 style="font-size: 1.5rem;">Прием</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td data-th-text="${appointment.id}"></td>
+            </tr>
+            <tr>
+                <th>Питомец</th>
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${appointment.petId})}"
+                       data-th-text="${appointment.petName}"></a>
+                </td>
+            </tr>
+            <tr>
+                <th>Дата</th>
+                <td data-th-text="${appointment.date}"></td>
+            </tr>
+            <tr>
+                <th>Время</th>
+                <td data-th-text="${appointment.time}"></td>
+            </tr>
+            <tr>
+                <th>Описание</th>
+                <td data-th-text="${appointment.description != null and not #strings.isEmpty(appointment.description) ? appointment.description : 'отсутствует'}"></td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+    </div>
+    <div class="checkupInfo" data-th-if="${checkup}">
+        <h2 style="font-size: 1.5rem;">Обследование</h2>
+        <table>
+            <tr>
+                <th>Дата</th>
+                <td data-th-text="${checkup.date}"></td>
+            </tr>
+            <tr>
+                <th>Время</th>
+                <td data-th-text="${checkup.time}"></td>
+            </tr>
+            <tr>
+                <th>ФИО врача</th>
+                <td data-th-text="${checkup.vetFullName}"></td>
+            </tr>
+            <tr>
+                <th>Тип обследования</th>
+                <td data-th-text="${checkup.type}"></td>
+            </tr>
+            <tr>
+                <th>Статус</th>
+                <td data-th-text="${checkup.state}"></td>
+            </tr>
+            <tr>
+                <th>Результаты</th>
+                <td data-th-text="${checkup.result} != null ? checkup.result : 'отсутствуют'"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="setAppointmentResult">
+        <a data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}/result/create(vetId=${vet.id}, appointmentId=${appointment.id})}">Заполнить результаты
+            приема</a>
+    </div>
+</div>
+</body>
+</html>

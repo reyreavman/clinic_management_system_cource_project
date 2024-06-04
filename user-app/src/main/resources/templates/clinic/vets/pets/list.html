@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список питомцев &ndash; Ветеринарная клиника </title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .vetInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .petsList {
+            position: absolute;
+            top: 95px;
+            font-size: 1rem;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        table, td, th {
+            border: 1px solid #333;
+        }
+        td, td{
+            padding: 15px 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/vets/vet/{vetId}(vetId=${vet.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="vetInfo">
+        <a data-th-text="${vet.fullName}"
+           data-th-href="@{/clinic/vets/vet/{vetId}/info(vetId=${vet.id})}"></a>
+    </div>
+    <div class="petsList">
+        <h2 style="text-align: center; font-size: 1.3rem;">Список всех питомцев</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Вид</th>
+                <th>Порода</th>
+                <th>Дата рождения</th>
+                <th>Дата клеймирования</th>
+                <th>Клеймо</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="pet, iterstat: ${pets}">
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${pet.id})}"
+                       data-th-text="${iterstat.count}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${pet.name}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${pet.type}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${pet.breed}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${pet.birthday}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${pet.labelDate}"></a>
+                </td>
+                <td>
+                    <a data-th-text="${pet.labelValue}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
