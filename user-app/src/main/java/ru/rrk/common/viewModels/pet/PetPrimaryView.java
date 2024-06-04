@@ -14,5 +14,6 @@ public record PetPrimaryView(
         String breed,
         LocalDate birthday,
         LocalDate labelDate,
-        String labelValue) {
+        String labelValue,
+        String gender) {
 }
