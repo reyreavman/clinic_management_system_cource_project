@@ -17,6 +17,7 @@ public class PetViewPrimaryConverter implements Converter<Pet, PetPrimaryView> {
                 .birthday(pet.birthday())
                 .labelDate(pet.label().date())
                 .labelValue(pet.label().value())
+                .gender(pet.gender().gender())
                 .build();
     }
 }

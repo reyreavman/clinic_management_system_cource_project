@@ -1,7 +1,7 @@
 package ru.rrk.common.mapper.appointment;
 
 import org.springframework.core.convert.converter.Converter;
-import ru.rrk.common.dto.Appointment;
+import ru.rrk.common.dto.appointment.Appointment;
 import ru.rrk.common.viewModels.appointment.AppointmentPrimaryView;
 
 public class AppointmentPrimaryViewConverter implements Converter<Appointment, AppointmentPrimaryView> {
