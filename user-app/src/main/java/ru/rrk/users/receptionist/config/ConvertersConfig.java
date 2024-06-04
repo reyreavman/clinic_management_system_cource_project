@@ -1,4 +1,4 @@
-package ru.rrk.common.config;
+package ru.rrk.users.receptionist.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

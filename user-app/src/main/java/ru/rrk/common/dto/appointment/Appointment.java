@@ -1,5 +1,6 @@
-package ru.rrk.common.dto;
+package ru.rrk.common.dto.appointment;
 
+import ru.rrk.common.dto.Receptionist;
 import ru.rrk.common.dto.checkup.Checkup;
 import ru.rrk.common.dto.pet.Pet;
 import ru.rrk.common.dto.vet.Vet;

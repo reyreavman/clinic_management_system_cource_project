@@ -1,9 +1,10 @@
-package ru.rrk.common.config;
+package ru.rrk.users.receptionist.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
@@ -23,10 +24,10 @@ public class SecurityBeansConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers("/clinic/reception/**").hasRole("RECEPTIONIST")
-                        .requestMatchers("/clinic/vets/**").hasRole("VET")
-                        .anyRequest().authenticated()
-                )
+//                        .requestMatchers("/clinic/reception/**").hasRole("RECEPTIONIST")
+//                        .requestMatchers("/clinic/vets/**").hasRole("VET")
+                        .anyRequest().permitAll())
+                .csrf(CsrfConfigurer::disable)
                 .oauth2Login(Customizer.withDefaults())
                 .oauth2Client(Customizer.withDefaults())
                 .build();
