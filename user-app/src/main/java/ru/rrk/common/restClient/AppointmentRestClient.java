@@ -8,7 +8,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import ru.rrk.users.receptionist.controller.BadRequestException;
 import ru.rrk.users.receptionist.controller.appointment.payload.NewAppointmentDetailsPayload;
-import ru.rrk.common.dto.Appointment;
+import ru.rrk.common.dto.appointment.Appointment;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
