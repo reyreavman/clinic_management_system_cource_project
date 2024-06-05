@@ -109,25 +109,21 @@
                 <th>#</th>
                 <th>Время</th>
                 <th>Питомец</th>
-                <th>Тип</th>
                 <th>Статус</th>
             </tr>
             </thead>
             <tbody>
             <tr data-th-each="checkup, iterstat: ${checkups}">
                 <td>
-                    <a data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}(vetId=${vet.id}, appointmentId=${appointment.id})}"
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/checkups/{checkupId}(vetId=${vet.id}, checkupId=${checkup.id})}"
                        data-th-text="${iterstat.count}"></a>
                 </td>
                 <td>
                     <a data-th-text="${checkup.time}"></a>
                 </td>
                 <td>
-                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${pet.id})}"
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${checkup.petId})}"
                        data-th-text="${checkup.petName}"></a>
-                </td>
-                <td>
-                    <a data-th-text="${checkup.type}"></a>
                 </td>
                 <td>
                     <a data-th-text="${checkup.state}"></a>

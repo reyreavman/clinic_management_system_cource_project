@@ -160,7 +160,7 @@
             <tbody>
             <tr data-th-each="checkup, iterstat : ${checkups}">
                 <td>
-                    <a data-th-href="@{/clinic/vets/vet/{vetId}/checkups/{checkupId}(vetId=${vetId.id}, checkupId=${checkup.id})}"
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/checkups/{checkupId}(vetId=${vet.id}, checkupId=${checkup.id})}"
                        data-th-text="${iterstat.count}"></a>
                 </td>
                 <td data-th-text="${checkup.date}"></td>

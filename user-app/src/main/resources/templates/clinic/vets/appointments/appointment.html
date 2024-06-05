@@ -39,6 +39,10 @@
             position: absolute;
             top: 380px;
         }
+        .appointmentResult {
+            position: absolute;
+            top: 360px;
+        }
         table, td, th{
             align: left;
             border: 1px solid #333;
@@ -121,9 +125,34 @@
             </tr>
         </table>
     </div>
-    <div class="setAppointmentResult">
-        <a data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}/result/create(vetId=${vet.id}, appointmentId=${appointment.id})}">Заполнить результаты
-            приема</a>
+    <div class="setAppointmentResult" data-th-unless="${result}">
+        <a data-th-href="@{/clinic/vets/vet/{vetId}/appointments/{appointmentId}/result/create(vetId=${vet.id}, appointmentId=${appointment.id})}">Заполнить
+            результаты приема</a>
+    </div>
+    <div class="appointmentResult" data-th-if="${result}">
+        <h2 style="font-size: 1.5rem;">Результаты приема</h2>
+        <table>
+            <tr>
+                <th>Статус</th>
+                <td data-th-text="${result.appointmentResultState}"></td>
+            </tr>
+            <tr>
+                <th>Заболевание</th>
+                <td data-th-text="${result.diagnosisId != null ? result.diseaseCode + ' - ' + result.diseaseDescription : 'не установлено'}"></td>
+            </tr>
+            <tr>
+                <th>Описание</th>
+                <td data-th-text="${result.diagnosisDescription != null ? result.diagnosisDescription : 'отсутствует'}"></td>
+            </tr>
+            <tr>
+                <th>Рецепт</th>
+                <td data-th-text="${result.prescription != null ? result.prescription : 'отсутствует'}"></td>
+            </tr>
+            <tr>
+                <th>Рекомендации</th>
+                <td data-th-text="${result.advice != null ? result.advice : 'отсутствуют'}"></td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>

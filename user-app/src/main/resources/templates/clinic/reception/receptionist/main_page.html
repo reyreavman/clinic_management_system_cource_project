@@ -165,7 +165,7 @@
                        data-th-text="${appointment.vetFullName}"></a>
                 </td>
                 <td>
-                    <a data-th-text="${appointment.description != null ? appointment.description : 'Отсутствует'}"></a>
+                    <a data-th-text="${appointment.description != null and not #strings.isEmpty(appointment.description) ? appointment.description : 'отсутствует'}"></a>
                 </td>
                 <td>
                     <a data-th-text="${appointment.checkup != null ? appointment.checkup.id : 'не назначено'}"></a>
