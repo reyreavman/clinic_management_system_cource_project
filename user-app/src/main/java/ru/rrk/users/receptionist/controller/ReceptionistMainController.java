@@ -16,6 +16,7 @@ import ru.rrk.common.restClient.checkup.CheckupRestClient;
 import ru.rrk.common.viewModels.appointment.AppointmentSummaryView;
 import ru.rrk.common.viewModels.checkup.CheckupSummaryView;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
@@ -38,8 +39,16 @@ public class ReceptionistMainController {
 
     @GetMapping
     public String getReceptionistMainPage(Model model) {
-        model.addAttribute("appointments", this.appointmentRestClient.findAllAppointments().stream().map(this.appointmentSummaryViewConverter::convert).sorted(Comparator.comparing(AppointmentSummaryView::time)).toList());
-        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream().map(this.checkupSummaryViewConverter::convert).sorted(Comparator.comparing(CheckupSummaryView::time)).toList());
+        model.addAttribute("appointments", this.appointmentRestClient.findAllAppointments().stream()
+                .filter(appointment -> appointment.date().isEqual(LocalDate.now()))
+                .map(this.appointmentSummaryViewConverter::convert)
+                .sorted(Comparator.comparing(AppointmentSummaryView::time))
+                .toList());
+        model.addAttribute("checkups", this.checkupRestClient.findAllCheckups().stream()
+                .filter(checkup -> checkup.date().isEqual(LocalDate.now()))
+                .map(this.checkupSummaryViewConverter::convert)
+                .sorted(Comparator.comparing(CheckupSummaryView::time))
+                .toList());
         return "clinic/reception/receptionist/main_page";
     }
 
