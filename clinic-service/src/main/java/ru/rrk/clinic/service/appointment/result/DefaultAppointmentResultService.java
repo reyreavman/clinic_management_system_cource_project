@@ -30,8 +30,8 @@ public class DefaultAppointmentResultService implements AppointmentResultService
     public AppointmentResult createResult(Integer currentAppointmentId, Integer nextAppointmentId, Integer stateId, Integer diagnosisId, String advice, String prescription) {
         return this.appointmentResultRepository.save(AppointmentResult.builder()
                 .id(null)
-                .currentAppointment(this.appointmentRepository.findById(currentAppointmentId).orElseThrow(NoSuchFieldError::new))
-                .nextAppointment(this.appointmentRepository.findById(nextAppointmentId).orElseThrow(NoSuchElementException::new))
+                .currentAppointment(this.appointmentRepository.findById(currentAppointmentId).orElseThrow(NoSuchElementException::new))
+                .nextAppointment(nextAppointmentId != null ? this.appointmentRepository.findById(nextAppointmentId).orElseThrow(NoSuchElementException::new) : null)
                 .state(this.appointmentResultStateRepository.findById(stateId).orElseThrow(NoSuchElementException::new))
                 .diagnosis(this.diagnosisRepository.findById(diagnosisId).orElseThrow(NoSuchElementException::new))
                 .advice(advice)
@@ -49,7 +49,7 @@ public class DefaultAppointmentResultService implements AppointmentResultService
     public void updateResult(Integer appointmentResultId, Integer currentAppointmentId, Integer nextAppointmentId, Integer stateId, Integer diagnosisId, String advice, String prescription) {
         this.appointmentResultRepository.findById(appointmentResultId).ifPresentOrElse(
                 appointmentResult -> {
-                    appointmentResult.setCurrentAppointment(this.appointmentRepository.findById(currentAppointmentId).orElseThrow(NoSuchFieldError::new));
+                    appointmentResult.setCurrentAppointment(this.appointmentRepository.findById(currentAppointmentId).orElseThrow(NoSuchElementException::new));
                     appointmentResult.setNextAppointment(this.appointmentRepository.findById(nextAppointmentId).orElseThrow(NoSuchElementException::new));
                     appointmentResult.setState(this.appointmentResultStateRepository.findById(stateId).orElseThrow(NoSuchElementException::new));
                     appointmentResult.setDiagnosis(this.diagnosisRepository.findById(diagnosisId).orElseThrow(NoSuchElementException::new));
