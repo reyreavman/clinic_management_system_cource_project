@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.rrk.common.mapper.appointment.AppointmentListViewConverter;
 import ru.rrk.common.mapper.appointment.AppointmentPrimaryViewConverter;
+import ru.rrk.common.mapper.appointment.AppointmentResultSummaryViewConverter;
 import ru.rrk.common.mapper.appointment.AppointmentSummaryViewConverter;
 import ru.rrk.common.mapper.checkup.CheckupPrimaryViewConverter;
 import ru.rrk.common.mapper.checkup.CheckupSummaryViewConverter;
@@ -51,5 +52,10 @@ public class ConvertersConfig {
     @Bean
     public AppointmentListViewConverter appointmentListViewConverter() {
         return new AppointmentListViewConverter();
+    }
+
+    @Bean
+    public AppointmentResultSummaryViewConverter appointmentResultSummaryViewConverter() {
+        return new AppointmentResultSummaryViewConverter();
     }
 }
