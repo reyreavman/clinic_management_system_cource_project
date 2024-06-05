@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация об обследовании &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .vetInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .checkupInfo {
+            position: absolute;
+            text-align: left;
+            top: 100px;
+        }
+        .setCheckupResult {
+            position: absolute;
+            top: 500px;
+        }
+        table, td, th{
+            align: left;
+            border: 1px solid #333;
+        }
+        tr, td{
+            align: left;
+            padding: 7px 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/vets/vet/{vetId}(vetId=${vet.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="vetInfo">
+        <a data-th-text="${vet.fullName}"
+           data-th-href="@{/clinic/vets/vet/{vetId}/info(vetId=${vet.id})}"></a>
+    </div>
+    <div class="checkupInfo">
+        <h2 style="font-size: 1.5rem;">Обследование</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td data-th-text="${checkup.id}"></td>
+            </tr>
+            <tr>
+                <th>Дата</th>
+                <td data-th-text="${checkup.date}"></td>
+            </tr>
+            <tr>
+                <th>Время</th>
+                <td data-th-text="${checkup.time}"></td>
+            </tr>
+            <tr>
+                <th>Питомец</th>
+                <td>
+                    <a data-th-href="@{/clinic/vets/vet/{vetId}/pets/{petId}(vetId=${vet.id}, petId=${checkup.petId})}"
+                       data-th-text="${checkup.petName}"></a>
+                </td>
+            </tr>
+            <tr>
+                <th>ФИО врача</th>
+                <td>
+                    <a data-th-text="${checkup.vetFullName}"></a>
+                </td>
+            </tr>
+            <tr>
+                <th>Тип</th>
+                <td>
+                    <a data-th-text="${checkup.type}"></a>
+                </td>
+            </tr>
+            <tr>
+                <th>Статус</th>
+                <td>
+                    <a data-th-text="${checkup.state}"></a>
+                </td>
+            </tr>
+            <tr>
+                <th>Результаты</th>
+                <td>
+                    <a data-th-unless="${checkup.result}">отсутствуют</a>
+                    <a data-th-if="${checkup.result}" data-th-text="${checkup.result}"></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="setCheckupResult" data-th-unless="${checkup.result}">
+        <a data-th-href="@{/clinic/vets/vet/{vetId}/checkups/{checkupId}/result/create(vetId=${vet.id}, checkupId=${checkup.id})}">Заполнить
+            результаты приема</a>
+    </div>
+</div>
+</body>
+</html>

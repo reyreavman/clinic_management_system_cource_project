@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты обследования &ndash; Ветеринарная клиника</title>
+    <style>
+        .content {
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .hr {
+            position: absolute;
+            top: 65px;
+            width: 1420px;
+        }
+        .firstHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.9rem;
+        }
+        .vetInfo {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .createResult {
+            position: absolute;
+            top: 70px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="firstHeader">
+        <h1><a data-th-href="@{/clinic/vets/vet/{vetId}(vetId=${vet.id})}">Рабочий
+            кабинет</a></h1>
+    </div>
+    <div class="hr">
+        <hr>
+    </div>
+    <div class="vetInfo">
+        <a data-th-text="${vet.fullName}"
+           data-th-href="@{/clinic/vets/vet/{vetId}/info(vetId=${vet.id})}"></a>
+    </div>
+    <div class="createResult">
+        <form method="post"
+              data-th-href="@{/clinic/vets/vet/{vetId}/checkups/{checkupId}/result/create(vetId=${vet.id}, checkupId=${checkupId})}">
+            <h2 style="font-size: 1.5rem;">Результаты обследования</h2>
+            <label>
+                <textarea name="description" data-th-value="payload?.description"></textarea><br><br>
+            </label>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
