@@ -6,9 +6,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
+import ru.rrk.common.dto.checkup.CheckupResult;
 import ru.rrk.users.receptionist.controller.BadRequestException;
 import ru.rrk.users.receptionist.controller.checkup.payload.NewCheckupResultPayload;
-import ru.rrk.common.dto.checkup.CheckupResult;
+import ru.rrk.users.vet.controller.UpdateCheckupResultPayload;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,20 @@ public class CheckupResultRestClient {
                     .body(CheckupResult.class));
         } catch (HttpClientErrorException.NotFound exception) {
             return Optional.empty();
+        }
+    }
+
+    public void updateResult(int resultId, String description) {
+        try {
+            this.restClient
+                    .patch()
+                    .uri("/clinic-api/checkups/results/{resultId}", resultId)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(new UpdateCheckupResultPayload(description))
+                    .retrieve().toBodilessEntity();
+        } catch (HttpClientErrorException.BadRequest exception) {
+            ProblemDetail problemDetail = exception.getResponseBodyAs(ProblemDetail.class);
+            throw new BadRequestException((List<String>) problemDetail.getProperties().get("errors"));
         }
     }
 }
