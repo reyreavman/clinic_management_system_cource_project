@@ -97,6 +97,6 @@ public class VetPetController {
                 .filter(checkup -> checkup.petId() == petId)
                 .sorted(Comparator.comparing(CheckupPrimaryView::date).thenComparing(CheckupPrimaryView::time))
                 .toList());
-        return "clinic/vets/pets/checkups/list";
+        return "clinic/vets/checkups/list";
     }
 }
