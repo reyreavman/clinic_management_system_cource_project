@@ -1,9 +1,15 @@
+server:
+  port: 8085
+
 kupang:
   services:
     clinic:
       uri: http://127.0.0.1:8081
       registration-id: keycloak
+
 spring:
+  application:
+    name: clinic-user-service
   datasource:
     url: jdbc:postgresql://localhost:5442/users
     username: user
@@ -13,7 +19,7 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8083/realms/clinic
+            issuer-uri: http://host.docker.internal:8083/realms/clinic
             user-name-attribute: preferred_username
         registration:
           keycloak:
@@ -22,8 +28,17 @@ spring:
             scope:
               - openid
               - microprofile-jwt
-server:
-  port: 8085
-logging:
-  level:
-    sql: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+  zipkin:
+    tracing:
+      endpoint: http://172.18.75.148:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0

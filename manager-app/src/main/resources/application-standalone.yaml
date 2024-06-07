@@ -3,7 +3,10 @@ kupang:
     clinic:
       uri: http://127.0.0.1:8081
       registration-id: keycloak
+
 spring:
+  application:
+    name: clinic-manager-service
   datasource:
     url: jdbc:postgresql://localhost:5443/manager
     username: manager
@@ -13,7 +16,7 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8083/realms/clinic
+            issuer-uri: http://host.docker.internal:8083/realms/clinic
             user-name-attribute: preferred_username
         registration:
           keycloak:
@@ -30,3 +33,17 @@ spring:
               - edit_clinic_vets
               - edit_clinic_genders
               - microprofile-jwt
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+  zipkin:
+    tracing:
+      endpoint: http://172.18.75.148:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
