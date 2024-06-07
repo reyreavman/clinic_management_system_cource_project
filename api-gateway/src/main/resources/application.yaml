@@ -1,0 +1,12 @@
+server:
+  port: 8086
+  forward-headers-strategy: framework
+#
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: clinic-service-route
+#          uri: http://127.0.0.1:8081
+#          predicates:
+#            - Host=clinic.api.ru.rrk
