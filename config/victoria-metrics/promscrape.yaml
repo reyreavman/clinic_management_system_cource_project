@@ -1,0 +1,45 @@
+scrape_configs:
+  - job_name: clinic_db_service
+    static_configs:
+      - targets: [ "host.docker.internal:8081" ]
+        labels:
+          application: clinic-db-service
+    metrics_path: /actuator/prometheus
+    oauth2:
+      client_id: victoria-metrics
+      client_secret: iU6KEftoDwC51X6SE48lGcy770XcivzN
+      token_url: http://host.docker.internal:8083/realms/clinic/protocol/openid-connect/token
+      scopes:
+        - metrics
+      endpoint_params:
+        grant_type: client_credentials
+
+  - job_name: clinic_manager_app
+    static_configs:
+      - targets: [ "host.docker.internal:8080" ]
+        labels:
+          application: clinic-manager-app
+    metrics_path: /actuator/prometheus
+    oauth2:
+      client_id: victoria-metrics
+      client_secret: iU6KEftoDwC51X6SE48lGcy770XcivzN
+      token_url: http://host.docker.internal:8083/realms/clinic/protocol/openid-connect/token
+      scopes:
+        - metrics
+      endpoint_params:
+        grant_type: client_credentials
+
+  - job_name: clinic_user_app
+    static_configs:
+      - targets: [ "host.docker.internal:8085" ]
+        labels:
+          application: clinic-user-app
+    metrics_path: /actuator/prometheus
+    oauth2:
+      client_id: victoria-metrics
+      client_secret: iU6KEftoDwC51X6SE48lGcy770XcivzN
+      token_url: http://host.docker.internal:8083/realms/clinic/protocol/openid-connect/token
+      scopes:
+        - metrics
+      endpoint_params:
+        grant_type: client_credentials
