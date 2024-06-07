@@ -12,6 +12,7 @@
         <module>clinic-service</module>
         <module>manager-app</module>
         <module>user-app</module>
+        <module>eureka-server</module>
     </modules>
 
     <properties>
