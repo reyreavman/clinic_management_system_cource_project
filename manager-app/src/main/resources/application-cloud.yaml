@@ -1,0 +1,61 @@
+kupang:
+  services:
+    clinic:
+      uri: http://127.0.0.1:8081
+      registration-id: keycloak
+
+spring:
+  application:
+    name: clinic-manager-service
+  datasource:
+    url: jdbc:postgresql://localhost:5443/manager
+    username: manager
+    password: manager
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://host.docker.internal:8083/realms/clinic
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: manager-app
+            client-secret: JJCWFPwDdIovMgegrvfF7hSeMoDv61ih
+            scope:
+              - openid
+              - microprofile-jwt
+        metrics:
+          provider: keycloak
+          client-id: manager-app
+          client-secret: JJCWFPwDdIovMgegrvfF7hSeMoDv61ih
+          authorization-grant-type: client_credentials
+          scope:
+            - metrics_server
+      resourceserver:
+        jwt:
+          issuer-uri: http://host.docker.internal:8083/realms/clinic
+
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  zipkin:
+    tracing:
+      endpoint: http://172.18.75.148:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
