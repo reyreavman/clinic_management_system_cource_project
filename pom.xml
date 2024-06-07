@@ -12,7 +12,6 @@
         <module>clinic-service</module>
         <module>manager-app</module>
         <module>user-app</module>
-        <module>api-gateway</module>
     </modules>
 
     <properties>

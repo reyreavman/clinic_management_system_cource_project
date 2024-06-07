@@ -20,20 +20,6 @@ import java.util.stream.Stream;
 
 @Configuration
 public class SecurityBeansConfig {
-//    @Bean
-//    @Priority(0)
-//    public SecurityFilterChain metricsSecurityFilterChain(HttpSecurity http) throws Exception {
-//        return http
-//                .securityMatcher("/actuator/**")
-//                .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-//                        .requestMatchers("/actuator/**").hasAuthority("SCOPE_metrics")
-////                        .anyRequest().denyAll())
-//                        .anyRequest().permitAll())
-//                .oauth2ResourceServer(customizer -> customizer.jwt(Customizer.withDefaults()))
-//                .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .build();
-//    }
-
     @Bean
     @Priority(0)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
