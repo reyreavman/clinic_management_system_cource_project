@@ -1,7 +1,6 @@
 package ru.rrk.manager.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
@@ -30,8 +29,6 @@ import ru.rrk.manager.security.OAuthClientHttpRequestInterceptor;
 
 @Configuration
 public class RestClientBeansConfig {
-    @Configuration
-    @ConditionalOnProperty(name = "eureka.client.enabled", havingValue = "false")
     public static class StandaloneClientConfig {
         @Bean
         public ClientRestClientImpl clientsRestClient(
