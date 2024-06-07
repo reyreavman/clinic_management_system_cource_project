@@ -1,6 +1,8 @@
 package ru.rrk.manager.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
@@ -35,9 +37,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new ClientRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -50,9 +54,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new SpecialityRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -65,9 +71,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new VetRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -80,9 +88,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new GenderRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -95,9 +105,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new LabelRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -110,9 +122,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new DiseaseRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -125,9 +139,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new ReceptionistRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -140,9 +156,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new CheckupTypeRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -155,9 +173,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new PetTypeRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -170,9 +190,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new PetBreedRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -185,9 +207,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new PetRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -200,9 +224,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new CheckupStateRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -215,9 +241,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new CheckupResultRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -230,9 +258,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new AppointmentResultStateRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -245,9 +275,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new CheckupRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -260,9 +292,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new AppointmentRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -276,9 +310,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new DiagnosisRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
@@ -291,9 +327,11 @@ public class RestClientBeansConfig {
                 @Value("${kupang.services.clinic.uri:http://127.0.0.1:8081}") String clinicBaseUri,
                 ClientRegistrationRepository clientRegistrationRepository,
                 OAuth2AuthorizedClientRepository authorizedClientRepository,
-                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId) {
+                @Value("${kupang.services.clinic.registration-id:keycloak}") String registrationId,
+                LoadBalancerClient loadBalancerClient) {
             return new AppointmentResultRestClientImpl(RestClient.builder()
                     .baseUrl(clinicBaseUri)
+                    .requestInterceptor(new LoadBalancerInterceptor(loadBalancerClient))
                     .requestInterceptor(
                             new OAuthClientHttpRequestInterceptor(
                                     new DefaultOAuth2AuthorizedClientManager(
