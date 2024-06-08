@@ -31,7 +31,7 @@ public class DiscoveryBeansConfig {
                         OAuth2AuthorizedClient authorizedClient = authorizedClientManager
                                 .authorize(OAuth2AuthorizeRequest
                                         .withClientRegistrationId("discovery")
-                                        .principal("manager-app")
+                                        .principal("user-app")
                                         .build());
 
                         request.setHeader(HttpHeaders.AUTHORIZATION,

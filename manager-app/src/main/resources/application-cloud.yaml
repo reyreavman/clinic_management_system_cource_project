@@ -17,8 +17,8 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://host.docker.internal:8083/realms/clinic
             user-name-attribute: preferred_username
+            issuer-uri: http://host.docker.internal:8083/realms/clinic
         registration:
           keycloak:
             client-id: manager-app
@@ -26,13 +26,20 @@ spring:
             scope:
               - openid
               - microprofile-jwt
-        metrics:
-          provider: keycloak
-          client-id: manager-app
-          client-secret: JJCWFPwDdIovMgegrvfF7hSeMoDv61ih
-          authorization-grant-type: client_credentials
-          scope:
-            - metrics_server
+          metrics:
+            provider: keycloak
+            client-id: manager-app
+            client-secret: JJCWFPwDdIovMgegrvfF7hSeMoDv61ih
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+          discovery:
+            provider: keycloak
+            client-id: manager-app
+            client-secret: JJCWFPwDdIovMgegrvfF7hSeMoDv61ih
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
       resourceserver:
         jwt:
           issuer-uri: http://host.docker.internal:8083/realms/clinic
