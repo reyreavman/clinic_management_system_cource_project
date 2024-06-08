@@ -16,6 +16,25 @@ spring:
     show-sql: true
   security:
     oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://host.docker.internal:8083/realms/clinic
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: clinic-service
+            client-secret: ss44chLor1AW3bu9WLTB2aGK0MohM8Uy
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+          discovery:
+            provider: keycloak
+            client-id: clinic-service
+            client-secret: ss44chLor1AW3bu9WLTB2aGK0MohM8Uy
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
       resourceserver:
         jwt:
           issuer-uri: http://host.docker.internal:8083/realms/clinic
