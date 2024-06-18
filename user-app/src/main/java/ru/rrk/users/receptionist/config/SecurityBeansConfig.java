@@ -24,9 +24,9 @@ public class SecurityBeansConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+                        .requestMatchers("/clinic/vets/**").hasRole("VET")
 //                        .requestMatchers("/clinic/reception/**").hasRole("RECEPTIONIST")
-//                        .requestMatchers("/clinic/vets/**").hasRole("VET")
-                        .anyRequest().permitAll())
+                        .anyRequest().denyAll())
                 .csrf(CsrfConfigurer::disable)
                 .oauth2Login(Customizer.withDefaults())
                 .oauth2Client(Customizer.withDefaults())

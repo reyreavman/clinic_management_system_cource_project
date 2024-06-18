@@ -10,7 +10,9 @@
 <div data-th-if="${errors}">
     <h2>Допущены ошибки</h2>
     <ul>
-        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>
+<!--        <li data-th-each="error: ${errors}" data-th-text="${error}"></li>-->
+        <li>Имя не указано</li>
+        <li>Введён невалидный номер телефона</li>
     </ul>
 </div>
 <form method="post" data-th-action="@{/clinic/clients/create}">

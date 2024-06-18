@@ -13,6 +13,7 @@
         <module>manager-app</module>
         <module>user-app</module>
         <module>eureka-server</module>
+        <module>api-gateway</module>
     </modules>
 
     <properties>

@@ -33,7 +33,9 @@ public class SecurityBeans {
 //                        .requestMatchers(HttpMethod.PATCH, "/clinic-api/genders/{genderId:\\d+}").hasAuthority("SCOPE_edit_clinic_genders")
 //                        .requestMatchers(HttpMethod.DELETE, "/clinic-api/genders/{genderId:\\d+}").hasAuthority("SCOPE_edit_clinic_genders")
 //                        .requestMatchers(HttpMethod.GET, "/clinic-api/genders").hasAuthority("SCOPE_view_clinic_genders")
-                        .anyRequest().permitAll())
+
+//                        .anyRequest().permitAll())
+                        .anyRequest().authenticated())
                 .csrf(CsrfConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(Customizer.withDefaults()))

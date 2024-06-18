@@ -1,0 +1,19 @@
+server:
+  port: 8086
+  forward-headers-strategy: framework
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: clinic-manager-service-route
+          uri: http://localhost:8080
+          predicates:
+            - Host=clinic.manager.127.0.0.1.nip.io
+        - id: clinic-user-service-route
+          uri: http://localhost:8085
+          predicates:
+            - Host=clinic.user.127.0.0.1.nip.io
+
+
+

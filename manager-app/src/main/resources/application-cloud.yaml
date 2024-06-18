@@ -17,8 +17,8 @@ spring:
       client:
         provider:
           keycloak:
-            user-name-attribute: preferred_username
             issuer-uri: http://host.docker.internal:8083/realms/clinic
+            user-name-attribute: preferred_username
         registration:
           keycloak:
             client-id: manager-app
