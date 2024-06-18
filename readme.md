@@ -58,4 +58,8 @@ docker run --name selmag-tracing -p 3200:3200 -p 9095:9095 -p 4317:4317 -p 4318:
 
 ### Spring Eureka Server
 
-В проекте используется в качестве модуля service discovery 
+В проекте используется в качестве модуля service discovery и балансировки нагрузки
+
+### Spring API Gateway
+
+В проекте используется в качестве модуля, реализующего паттерн API Gateway
