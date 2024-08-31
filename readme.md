@@ -1,4 +1,4 @@
-# Veterinary clinic management system. Сourse-project
+# Veterinary clinic management system. Сourse-project.
 ## Инфраструктура
 ### Keycloak
 
